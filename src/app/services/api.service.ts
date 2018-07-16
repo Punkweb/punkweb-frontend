@@ -106,9 +106,9 @@ class ApiEndpoint implements ApiOperations {
 
   private createUrl(id: number | string = null): string {
     if (id) {
-      return `${environment.apiUrl}/${this.endpoint}/${id}`;
+      return `${environment.apiUrl}/${this.endpoint}/${id}/`;
     } else {
-      return `${environment.apiUrl}/${this.endpoint}`;
+      return `${environment.apiUrl}/${this.endpoint}/`;
     }
   }
 }
@@ -116,7 +116,14 @@ class ApiEndpoint implements ApiOperations {
 @Injectable()
 export class ApiService {
 
-  public User = new ApiEndpoint(this.http, '/users');
+  public Category = new ApiEndpoint(this.http, 'categories');
+  public Subcategory = new ApiEndpoint(this.http, 'subcategories');
+  public Thread = new ApiEndpoint(this.http, 'threads');
+  public Post = new ApiEndpoint(this.http, 'posts');
+  public Conversation = new ApiEndpoint(this.http, 'conversations');
+  public Message = new ApiEndpoint(this.http, 'messages');
+  public Shout = new ApiEndpoint(this.http, 'shouts');
+  public User = new ApiEndpoint(this.http, 'users');
 
   constructor(
     private http: HttpService

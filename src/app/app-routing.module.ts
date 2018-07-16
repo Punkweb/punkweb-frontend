@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
+  BoardIndexComponent,
   Error404Component,
   HomeComponent,
   LoginComponent,
@@ -9,16 +10,20 @@ import {
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: BoardIndexComponent,
     pathMatch: 'full',
   },
   {
+    path: 'sg',
+    component: HomeComponent,
+  },
+  {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: '**',
-    component: Error404Component
+    component: Error404Component,
   },
 ];
 

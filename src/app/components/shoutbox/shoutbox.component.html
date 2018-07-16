@@ -1,0 +1,17 @@
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Shoutbox</div>
+  </div>
+  <div class="panel-body">
+    <div class="shout-list">
+      <div class="shout" *ngFor="let shout of shouts">
+        <span>{{shout.created}}</span><a [routerLink]="['/user', shout.user]"><span [innerHTML]="sanitize.cleanHtml(shout.rendered_username)"></span></a>: <span [innerHTML]="sanitize.cleanHtml(shout._content_rendered)"></span>
+      </div>
+    </div>
+    <div class="shout-form">
+      <input type="text" name="" value="">
+      <button class="button-primary" (click)="openModal()"><i class="fa fa-bullhorn fa-fw"></i> Open Modal</button>
+      <button class="button" (click)="openModal()"><i class="fa fa-sync fa-fw"></i> Open Modal</button>
+    </div>
+  </div>
+</div>

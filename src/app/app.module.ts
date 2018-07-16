@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 
 // Routes
 import {
+  BoardIndexComponent,
   Error404Component,
   HomeComponent,
   LoginComponent,
@@ -25,6 +26,7 @@ import {
 import {
   NavComponent,
   PageHeaderComponent,
+  ShoutboxComponent,
   SidebarComponent,
   SignUpModalComponent,
 } from './components';
@@ -56,12 +58,14 @@ import {
   declarations: [
     AppComponent,
     // Routes
+    BoardIndexComponent,
     Error404Component,
     HomeComponent,
     LoginComponent,
     // Components
     NavComponent,
     PageHeaderComponent,
+    ShoutboxComponent,
     SidebarComponent,
     SignUpModalComponent,
   ],
