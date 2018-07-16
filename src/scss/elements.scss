@@ -1,0 +1,481 @@
+// TODO: Checkboxes
+// TODO: Radio Buttons
+// TODO: Indeterminate Progress
+// TODO: Meters
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 1rem;
+  width: 100%;
+}
+
+hr {
+  background-color: $oc-gray-4;
+  border: 0;
+  border-radius: 2px;
+  color: $oc-gray-4;
+  height: 1px;
+  width: 100%;
+}
+
+img, iframe {
+  max-width: 100%;
+}
+
+blockquote {
+  background-color: $oc-yellow-0;
+  border-radius: 4px;
+  margin: 0 1rem;
+  padding: 1rem;
+}
+
+figure {
+  margin: 2rem 1rem;
+}
+
+figcaption {
+  font-weight: 300;
+}
+
+details, summary {
+  outline: none;
+}
+
+a {
+  @include bold;
+  color: $primary-link;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+
+  &:link, &:visited {
+    color: $primary-link;
+  }
+  &:hover, &:active {
+    text-decoration: underline;
+  }
+}
+
+mark {
+  background-color: $oc-yellow-0;
+}
+
+pre {
+  margin: 0 1rem;
+  padding: 1rem;
+}
+
+pre, code {
+  background-color: $oc-yellow-0;
+}
+
+fieldset {
+  border-radius: 4px;
+  border: 2px solid $oc-gray-4;
+}
+
+label {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+legend {
+  font-family: 'Open Sans';
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+input, select, textarea {
+  background: transparent;
+  border: 1px solid $oc-gray-4;
+  border-radius: 2px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1);
+  display: block;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  outline: none;
+  padding: .25rem .5rem;
+  transition: box-shadow 0.25s ease-in-out;
+
+  @include placeholder($default-text-on-light);
+}
+
+input[type="color"] {
+  padding: 0;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="range"]:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: $oc-gray-2;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+  cursor: pointer;
+  height: 7px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 1px 4px 0px rgba(152, 152, 152, .75);
+  cursor: pointer;
+  height: 22px;
+  margin-top: -8px;
+  width: 22px;
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: $oc-gray-2;
+}
+
+input[type="range"]::-moz-range-track {
+  background: $oc-gray-2;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+  cursor: pointer;
+  height: 7px;
+}
+
+input[type=range]::-moz-range-thumb {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 1px 4px 0px rgba(152, 152, 152, .75);
+  cursor: pointer;
+  height: 22px;
+  margin-top: -8px;
+  width: 22px;
+}
+
+input[type="range"]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 100px;
+  border-width: 22px 0;
+  box-shadow: none;
+  color: transparent;
+  cursor: pointer;
+  height: 7px;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: $primary;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: $oc-gray-2;
+  border: none;
+  border-radius: 100px;
+  box-shadow: none;
+}
+
+input[type="range"]::-ms-thumb {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 1px 4px 0px rgba(152, 152, 152, .75);
+  cursor: pointer;
+  height: 22px;
+  margin-top: -3px;
+  width: 22px;
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+  background: $primary-hover;
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+  background: $oc-gray-2;
+}
+
+input:focus, select:focus, textarea:focus {
+  box-shadow: none;
+  outline: none !important;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1), 0px 0px 6px $primary;
+  border-color: $primary;
+}
+
+input:invalid, select:invalid, textarea:invalid {
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1), 0px 0px 6px $oc-red-9;
+  border-color: $oc-red-9;
+}
+
+progress, progress[value] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid $oc-gray-4;
+  border-radius: 2px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1);
+  color: $primary;
+  height: 2rem;
+}
+
+progress::-ms-fill {
+  background-color: $primary;
+  border: none;
+  border-radius: 1px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1);
+  color: $primary;
+}
+
+progress::-moz-progress-bar {
+  background-color: $primary;
+  border-radius: 1px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1);
+}
+
+progress::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+progress::-webkit-progress-value {
+  background-color: $primary;
+  border-radius: 1px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1);
+}
+
+@mixin button($background, $color) {
+  @include medium;
+  appearance: none;
+  background-color: $background;
+  border: 1px solid mix(black, $background, 5%);
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+  color: $color !important;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Open Sans';
+  font-size: 13px;
+  letter-spacing: 1px;
+  outline: none;
+  padding: .5rem .75rem;
+  min-width: 100px;
+  text-align: center;
+  text-decoration: none !important;
+  transition: all .25s ease;
+  &:hover {
+    background-color: mix(black, $background, 10%);
+  }
+  &:disabled {
+    background-color: $oc-gray-5;
+    border: 1px solid $oc-gray-6;
+    cursor: not-allowed;
+    &:hover {
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    }
+  }
+}
+
+@mixin button-hollow($background, $color) {
+  @include button($background, $color);
+  background: transparent;
+  border: 1px solid darken($background, 10%);
+  color: $background !important;
+  &:hover {
+    background-color: darken($background, 5%);
+    color: $color !important;
+  }
+  &:active {
+    background-color: darken($background, 10%);
+    color: $color !important;
+  }
+  &:disabled {
+    background-color: transparent;
+    border: 1px solid $oc-gray-5;
+    color: $oc-gray-7 !important;
+  }
+}
+
+.button {
+  @include button($oc-gray-7, white);
+  &-primary {
+    @include button($primary, white);
+  }
+  &-green {
+    @include button($oc-green-7, white);
+  }
+  &-red {
+    @include button($oc-red-9, white);
+  }
+  &-orange {
+    @include button($oc-orange-9, white);
+  }
+}
+
+.button-hollow {
+  @include button-hollow($oc-gray-7, white);
+  &-primary {
+    @include button-hollow($primary, white);
+  }
+  &-green {
+    @include button-hollow($oc-green-7, white);
+  }
+  &-red {
+    @include button-hollow($oc-red-9, white);
+  }
+  &-orange {
+    @include button-hollow($oc-orange-7, white);
+  }
+}
+
+.panel {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, .12);
+  color: $panel-text;
+  margin-bottom: 1rem;
+  opacity: $panel-opacity;
+
+  &-header {
+    @include medium;
+    @include font-range(12, 14);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $panel-header;
+    padding: 1rem;
+  }
+  &-title {
+    @include medium;
+    @include font-range(12, 14);
+    color: $panel-title;
+  }
+  &-body {
+    @include font-range(12, 14);
+    background-color: $panel-body;
+    a {
+      color: $panel-link;
+    }
+  }
+  &-footer {
+    @include font-range(12, 14);
+    background-color: $panel-footer;
+    padding: 1rem;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  thead {
+    background-color: $table-header;
+    color: $table-header-text;
+    tr {
+      th {
+        @include medium;
+        @include font-range(12, 14);
+        padding: 1rem;
+        a {
+          color: $table-header-link !important;
+        }
+      }
+      td {
+        @include font-range(12, 14);
+      }
+    }
+  }
+  tbody {
+    background-color: $table-body;
+    color: $table-body-text;
+    tr {
+      th {
+        @include font-range(12, 14);
+      }
+      td {
+        @include font-range(12, 14);
+        padding: 1rem;
+        vertical-align: top;
+        a {
+          color: $table-body-link;
+        }
+      }
+      &:not(:last-of-type) {
+        border-bottom: 2px solid $hr;
+      }
+    }
+    .vertically-centered {
+      vertical-align: middle;
+    }
+  }
+}
+
+.breadcrumb {
+  border-radius: 4px;
+  color: $breadcrumb-active;
+  font-size: 13px;
+  letter-spacing: 1.3px;
+  list-style: none;
+  padding: .75rem 2rem;
+  margin: 0;
+
+  li {
+    display: inline;
+
+    a {
+      color: $breadcrumb-link;
+    }
+  }
+  li+li:before {
+    color: $breadcrumb-separator;
+    content: "/\00a0";
+    margin: 0 0.5rem;
+  }
+}
+
+.pagination {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  li {
+    @include button($oc-gray-3, $default-text-on-light);
+    box-shadow: none;
+    min-width: inherit;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  .active {
+    @include button($primary-whiten-10, $default-text-on-dark);
+    box-shadow: none;
+    min-width: inherit;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  .disabled {
+    @include button($oc-gray-4, $oc-gray-6);
+    box-shadow: none;
+    min-width: inherit;
+    cursor: not-allowed;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+
+/*
+How to style meters cross browser
+https://css-tricks.com/html5-meter-element/
+*/

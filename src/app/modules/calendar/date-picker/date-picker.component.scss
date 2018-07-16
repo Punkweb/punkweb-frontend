@@ -1,0 +1,80 @@
+@import '~scss/mixins';
+@import '~scss/theming';
+
+.datePicker {
+  padding: 1rem;
+}
+
+.navigate {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &__button {
+    background-color: white;
+    border: 1.5px solid $oc-blue-8;
+    border-radius: 50%;
+    box-shadow: none;
+    cursor: pointer;
+    color: $oc-blue-8;
+    padding: .4rem;
+    transition: all .2s ease-in-out;
+    &:hover {
+      background-color: $oc-blue-8;
+      color: white;
+    }
+  }
+  &__month {
+    @include bold;
+    @include font-range(16, 20);
+    letter-spacing: 0.9px;
+    color: $oc-gray-8;
+  }
+}
+
+.calendar {
+  margin: 1.5rem 0;
+
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    thead {
+      tr {
+
+      }
+      th {
+      }
+    }
+    tbody {
+      tr {
+
+      }
+      td {
+        color: $oc-gray-8;
+        cursor: pointer;
+        font-size: 11px;
+        padding: .25rem 0;
+        text-align: center;
+      }
+    }
+  }
+  &__selected {
+    position: relative;
+
+    &:before {
+      content: "";
+      border: 2px solid $oc-blue-8;
+      border-radius: 100px;
+      position: absolute;
+      top: calc(50% - 12px);
+      left: calc(50% - 12px);
+      height: 20px;
+      width: 20px;
+    }
+  }
+  &__between {
+    background-color: rgba($oc-gray-6, .37);
+    color: $oc-gray-8 !important;
+  }
+}

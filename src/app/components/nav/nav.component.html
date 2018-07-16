@@ -1,0 +1,22 @@
+<div class="nav">
+  <div class="nav-content">
+    <a class="nav-title" [routerLink]="['/']">punkweb-ngx</a>
+    <div class="nav-spacer"></div>
+    <div class="nav-links" *ngIf="authenticated">
+      <a class="nav-link nav-link" (click)="signOut()">
+        <span class="nav-link-icon"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i></span>
+        <span>Sign out</span>
+      </a>
+    </div>
+    <div class="nav-links" *ngIf="!authenticated">
+      <a class="nav-link nav-link" [routerLink]="['/login']">
+        <span class="nav-link-icon"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></span>
+        <span>Sign in</span>
+      </a>
+      <a class="nav-link nav-link" (click)="openSignUpModal()">
+        <span class="nav-link-icon"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i></span>
+        <span>Sign up</span>
+      </a>
+    </div>
+  </div>
+</div>

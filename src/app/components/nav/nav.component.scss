@@ -1,0 +1,40 @@
+@import '~scss/mixins';
+@import '~scss/theming';
+
+.nav {
+  background-color: $main-nav;
+  box-shadow: 0 2px 4px rgba($oc-gray-9, .5);
+  color: $main-nav-text;
+  position: relative;
+  z-index: 10;
+  &-content {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  &-spacer {
+    flex-grow: 1;
+  }
+  &-title {
+    @include bold;
+    @include font-range(20, 24);
+    color: $main-nav-title;
+    font-family: 'Open Sans';
+    letter-spacing: 1.2px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  &-link {
+    @include font-range(14, 16);
+    @include medium;
+    color: $main-nav-link;
+    cursor: pointer;
+    margin-left: 32px;
+    &-icon {
+      margin-right: 4px;
+    }
+  }
+}

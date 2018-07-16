@@ -1,0 +1,42 @@
+@import '~scss/open-color';
+@import '~scss/theming';
+
+.sidebar {
+  background-color: $body-background;
+  box-shadow: 0 2px 16px rgba($oc-gray-9, .5);
+  color: $default-text;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  width: 12rem;
+  &-item {
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    color: $default-text;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+    overflow-x: hidden;
+    overflow-y: auto;
+    i {
+      color: black;
+      font-size: 18px;
+    }
+    span {
+      margin-left: 2rem;
+    }
+    &--active {
+      box-shadow: inset 48px 0 0 0 $primary-blacken-20;
+      i {
+        color: white;
+      }
+    }
+    &:active, &:hover {
+      background-color: darken($body-background, 5%);
+    }
+  }
+}
