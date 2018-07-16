@@ -1,7 +1,7 @@
 {
-  "name"    : "punkweb-ngx-electron-app",
-  "version" : "0.0.0",
-  "main"    : "electron.js",
+  "name": "punkweb-ngx-electron-app",
+  "version": "0.0.0",
+  "main": "electron.js",
   "dependencies": {
     "electron-json-storage": "^4.0.2",
     "electron-notify": "^0.1.0"
