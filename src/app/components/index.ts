@@ -1,3 +1,4 @@
+export * from './category-full/category-full.component';
 export * from './nav/nav.component';
 export * from './page-header/page-header.component';
 export * from './shoutbox/shoutbox.component';

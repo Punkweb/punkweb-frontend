@@ -24,6 +24,7 @@ import {
 
 // Components
 import {
+  CategoryFullComponent,
   NavComponent,
   PageHeaderComponent,
   ShoutboxComponent,
@@ -63,6 +64,7 @@ import {
     HomeComponent,
     LoginComponent,
     // Components
+    CategoryFullComponent,
     NavComponent,
     PageHeaderComponent,
     ShoutboxComponent,

@@ -1,6 +1,25 @@
 @import '~scss/mixins';
 @import '~scss/theming';
 
+.nav-upper {
+  @include font-range(10, 12);
+  background-color: $oc-gray-9;
+  &-content {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: .5rem 1rem .5rem 0;
+  }
+  &-spacer {
+    flex-grow: 1;
+  }
+  &-link {
+    color: $oc-gray-0 !important;
+    margin-left: 12px;
+  }
+}
+
 .nav {
   background-color: $main-nav;
   box-shadow: 0 2px 4px rgba($oc-gray-9, .5);
@@ -23,7 +42,7 @@
     color: $main-nav-title;
     font-family: 'Open Sans';
     letter-spacing: 1.2px;
-    line-height: 1.2em;
+    line-height: 1.5em;
     text-transform: uppercase;
     text-decoration: none;
   }

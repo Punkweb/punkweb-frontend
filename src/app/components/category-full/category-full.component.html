@@ -1,0 +1,27 @@
+<div class="panel">
+  <div class="tableContainer">
+    <table>
+      <thead>
+        <tr>
+          <th class="align-left"><a href="#">{{category?.name}}</a></th>
+          <th>Threads</th>
+          <th>Posts</th>
+          <th class="align-left">Last Thread</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subcategory of subcategories">
+          <td class="align-left">
+            <div>
+              <a href="">{{subcategory.name}}</a>
+            </div>
+            <div [innerHTML]="sanitize.cleanHtml(subcategory._description_rendered)"></div>
+          </td>
+          <td class="align-center">1</td>
+          <td class="align-center">1</td>
+          <td class="align-left">1</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

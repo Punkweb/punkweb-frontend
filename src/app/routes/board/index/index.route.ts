@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ModalService, ConfirmModalComponent } from '../../modules/modals';
-import { ApiService, AuthService } from '../../services';
+import { ModalService, ConfirmModalComponent } from '../../../modules/modals';
+import { ApiService, AuthService } from '../../../services';
 
 @Component({
   selector: 'app-route-board-index',
@@ -11,6 +11,7 @@ import { ApiService, AuthService } from '../../services';
 export class BoardIndexComponent implements OnDestroy, OnInit {
 
   public user = null;
+  public categories = [];
 
   private authSub: Subscription = null;
 
@@ -23,6 +24,9 @@ export class BoardIndexComponent implements OnDestroy, OnInit {
   public ngOnInit() {
     this.authSub = this.auth.user$.subscribe((user) => {
       this.user = user;
+    });
+    this.api.Category.paged().subscribe((categories) => {
+      this.categories = categories;
     });
   }
 

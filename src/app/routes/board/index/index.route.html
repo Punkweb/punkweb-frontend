@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="flex">
+    <div class="flex-row">
+      <div class="flex-3">
+        <app-shoutbox></app-shoutbox>
+        <app-category-full *ngFor="let category of categories" [category]="category"></app-category-full>
+      </div>
+      <div class="flex-1">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">What up</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

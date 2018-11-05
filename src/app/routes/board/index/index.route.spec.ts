@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModule } from '../../app.module';
+import { AppModule } from '../../../app.module';
 import { BoardIndexComponent } from './index.route';
 
 describe('BoardIndexComponent', () => {
