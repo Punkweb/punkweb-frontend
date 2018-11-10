@@ -4,10 +4,6 @@ $primary: #ffb968;
 $primary-hover: lighten($primary, 5%);
 $primary-active: darken($primary, 10%);
 
-$secondary: $oc-orange-7;
-$secondary-hover: lighten($secondary, 5%);
-$secondary-active: darken($secondary, 10%);
-
 $default-text-on-dark: darken(white, 10%);
 $default-text: $default-text-on-dark;
 $input-placeholder: $default-text-on-dark;

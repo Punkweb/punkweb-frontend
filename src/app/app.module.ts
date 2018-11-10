@@ -17,6 +17,8 @@ import { AppComponent } from './app.component';
 // Routes
 import {
   BoardIndexComponent,
+  BoardSubcategoryComponent,
+  BoardThreadComponent,
   Error404Component,
   HomeComponent,
   LoginComponent,
@@ -25,6 +27,7 @@ import {
 // Components
 import {
   CategoryFullComponent,
+  IndexSidebarComponent,
   NavComponent,
   PageHeaderComponent,
   SearchComponent,
@@ -61,11 +64,14 @@ import {
     AppComponent,
     // Routes
     BoardIndexComponent,
+    BoardSubcategoryComponent,
+    BoardThreadComponent,
     Error404Component,
     HomeComponent,
     LoginComponent,
     // Components
     CategoryFullComponent,
+    IndexSidebarComponent,
     NavComponent,
     PageHeaderComponent,
     SearchComponent,

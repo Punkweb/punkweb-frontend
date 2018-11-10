@@ -13,7 +13,7 @@
         <tr *ngFor="let subcategory of subcategories">
           <td class="align-left">
             <div>
-              <a href="">{{subcategory.name}}</a>
+              <a [routerLink]="['/subcategory', subcategory.id]">{{subcategory.name}}</a>
             </div>
             <div [innerHTML]="sanitize.cleanHtml(subcategory._description_rendered)"></div>
           </td>

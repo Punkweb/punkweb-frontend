@@ -1,0 +1,46 @@
+<div class="container">
+  <app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
+  <div class="startThreadContainer" *ngIf="subcategory?.can_post">
+    <div class="startThread">
+      <div class="startThreadIcon">
+        <i class="fa fa-pencil-alt fa-fw"></i>
+      </div>
+      <input class="startThreadInput" type="text" placeholder="Start a new thread..." />
+      <div class="startThreadButton">
+        <i class="fa fa-plus-circle fa-fw"></i>
+      </div>
+    </div>
+  </div>
+  <div class="tableContainer">
+    <table>
+      <thead>
+        <tr>
+          <th class="align-left">Music</th>
+          <th class="align-center">Replies</th>
+          <th class="align-left">Last Post</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let thread of threads">
+          <td class="align-left">
+            <div>
+              <a [routerLink]="['/thread', thread.id]">{{thread.title}}</a>
+            </div>
+            <div>
+              {{moment(thread.created).format('MMM D')}} · <a href="#"><span [innerHTML]="sanitize.cleanHtml(thread.user_rendered_username)"></span></a>
+            </div>
+          </td>
+          <td class="align-center">{{thread.posts_count}}</td>
+          <td class="align-left">
+            <div *ngIf="thread.last_post">
+              {{moment(thread.last_post_created).format('MMM D')}} · <a href="#"><span [innerHTML]="sanitize.cleanHtml(thread.last_post_rendered_username)"></span></a>
+            </div>
+            <div *ngIf="!thread.last_post">
+              No posts
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -21,19 +21,19 @@ class WebsocketConnection {
   public open() {
     this.instance = new WebSocket(this.url);
     this.instance.onopen = (event) => {
-      console.log(event);
+      // console.log(event);
       this._events.onOpen(event);
     };
     this.instance.onmessage = (event) => {
-      console.log(event);
+      // console.log(event);
       this._events.onMessage(event);
     };
     this.instance.onclose = (event) => {
-      console.log(event);
+      // console.log(event);
       this._events.onClose(event);
     };
     this.instance.onerror = (event) => {
-      console.log(event);
+      // console.log(event);
       this._events.onError(event);
     };
   }

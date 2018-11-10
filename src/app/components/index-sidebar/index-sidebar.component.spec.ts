@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShoutboxComponent } from './shoutbox.component';
+import { IndexSidebarComponent } from './index-sidebar.component';
 import { AppModule } from '../../app.module';
 
-describe('ShoutboxComponent', () => {
-  let component: ShoutboxComponent;
-  let fixture: ComponentFixture<ShoutboxComponent>;
+describe('IndexSidebarComponent', () => {
+  let component: IndexSidebarComponent;
+  let fixture: ComponentFixture<IndexSidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('ShoutboxComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShoutboxComponent);
+    fixture = TestBed.createComponent(IndexSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
