@@ -2,8 +2,8 @@
 @import '~scss/theming';
 
 .search {
-  border-left: 1px solid $hr;
-  border-right: 1px solid $hr;
+  border-left: 1px solid rgba(white, .2);
+  border-right: 1px solid rgba(white, .2);
   position: relative;
   height: 64px;
   &Container {
@@ -16,6 +16,7 @@
     top: .75rem;
   }
   &Input {
+    background: transparent;
     border: none;
     box-shadow: none;
     font-size: 16px;

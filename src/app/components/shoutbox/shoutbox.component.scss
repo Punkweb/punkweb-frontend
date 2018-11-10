@@ -1,18 +1,31 @@
+@import '~scss/mixins';
+@import '~scss/theming';
+
 .shout-list {
   min-height: 240px;
   max-height: 240px;
   overflow-y: auto;
   overflow-wrap: break-word;
-  padding: 1rem 1rem 0 1rem;
+  padding: 0 2rem 0 2rem;
 }
 
 .shout {
-  line-height: 2;
+  padding: 1.5rem 0;
+  &-content {
+    margin-bottom: .5rem;
+  }
+  &-user {
+    color: $light-text;
+    font-size: 12px;
+  }
+  &:not(:last-of-type) {
+    border-bottom: 1px solid rgba(white, .1);
+  }
 }
 
 .shout-form {
   display: flex;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 2rem 2rem 2rem;
   width: 100%;
 
   input[type="text"] {

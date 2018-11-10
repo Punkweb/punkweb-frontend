@@ -6,6 +6,7 @@ $primary-active: darken($primary, 10%);
 
 $default-text-on-dark: darken(white, 10%);
 $default-text: $default-text-on-dark;
+$light-text: #9ca0a5;
 $input-placeholder: $default-text-on-dark;
 
 $hr: mix(black, white, 10%);

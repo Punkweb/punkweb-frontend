@@ -175,24 +175,30 @@ table {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   color: $default-text-on-dark;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 
   &-header {
     align-items: center;
     background-image: linear-gradient(to left, #5d75e7, #661e92);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    height: 48px;
     display: flex;
     flex-direction: row;
     font-size: 16px;
     font-weight: 500;
-    padding: 1rem;
+    padding: 1rem 2rem;
   }
   &-title {
     color: white;
     font-size: 16px;
     font-weight: 500;
+
+    &--lg {
+      @include bold;
+      font-size: 20px;
+    }
   }
   &-body {
     background-color: rgba(255, 255, 255, 0.05);
@@ -223,15 +229,16 @@ legend {
 }
 
 input, select, textarea {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: 2px;
-  box-shadow: inset 0px 1px 1px rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
   color: white;
   font-size: 16px;
   outline: none;
-  padding: 0.25rem 0.5rem;
+  padding: 1rem 1rem;
   transition: box-shadow 0.25s ease-in-out;
+  @include placeholder(rgba(255, 255, 255, 0.5));
 }
 
 option, optgroup {
@@ -348,8 +355,6 @@ input[type="range"]:focus::-ms-fill-upper {
 input:focus, select:focus, textarea:focus {
   box-shadow: none;
   outline: none !important;
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, .1), 0px 0px 6px $primary;
-  border-color: $primary;
 }
 
 input:invalid, select:invalid, textarea:invalid {
