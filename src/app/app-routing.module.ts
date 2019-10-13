@@ -1,30 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  BoardIndexComponent,
-  BoardSubcategoryComponent,
-  BoardThreadComponent,
   Error404Component,
   HomeComponent,
   LoginComponent,
+  MusicComponent,
+  AlbumComponent,
+  ArtistComponent,
 } from './routes';
 
 const routes: Routes = [
   {
     path: '',
-    component: BoardIndexComponent,
-  },
-  {
-    path: 'subcategory/:id',
-    component: BoardSubcategoryComponent,
-  },
-  {
-    path: 'thread/:id',
-    component:  BoardThreadComponent,
+    component: HomeComponent,
   },
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'music',
+    component: MusicComponent,
+  },
+  {
+    path: 'music/album/:slug',
+    component: AlbumComponent,
+  },
+  {
+    path: 'music/artist/:slug',
+    component: ArtistComponent,
   },
   {
     path: '**',

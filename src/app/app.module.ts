@@ -16,18 +16,16 @@ import { AppComponent } from './app.component';
 
 // Routes
 import {
-  BoardIndexComponent,
-  BoardSubcategoryComponent,
-  BoardThreadComponent,
   Error404Component,
   HomeComponent,
   LoginComponent,
+  MusicComponent,
+  AlbumComponent,
+  ArtistComponent,
 } from './routes';
 
 // Components
 import {
-  CategoryFullComponent,
-  IndexSidebarComponent,
   NavComponent,
   PageHeaderComponent,
   SearchComponent,
@@ -63,15 +61,13 @@ import {
   declarations: [
     AppComponent,
     // Routes
-    BoardIndexComponent,
-    BoardSubcategoryComponent,
-    BoardThreadComponent,
     Error404Component,
     HomeComponent,
     LoginComponent,
+    MusicComponent,
+    AlbumComponent,
+    ArtistComponent,
     // Components
-    CategoryFullComponent,
-    IndexSidebarComponent,
     NavComponent,
     PageHeaderComponent,
     SearchComponent,

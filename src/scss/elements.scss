@@ -6,7 +6,7 @@
 * { box-sizing: border-box; }
 
 html, body {
-  color: white;
+  color: $default-text-on-light;
   font-family: 'Open Sans';
   font-size: 100%;
   margin: 0;
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .breadcrumb {
-  color: white;
+  color: $default-text-on-light;
   font-size: 14px;
   list-style: none;
   padding: 3rem 1rem;
@@ -43,14 +43,14 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
   li+li:before {
-    color: white;
+    color: $default-text-on-light;
     content: "/\00a0";
     margin: 0 0.5rem;
   }
 }
 
 .pagination {
-  color: white;
+  color: $default-text-on-light;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -68,10 +68,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: $hr;
   border: 0;
   border-radius: 2px;
-  color: rgba(255, 255, 255, 0.1);
+  color: $hr;
   height: 1px;
   width: 100%;
 }
@@ -119,13 +119,18 @@ mark {
 pre {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  color: white;
+  color: $default-text-on-light;
   margin: 0 1rem;
   padding: 1rem;
 }
 
 code {
-  color: white;
+  color: $default-text-on-light;
+}
+
+small {
+  color: $light-text;
+  font-size: 12px;
 }
 
 .tableContainer {
@@ -133,12 +138,12 @@ code {
 }
 
 table {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #ffffff;
   border: none;
   border-radius: 4px;
   border-collapse: collapse;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-  color: white;
+  color: $default-text-on-light;
   font-family: 'Open Sans';
   outline: none;
   text-align: left;
@@ -167,20 +172,27 @@ table {
   thead {
     color: white;
     text-align: center;
-    background-image: linear-gradient(to left, #5d75e7, #661e92);
+    background-color: #3f434a;
+    a {
+      color: white !important;
+    }
+  }
+  .header--lg {
+    @include bold;
+    font-size: 20px;
   }
 }
 
 .panel {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
   border-radius: 4px;
-  color: $default-text-on-dark;
+  color: $default-text-on-light;
   margin-bottom: 2rem;
   margin-top: 2rem;
 
   &-header {
     align-items: center;
-    background-image: linear-gradient(to left, #5d75e7, #661e92);
+    background-color: #3f434a;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     height: 48px;
@@ -201,15 +213,13 @@ table {
     }
   }
   &-body {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
     font-size: 16px;
     a {
       color: $primary;
     }
-  }
-  &-footer {
-    font-size: 14px;
-    padding: 1rem;
   }
 }
 
@@ -229,14 +239,13 @@ legend {
 }
 
 input, select, textarea {
-  background-color: rgba(255, 255, 255, 0.15);
-  border: none;
+  border: 1px solid $hr;
   border-radius: 4px;
   box-shadow: none;
-  color: white;
+  color: $default-text-on-light;
   font-size: 16px;
   outline: none;
-  padding: 1rem 1rem;
+  padding: .75rem 1rem;
   transition: box-shadow 0.25s ease-in-out;
   @include placeholder(rgba(255, 255, 255, 0.5));
 }
@@ -452,14 +461,32 @@ progress::-webkit-progress-value {
 .button {
   @include button($oc-gray-7, white);
   &-primary {
-    @include button($primary, #474167);
+    @include button($primary, white);
+  }
+  &-green {
+    @include button($oc-green-7, white);
+  }
+  &-red {
+    @include button($oc-red-7, white);
+  }
+  &-orange {
+    @include button($oc-orange-7, white);
   }
 }
 
 .button-hollow {
   @include button-hollow($oc-gray-7, white);
   &-primary {
-    @include button-hollow($primary, #474167);
+    @include button-hollow($primary, white);
+  }
+  &-green {
+    @include button-hollow($oc-green-7, white);
+  }
+  &-red {
+    @include button-hollow($oc-red-7, white);
+  }
+  &-orange {
+    @include button-hollow($oc-orange-7, white);
   }
 }
 

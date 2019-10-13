@@ -8,8 +8,10 @@
         <div class="shout-content">
           <span [innerHTML]="sanitize.cleanHtml(shout._content_rendered)"></span>
         </div>
-        <div class="shout-user">
-          <span>{{moment(shout.created).format('h:mm A')}} · </span><a [routerLink]="['/user', shout.user]"><span [innerHTML]="sanitize.cleanHtml(shout.rendered_username)"></span></a>
+        <div>
+          <small>
+            <span>{{moment(shout.created).format('h:mm A')}} · </span><a [routerLink]="['/user', shout.user]"><span [innerHTML]="sanitize.cleanHtml(shout.rendered_username)"></span></a>
+          </small>
         </div>
       </div>
     </div>

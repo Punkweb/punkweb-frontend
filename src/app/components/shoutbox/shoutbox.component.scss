@@ -14,10 +14,6 @@
   &-content {
     margin-bottom: .5rem;
   }
-  &-user {
-    color: $light-text;
-    font-size: 12px;
-  }
   &:not(:last-of-type) {
     border-bottom: 1px solid rgba(white, .1);
   }

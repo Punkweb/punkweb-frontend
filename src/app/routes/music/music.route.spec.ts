@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { IndexSidebarComponent } from './index-sidebar.component';
 import { AppModule } from '../../app.module';
+import { MusicComponent } from './music.route';
 
-describe('IndexSidebarComponent', () => {
-  let component: IndexSidebarComponent;
-  let fixture: ComponentFixture<IndexSidebarComponent>;
+describe('MusicComponent', () => {
+  let component: MusicComponent;
+  let fixture: ComponentFixture<MusicComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppModule,
+        AppModule
       ]
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IndexSidebarComponent);
+    fixture = TestBed.createComponent(MusicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

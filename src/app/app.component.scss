@@ -7,21 +7,18 @@
   right: 0;
   bottom: 0;
   display: flex;
-  flex-direction: column;  background-blend-mode: multiply, normal;
-  background-image: radial-gradient(circle at 0 50%, #4a5dff, #a86dff),
-                    linear-gradient(to bottom,
-                    rgba(0, 0, 0, 0.65),
-                    rgba(0, 0, 0, 0.65)),
-                    radial-gradient(circle at 50% 40%,
-                    rgba(255, 255, 255, 0.7),
-                    rgba(0, 0, 0, 0.5));
+  flex-direction: column;
+  background-color: #e9ebee;
+
   .main {
-    flex: 1 1 auto;
+    flex-grow: 1;
     display: flex;
     flex-direction: row;
+    min-height: 0;
     .outlet {
       flex-grow: 1;
-      overflow-y: auto;
+      min-height: 0;
+      overflow: auto;
     }
   }
 }

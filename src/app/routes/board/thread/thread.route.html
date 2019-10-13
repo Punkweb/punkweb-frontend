@@ -19,8 +19,8 @@
       <small>{{moment(thread.created).format('MMM D, YYYY · h:mm A')}}</small>
       <h1>{{thread.title}}</h1>
       <div class="thread__user">
-        <img class="thread__user__img" src="https://punkweb.net/{{thread.user_image}}" />
-        <div class="thread__user__name" [innerHTML]="sanitize.cleanHtml(thread.user_rendered_username)"></div>
+        <img (click)="routeToUser(thread.user)" class="thread__user__img" src="https://punkweb.net/{{thread.user_image}}" />
+        <div (click)="routeToUser(thread.user)" class="thread__user__name" [innerHTML]="sanitize.cleanHtml(thread.user_rendered_username)"></div>
         <div class="thread__user__joined">Joined Feb 12, 2018</div>
         <div class="thread__user__splitter"></div>
         <div class="thread__user__posts">{{thread.user_post_count}} Posts</div>

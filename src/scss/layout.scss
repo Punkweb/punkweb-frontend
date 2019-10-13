@@ -104,6 +104,14 @@
   padding-bottom: 2rem;
 }
 
+.padding-vertical {
+  padding: 2rem 0;
+}
+
+.padding-horizontal {
+  padding: 0 2rem;
+}
+
 /* Margin classes
 *******************************************************************************/
 .clearMargin {
@@ -128,4 +136,12 @@
 
 .margin-bottom {
   margin-bottom: 2rem;
+}
+
+.margin-vertical {
+  margin: 2rem 0;
+}
+
+.margin-horizontal {
+  margin: 0 2rem;
 }

@@ -5,30 +5,26 @@ import * as moment from 'moment';
 import { ApiService, AuthService, SanitizeService } from '../../../services';
 
 @Component({
-  selector: 'app-route-board-thread',
-  templateUrl: './thread.route.html',
-  styleUrls: ['./thread.route.scss']
+  selector: 'app-route-board-user',
+  templateUrl: './user.route.html',
+  styleUrls: ['./user.route.scss']
 })
-export class BoardThreadComponent implements OnDestroy, OnInit {
+export class BoardUserComponent implements OnDestroy, OnInit {
 
   public moment = moment;
 
   public breadcrumbs = [
     {
-      text: 'Forum',
-      link: '/'
-    },
-    {
-      text: '',
-      link: '#'
+      text: 'Members',
+      link: '/users'
     },
     {
       text: '',
       link: null
-    }
+    },
   ];
-  public threadId = null;
-  public thread = null;
+  public userId = null;
+  public user = null;
   public posts = [];
 
   constructor(
@@ -41,12 +37,10 @@ export class BoardThreadComponent implements OnDestroy, OnInit {
 
   public ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.threadId = params.id;
-      this.getThread(this.threadId).then((thread) => {
-        this.thread = thread;
-        this.breadcrumbs[1].text = 'TODO';
-        this.breadcrumbs[2].text = this.thread.title;
-        console.log(this.thread);
+      this.userId = params.id;
+      this.getUser(this.userId).then((user) => {
+        this.user = user;
+        this.breadcrumbs[1].text = this.user.username;
       }).catch((err) => {
         this.router.navigate(['/error']);
       });
@@ -55,24 +49,20 @@ export class BoardThreadComponent implements OnDestroy, OnInit {
 
   public ngOnDestroy() { }
 
-  public getThread(id) {
+  public getUser(id) {
     let promise = new Promise((resolve, reject) => {
-      let threadSub = this.api.Thread.read(this.threadId).subscribe(
-        (thread) => {
-          resolve(thread);
+      let userSub = this.api.User.read(this.userId).subscribe(
+        (user) => {
+          resolve(user);
         },
         (err) => {
           reject(err);
         },
         () => {
-          threadSub.unsubscribe();
+          userSub.unsubscribe();
         }
       );
     });
     return promise;
-  }
-
-  public routeToUser(user) {
-    this.router.navigate(['/user', user]);
   }
 }

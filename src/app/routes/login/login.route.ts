@@ -17,7 +17,7 @@ export class LoginComponent {
 
   public breadcrumbs = [
     {
-      text: 'Forum',
+      text: 'Home',
       link: '/'
     },
     {

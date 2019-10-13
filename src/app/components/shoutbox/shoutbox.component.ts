@@ -36,7 +36,7 @@ export class ShoutboxComponent implements OnInit, OnDestroy {
         this.getShouts().then((shouts: any) => {
           this.shouts = shouts;
         });
-      });
+      }, 30000);
     });
   }
 

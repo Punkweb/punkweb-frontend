@@ -1,13 +1,14 @@
 @import 'open-color';
 
-$primary: #ffb968;
+$primary: #4f62ff;
 $primary-hover: lighten($primary, 5%);
 $primary-active: darken($primary, 10%);
 
+$default-text-on-light: #3f434a;
 $default-text-on-dark: darken(white, 10%);
-$default-text: $default-text-on-dark;
+$default-text: $default-text-on-light;
 $light-text: #9ca0a5;
-$input-placeholder: $default-text-on-dark;
+$input-placeholder: $default-text-on-light;
 
 $hr: mix(black, white, 10%);
 
@@ -18,3 +19,6 @@ $badge-text: $oc-white;
 
 $dropdown: mix(black, $primary, 65%);
 $dropdown-shadow: 0px .5rem 1rem 0px rgba(0, 0, 0, 0.2);
+
+$two-tone-1: #5d75e7;
+$two-tone-2: #661e92;
