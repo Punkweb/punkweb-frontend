@@ -27,3 +27,9 @@
     margin: .5rem 0;
   }
 }
+
+@media screen and (max-width: 680px) {
+  .artistList {
+    justify-content: center;
+  }
+}

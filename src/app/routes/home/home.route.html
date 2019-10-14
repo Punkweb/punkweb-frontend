@@ -5,9 +5,21 @@
       <div class="panel-title">Punkweb</div>
     </div>
     <div class="panel-body padding">
-      <div class="welcomeMessage">
-      Welcome<span *ngIf="user && user.id">, {{user.username}}</span>
-      </div>
+      <p class="welcomeMessage">
+        Welcome to Punkweb<span *ngIf="user && user.id">, {{user.username}}</span>
+      </p>
+      <h1>What can you do here?</h1>
+      <ul class="disc">
+        <li>
+          Check out the <a href="#">Music Section</a> to listen to Punkweb exclusive music, featuring <a href="#">SYSTEM LYNX</a>!
+        </li>
+        <li>
+          Check out the custom built <a href="#">Forum</a>, that anyone is welcome to register on.
+        </li>
+        <li>
+          Create your own forum board using <a target="_blank" href="https://github.com/Punkweb/punkweb-boards/">Punkweb/punkweb-boards</a>.  Check out the <a target="_blank" href="https://punkweb.net/board/page/docs-index/">Documention</a>.
+        </li>
+      </ul>
     </div>
   </div>
 </div>

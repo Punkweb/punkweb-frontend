@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ApiService, AuthService } from '../../services';
 
@@ -15,6 +16,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   private authSub: Subscription = null;
 
   constructor(
+    private router: Router,
     private api: ApiService,
     private auth: AuthService,
   ) { }

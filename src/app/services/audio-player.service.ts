@@ -12,6 +12,9 @@ export class AudioPlayerService {
 
   private AudioContext = null;
   private _playQueue = [];
+  private _currentTime = 0;
+  private _duration = 0;
+  private _trackPercent = 0;
 
   constructor() {
     if (window.AudioContext) {
@@ -22,15 +25,6 @@ export class AudioPlayerService {
       this.AudioContext = null;
     }
     this.createAudio();
-  }
-
-  public get playQueue() {
-    return this._playQueue;
-  }
-
-  public set playQueue(value) {
-    this._playQueue = value;
-    this.load(this._playQueue[0].file);
   }
 
   public play() {
@@ -53,16 +47,41 @@ export class AudioPlayerService {
     this.instance.currentTime = time;
   }
 
-  public currentTime() {
-    return this.instance.currentTime;
-  }
-
-  public duration() {
-    return this.instance.duration;
+  public setVolume(volume: number) {
+    this.instance.volume = volume;
   }
 
   public isMuted() {
     return this.instance.muted;
+  }
+
+  public get playQueue() {
+    return this._playQueue;
+  }
+
+  public set playQueue(value) {
+    this._playQueue = value;
+    this.load(this._playQueue[0].file);
+  }
+
+  public get currentTime() {
+    return this._currentTime;
+  }
+
+  public get duration() {
+    return this._duration;
+  }
+
+  public get trackPercent() {
+    return this._trackPercent;
+  }
+
+  public get paused() {
+    return this.instance.paused;
+  }
+
+  public get volume() {
+    return this.instance.volume;
   }
 
   public load(url) {
@@ -78,6 +97,17 @@ export class AudioPlayerService {
       this.instance = new Audio();
       this.instance.autoplay = true;
       this.instance.preload = 'metadata';
+      this.bind('ended', () => {
+        if (this._playQueue.length > 0) {
+          this._playQueue.shift();
+          this.load(this._playQueue[0].file);
+        }
+      });
+      this.bind('timeupdate', () => {
+        this._currentTime = this.instance.currentTime;
+        this._duration = this.instance.duration;
+        this._trackPercent = ((this._currentTime / this._duration)  * 100);
+      });
     }
     if (!this.audioCtx) {
       this.audioCtx = new this.AudioContext();
@@ -94,10 +124,6 @@ export class AudioPlayerService {
         this.instance.removeEventListener(this.events[i].name, this.events[i].callback);
         this.events.splice(i, 1);
       }
-      this.events.forEach((event, i) => {
-        this.instance.removeEventListener(event.name, event.callback);
-        this.events.splice(i, 1);
-      });
       try {
         this.instance.src = '';
       } finally {
