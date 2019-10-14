@@ -85,31 +85,31 @@
 /* Padding classes
 *******************************************************************************/
 .padding {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .padding-left {
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 .padding-right {
-  padding-right: 2rem;
+  padding-right: 1.5rem;
 }
 
 .padding-top {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .padding-bottom {
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .padding-vertical {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
 
 .padding-horizontal {
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 /* Margin classes
@@ -119,29 +119,36 @@
 }
 
 .margin {
-  margin: 2rem;
+  margin: 1.5rem;
 }
 
 .margin-left {
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 }
 
 .margin-right {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 
 .margin-top {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .margin-bottom {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .margin-vertical {
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .margin-horizontal {
-  margin: 0 2rem;
+  margin: 0 1.5rem;
+}
+
+
+@media screen and (max-width: 680px) {
+  .hideOnMobile {
+    display: none !important;
+  }
 }

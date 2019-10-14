@@ -26,10 +26,10 @@ import {
 
 // Components
 import {
+  AudioPlayerComponent,
   NavComponent,
   PageHeaderComponent,
   SearchComponent,
-  ShoutboxComponent,
   SidebarComponent,
   SignUpModalComponent,
 } from './components';
@@ -37,6 +37,7 @@ import {
 // Services
 import {
   ApiService,
+  AudioPlayerService,
   AuthService,
   AuthTokenInterceptor,
   ElectronService,
@@ -68,10 +69,10 @@ import {
     AlbumComponent,
     ArtistComponent,
     // Components
+    AudioPlayerComponent,
     NavComponent,
     PageHeaderComponent,
     SearchComponent,
-    ShoutboxComponent,
     SidebarComponent,
     SignUpModalComponent,
   ],
@@ -81,6 +82,7 @@ import {
     // Services
     {provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true},
     ApiService,
+    AudioPlayerService,
     AuthService,
     ElectronService,
     HttpService,

@@ -93,13 +93,13 @@ class ApiEndpoint implements ApiOperations {
   }
 
   public listRoute(method: string, route: string, payload = {}, params = {}): Observable<any> {
-    const request = this.http.request(method, `${this.createUrl()}/${route}`, payload, params);
+    const request = this.http.request(method, `${this.createUrl()}${route}`, payload, params);
     return request
       .catch((error: any) => Observable.throw(error));
   }
 
   public detailRoute(method: string, route: string, id: number | string, payload = {}, params = {}): Observable<any> {
-    const request = this.http.request(method, `${this.createUrl()}/${route}/${id}`, payload, params);
+    const request = this.http.request(method, `${this.createUrl()}${route}/${id}`, payload, params);
     return request
       .catch((error: any) => Observable.throw(error));
   }
@@ -116,14 +116,10 @@ class ApiEndpoint implements ApiOperations {
 @Injectable()
 export class ApiService {
 
-  public Category = new ApiEndpoint(this.http, 'categories');
-  public Subcategory = new ApiEndpoint(this.http, 'subcategories');
-  public Thread = new ApiEndpoint(this.http, 'threads');
-  public Post = new ApiEndpoint(this.http, 'posts');
-  public Conversation = new ApiEndpoint(this.http, 'conversations');
-  public Message = new ApiEndpoint(this.http, 'messages');
-  public Shout = new ApiEndpoint(this.http, 'shouts');
-  public User = new ApiEndpoint(this.http, 'users');
+  public Artist = new ApiEndpoint(this.http, 'artists');
+  public Album = new ApiEndpoint(this.http, 'albums');
+  public Audio = new ApiEndpoint(this.http, 'audio');
+  public ArtistEvent = new ApiEndpoint(this.http, 'artist_events');
 
   constructor(
     private http: HttpService

@@ -1,8 +1,44 @@
-<app-page-header [title]="'Album'" [breadcrumbs]="breadcrumbs"></app-page-header>
+<app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
 <div class="container">
-  <div class="album">
+  <div class="mainSpinner" *ngIf="!album || !artist || tracks.length < 1"></div>
+  <div class="album" *ngIf="album && artist && tracks.length > 0">
     <div class="panel">
       <div class="panel-body padding">
+        <div class="album__info">
+          <div class="album__info__flex">
+            <div>
+              <img class="album__image" [src]="album.thumbnail" alt="">
+            </div>
+            <div class="centerFlexOnMobile">
+              <h4 class="hideOnMobile clearMargin">Album</h4>
+              <h1 class="album__title clearMargin">{{album.title}}</h1>
+              <div>By <a (click)="routeToArtist(artist)">{{artist.name}}</a></div>
+              <div>{{releaseDate.format('Y')}} • {{tracks.length}} songs</div>
+            </div>
+          </div>
+        </div>
+        <div class="tableContainer">
+          <table>
+            <thead>
+              <tr>
+                <th width="75px">
+                  #
+                </th>
+                <th>
+                  Title
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let song of tracks; index as i">
+                <td>{{song.track_num}}</td>
+                <td (click)="clickSong(i)">
+                  <a>{{song.title}}</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

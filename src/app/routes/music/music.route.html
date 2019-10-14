@@ -1,8 +1,29 @@
-<app-page-header [title]="'Music'" [breadcrumbs]="breadcrumbs"></app-page-header>
+<app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
 <div class="container">
   <div class="music">
     <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Punkweb</div>
+      </div>
       <div class="panel-body padding">
+        <h3>Artists</h3>
+        <hr />
+        <div class="spinner" *ngIf="!artistsLoaded"></div>
+        <div class="artistList" *ngIf="artistsLoaded">
+          <div class="artist" *ngFor="let artist of artists">
+            <div class="artist__image">
+              <img [src]="artist.thumbnail" alt="{{artist.name}}" (click)="routeToArtist(artist)">
+            </div>
+            <h5 class="artist__name"><a (click)="routeToArtist(artist)">{{artist.name}}</a></h5>
+            <label>{{artist.genre}}</label>
+          </div>
+        </div>
+        <h3>Latest Releases</h3>
+        <hr />
+        <div class="spinner" *ngIf="!latestReleasesLoaded"></div>
+        <ol *ngIf="latestReleasesLoaded">
+          <li *ngFor="let album of latestReleases"><a (click)="routeToAlbum(album)">{{album.title}}</a> • {{album.artist_name}}</li>
+        </ol>
       </div>
     </div>
   </div>

@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ModalService, ConfirmModalComponent } from '../../modules/modals';
-import { ApiService, AuthService, ElectronService } from '../../services';
+import { ApiService, AuthService } from '../../services';
 
 @Component({
   selector: 'app-route-home',
@@ -11,41 +10,33 @@ import { ApiService, AuthService, ElectronService } from '../../services';
 export class HomeComponent implements OnDestroy, OnInit {
 
   public user = null;
-  public codemirrorValue = '[b]Bbcode CodeMirror mode[/b]';
+  public artists = [];
 
   private authSub: Subscription = null;
 
   constructor(
-    private modals: ModalService,
     private api: ApiService,
     private auth: AuthService,
-    public electron: ElectronService,
-  ) {
-    this.auth.user$.subscribe((user) => {
-      this.user = user;
-    });
-  }
+  ) { }
 
   public ngOnInit() {
     this.authSub = this.auth.user$.subscribe((user) => {
       this.user = user;
     });
+    let artistsSub = this.api.Artist.list().subscribe(
+      (artists) => {
+        this.artists = artists;
+      },
+      (err) => {},
+      () => {
+        artistsSub.unsubscribe();
+      },
+    );
   }
 
   public ngOnDestroy() {
     if (this.authSub) {
       this.authSub.unsubscribe();
     }
-  }
-
-  public openModal() {
-    this.modals.open(ConfirmModalComponent, {
-      position: {
-        top: '20vh',
-      },
-      width: '360px'
-    }).subscribe((res) => {
-      console.log(res);
-    });
   }
 }

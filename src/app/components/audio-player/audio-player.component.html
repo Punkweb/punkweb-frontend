@@ -1,0 +1,68 @@
+<div class="musicPlayer" *ngIf="audio.playQueue.length > 0">
+  <div class="musicPlayer__container">
+    <div class="musicPlayer__info hideOnMobile">
+      <div class="musicPlayer__image">
+        <img [src]="audio.playQueue[0].album_thumbnail" alt="">
+      </div>
+      <div>
+        <div>{{audio.playQueue[0].title}}</div>
+        <div>{{audio.playQueue[0].artist_name}}</div>
+      </div>
+    </div>
+    <div class="musicPlayer__controls">
+      <div class="musicPlayer__buttons">
+        <button class="button" (click)="audio.play()"><i class="fas fa-play"></i></button>
+        <button class="button" (click)="audio.pause()"><i class="fas fa-pause"></i></button>
+      </div>
+      <div class="musicPlayer__flex">
+        <div>{{timeFormat(audio.currentTime())}}</div>
+        <div class="musicPlayer__trackerContainer">
+          <div id="tracker"></div>
+          <div id="tracked"></div>
+        </div>
+        <div>{{timeFormat(audio.duration())}}</div>
+        <div class="musicPlayer__flex hideOnMobile">
+          <i class="fas fa-volume-up" id="volumeIcon"></i>
+          <div class="musicPlayer__volumeContainer" id="volumeContainer">
+            <div id="volume_tracker"></div>
+            <div id="volume_level"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="musicPlayer">
+  <div class="musicPlayer__container">
+    <div class="musicPlayer__info hideOnMobile">
+      <div class="musicPlayer__image">
+        <img id="songImage" alt="">
+      </div>
+      <div>
+        <div id="songName"></div>
+        <div id="artistName"></div>
+      </div>
+    </div>
+    <div class="musicPlayer__controls">
+      <div class="musicPlayer__buttons">
+        <button class="button" id="play"><i class="fas fa-play"></i></button>
+        <button class="button" id="pause"><i class="fas fa-pause"></i></button>
+      </div>
+      <div class="musicPlayer__flex">
+        <div id="currentTime"></div>
+        <div class="musicPlayer__trackerContainer" id="trackerContainer">
+          <div id="tracker"></div>
+          <div id="tracked"></div>
+        </div>
+        <div id="totalTime"></div>
+        <div class="musicPlayer__flex hideOnMobile">
+          <i class="fas fa-volume-up" id="volumeIcon"></i>
+          <div class="musicPlayer__volumeContainer" id="volumeContainer">
+            <div id="volume_tracker"></div>
+            <div id="volume_level"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

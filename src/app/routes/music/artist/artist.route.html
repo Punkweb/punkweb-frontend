@@ -1,8 +1,90 @@
-<app-page-header [title]="'Artist'" [breadcrumbs]="breadcrumbs"></app-page-header>
+<app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
 <div class="container">
-  <div class="artist">
+  <div class="mainSpinner" *ngIf="!artist"></div>
+  <div class="artist" *ngIf="artist">
     <div class="panel">
+      <div class="artistHeader">
+        <div class="artistHeader__imgWrap">
+          <img src="{{artist.image}}" />
+        </div>
+        <h1 class="artistHeader__artistName">{{artist.name}}</h1>
+      </div>
       <div class="panel-body padding">
+        <h3>Albums</h3>
+        <hr />
+        <div class="spinner" *ngIf="!albumsLoaded"></div>
+        <div class="albumList" *ngIf="albumsLoaded">
+          <div class="album" *ngFor="let album of albums" (click)="routeToAlbum(album)">
+            <div class="album__image">
+              <img [src]="album.thumbnail" alt="">
+            </div>
+            <h5 class="album__name"><a (click)="routeToAlbum(album)">{{album.title}}</a></h5>
+            <label>{{album.release_date.format('Y')}}</label>
+          </div>
+        </div>
+        <h3>About</h3>
+        <hr />
+        <p [innerHTML]="artistBio()"></p>
+        <h3>Upcoming Events</h3>
+        <hr />
+        <div class="spinner" *ngIf="!eventsLoaded"></div>
+        <ng-container *ngIf="eventsLoaded && upcomingEvents.length < 1">
+          <p>This artist has no scheduled events.</p>
+        </ng-container>
+        <ng-container *ngIf="eventsLoaded && upcomingEvents.length > 0">
+          <div class="tableContainer">
+            <table class="noBorderTable">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let event of upcomingEvents">
+                  <td>
+                    <div class="event__image">
+                      <a href="#"><img [src]="event.thumbnail" alt="{{event.venue}}, {{event.city}}"></a>
+                    </div>
+                  </td>
+                  <td><span>{{event.venue}}, {{event.city}}</span></td>
+                  <td>{{event.event_date}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <h3>Past Events</h3>
+        <hr />
+        <div class="spinner" *ngIf="!eventsLoaded"></div>
+        <ng-container *ngIf="eventsLoaded&& pastEvents.length < 1">
+          <p>This artist has no past events.</p>
+        </ng-container>
+        <ng-container *ngIf="eventsLoaded&& pastEvents.length > 0">
+          <div class="tableContainer">
+            <table class="noBorderTable">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let event of pastEvents">
+                  <td>
+                    <div class="event__image">
+                      <a href="#"><img [src]="event.thumbnail" alt="{{event.venue}}, {{event.city}}"></a>
+                    </div>
+                  </td>
+                  <td><span>{{event.venue}}, {{event.city}}</span></td>
+                  <td>{{event.event_date}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

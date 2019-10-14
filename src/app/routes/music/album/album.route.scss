@@ -1,3 +1,41 @@
-.album {
+@import '~scss/mixins';
 
+.album {
+  &__info {
+    &__flex {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+  &__image {
+    height: 200px;
+    margin-right: 1rem;
+    width: 200px;
+    min-width: 200px;
+    img {
+      object-fit: cover;
+      height: 200px;
+      width: 200px;
+    }
+  }
+  &__title {
+    @include font-range(16, 32);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .album {
+    &__info {
+      &__flex {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+  .centerFlexOnMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

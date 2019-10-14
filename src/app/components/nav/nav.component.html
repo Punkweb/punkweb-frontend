@@ -14,24 +14,15 @@
       </div>
       <div class="nav-spacer"></div>
       <div class="nav-links" *ngIf="authenticated">
-        <a class="nav-link" [routerLink]="['/reports']" *ngIf="superuser">
-          <i class="fa fa-ban"></i>
-        </a>
-        <a class="nav-link" [routerLink]="['/inbox']">
-          <i class="fa fa-inbox"></i>
-        </a>
-        <a class="nav-link" [routerLink]="['/user']">
-          <i class="fa fa-cog"></i>
-        </a>
-        <a class="nav-link" (click)="signOut()">
+        <a class="nav-link" (click)="signOut()" title="Sign Out">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </div>
       <div class="nav-links" *ngIf="!authenticated">
-        <a class="nav-link" (click)="openSignUpModal()">
+        <a class="nav-link" (click)="openSignUpModal()" title="Sign Up">
           <i class="fas fa-user-plus"></i>
         </a>
-        <a class="nav-link" [routerLink]="['/login']">
+        <a class="nav-link" [routerLink]="['/login']" title="Login">
           <i class="fas fa-sign-in-alt"></i>
         </a>
       </div>
