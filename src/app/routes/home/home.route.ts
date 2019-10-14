@@ -41,4 +41,8 @@ export class HomeComponent implements OnDestroy, OnInit {
       this.authSub.unsubscribe();
     }
   }
+
+  public routeToSystemLynx() {
+    this.router.navigate(['/music', 'artist', 'system-lynx']);
+  }
 }
