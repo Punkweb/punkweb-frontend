@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalService } from '../../modules/modals';
-import { HttpService } from '../../services';
+import { AuthService, HttpService } from '../../services';
 import { environment } from '../../../environments/environment';
 
 declare var gtag: any;
@@ -18,7 +19,9 @@ export class SignUpModalComponent {
   public errorMessage: string;
 
   constructor(
+    private router: Router,
     private modals: ModalService,
+    private auth: AuthService,
     private http: HttpService,
   ) { }
 
@@ -36,6 +39,9 @@ export class SignUpModalComponent {
           'event_category': 'Account Engagement',
           'event_label': `${this.username}`,
           'value': 1,
+        });
+        this.auth.login(this.username, this.password1).subscribe(() => {
+          this.router.navigate(['/']);
         });
         this.modals.close(user);
       },
