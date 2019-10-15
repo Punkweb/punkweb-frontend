@@ -17,12 +17,15 @@ import { AppComponent } from './app.component';
 // Routes
 import {
   Error404Component,
-  EventComponent,
   HomeComponent,
   LoginComponent,
+  SettingsComponent,
+  // Music
   MusicComponent,
   AlbumComponent,
   ArtistComponent,
+  EventComponent,
+  LatestComponent,
 } from './routes';
 
 // Components
@@ -62,14 +65,19 @@ import {
   ],
   declarations: [
     AppComponent,
+
     // Routes
     Error404Component,
-    EventComponent,
     HomeComponent,
     LoginComponent,
+    SettingsComponent,
+    // Music
     MusicComponent,
     AlbumComponent,
     ArtistComponent,
+    EventComponent,
+    LatestComponent,
+
     // Components
     AudioPlayerComponent,
     NavComponent,

@@ -31,11 +31,11 @@
   }
 
   &::-webkit-scrollbar-track {
-    background-color: mix(black, $primary, 30%);
+    background-color: $primary;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: mix(black, $primary, 40%);
+    background-color: $primary-active;
   }
 }
 

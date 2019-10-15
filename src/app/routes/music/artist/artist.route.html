@@ -45,11 +45,11 @@
                 <tr *ngFor="let event of upcomingEvents">
                   <td (click)="routeToEvent(event)">
                     <div class="event__title__container">
-                      <div class="event__calendar">
-                        <div class="event__calendar__header">
+                      <div class="calendarWidget">
+                        <div class="calendarWidget__header">
                           {{event.event_date.format('MMM')}}
                         </div>
-                        <div class="event__calendar__body">
+                        <div class="calendarWidget__body">
                           {{event.event_date.format('DD')}}
                         </div>
                       </div>
@@ -83,13 +83,9 @@
                 <tr *ngFor="let event of pastEvents">
                   <td (click)="routeToEvent(event)">
                     <div class="event__title__container">
-                      <div class="event__calendar">
-                        <div class="event__calendar__header">
-                          {{event.event_date.format('MMM')}}
-                        </div>
-                        <div class="event__calendar__body">
-                          {{event.event_date.format('DD')}}
-                        </div>
+                      <div class="calendarWidget">
+                        <div class="calendarWidget__month">{{event.event_date.format('MMM')}}</div>
+                        <div class="calendarWidget__day">{{event.event_date.format('DD')}}</div>
                       </div>
                       <span>{{event.title}}</span>
                     </div>

@@ -1,15 +1,32 @@
 @import 'open-color';
 
-$primary: $oc-blue-8;
+$primary: $oc-teal-8;
 $primary-hover: lighten($primary, 5%);
 $primary-active: darken($primary, 10%);
 
-$default-text-on-light: #3f434a;
-$default-text-on-dark: darken(white, 10%);
+$default-text-on-light: $oc-gray-9;
+$default-text-on-dark: $oc-gray-3;
 $default-text: $default-text-on-light;
 $light-text: #9ca0a5;
-$input-placeholder: $default-text-on-light;
-
-$hr: mix(black, white, 10%);
-
 $error: $oc-red-7;
+
+$body-background: $oc-gray-2;
+
+$border: $oc-gray-4;
+
+$breadcrumb-background: white;
+$breadcrumb-text: $default-text-on-light;
+
+$nav-background: $oc-gray-9;
+
+$panel-background: white;
+$panel-text: $default-text-on-light;
+$panel-header: $oc-gray-9;
+$panel-header-text: $default-text-on-dark;
+
+$table-background: $panel-background;
+$table-text: $panel-text;
+$table-header: $panel-background;
+$table-header-text: $panel-text;
+
+$input-placeholder: $default-text-on-light;

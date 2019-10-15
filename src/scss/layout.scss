@@ -146,6 +146,17 @@
   margin: 0 1.5rem;
 }
 
+/* Table classes
+*******************************************************************************/
+.col-x-sm {
+  width: 75px;
+}
+.col-sm {
+  width: 125px;
+}
+.col-md {
+  width: 200px;
+}
 
 @media screen and (max-width: 680px) {
   .hideOnMobile {

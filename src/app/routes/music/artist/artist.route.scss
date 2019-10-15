@@ -72,35 +72,6 @@
 
 
 .event {
-  &__calendar {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid $hr;
-    margin-right: 1rem;
-    height: 75px;
-    width: 75px;
-    min-height: 75px;
-    min-width: 75px;
-    &__header {
-      background-color: $primary;
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      padding: .25rem;
-      text-transform: uppercase;
-      text-align: center;
-      width: 100%;
-    }
-    &__body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      height: 100%;
-      width: 100%;
-    }
-  }
   &__title {
     &__container {
       align-items: center;

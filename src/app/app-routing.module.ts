@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
   Error404Component,
-  EventComponent,
   HomeComponent,
   LoginComponent,
+  SettingsComponent,
+  // Music
   MusicComponent,
   AlbumComponent,
   ArtistComponent,
+  EventComponent,
+  LatestComponent,
 } from './routes';
 
 const routes: Routes = [
@@ -18,6 +21,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
   },
   {
     path: 'music',
@@ -34,6 +41,10 @@ const routes: Routes = [
   {
     path: 'music/event/:slug',
     component: EventComponent,
+  },
+  {
+    path: 'music/latest',
+    component: LatestComponent,
   },
   {
     path: '**',

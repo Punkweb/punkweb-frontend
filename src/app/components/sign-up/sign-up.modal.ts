@@ -13,8 +13,8 @@ declare var gtag: any;
 export class SignUpModalComponent {
 
   public username: string;
-  public email: string;
-  public password: string;
+  public password1: string;
+  public password2: string;
   public errorMessage: string;
 
   constructor(
@@ -22,11 +22,14 @@ export class SignUpModalComponent {
     private http: HttpService,
   ) { }
 
+  public passwordsDontMatch() {
+    return (!this.password1 || !this.password2) || (this.password1 !== this.password2);
+  }
+
   public signUp() {
     let signUpSub = this.http.post(environment.apiUrl + '/register/', {
       username: this.username,
-      email: this.email,
-      password: this.password,
+      password: this.password1,
     }).subscribe(
       (user) => {
         gtag('event', 'created_account', {
@@ -38,6 +41,13 @@ export class SignUpModalComponent {
       },
       (err) => {
         console.log(err);
+        if (err.error.username) {
+          this.errorMessage = err.error.username[0];
+        } else if (err.error.password) {
+          this.errorMessage = err.error.password[0];
+        } else {
+          this.errorMessage = err.message;
+        }
       },
       () => {
         signUpSub.unsubscribe();
