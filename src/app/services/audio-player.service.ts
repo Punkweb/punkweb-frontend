@@ -101,7 +101,7 @@ export class AudioPlayerService {
         gtag('event', 'started_song', {
           'event_category': 'Music Engagement',
           'event_label': `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
-          'value': this._duration,
+          'value': 1,
         });
         this.play();
       });

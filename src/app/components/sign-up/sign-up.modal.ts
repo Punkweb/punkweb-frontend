@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpService } from '../../services';
 import { environment } from '../../../environments/environment';
 
+declare var gtag: any;
+
 @Component({
   'selector': 'app-modal-sign-up',
   'templateUrl': './sign-up.modal.html',
@@ -25,7 +27,11 @@ export class SignUpModalComponent {
       password: this.password,
     }).subscribe(
       (user) => {
-        console.log(user);
+        gtag('event', 'created_account', {
+          'event_category': 'Account Engagement',
+          'event_label': `${this.email}`,
+          'value': 1,
+        });
       },
       (err) => {
         console.log(err);
