@@ -95,8 +95,10 @@ export class AudioPlayerService {
   public createAudio() {
     if (!this.instance) {
       this.instance = new Audio();
-      this.instance.autoplay = true;
       this.instance.preload = 'metadata';
+      this.bind('canplaythrough', () => {
+        this.play();
+      });
       this.bind('ended', () => {
         if (this._playQueue.length > 0) {
           this._playQueue.shift();
