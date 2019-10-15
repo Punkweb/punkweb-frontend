@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 declare var window: any;
+declare var gtag: any;
 
 @Injectable()
 export class AudioPlayerService {
@@ -97,11 +98,21 @@ export class AudioPlayerService {
       this.instance = new Audio();
       this.instance.preload = 'metadata';
       this.bind('canplaythrough', () => {
+        gtag('event', 'started_song', {
+          'event_category': 'Music Engagement',
+          'event_label': `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
+          'value': this._duration,
+        });
         this.play();
       });
       this.bind('ended', () => {
+        gtag('event', 'finished_song', {
+          'event_category': 'Music Engagement',
+          'event_label': `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
+          'value': this._duration,
+        });
+        this._playQueue.shift();
         if (this._playQueue.length > 0) {
-          this._playQueue.shift();
           this.load(this._playQueue[0].file);
         }
       });
