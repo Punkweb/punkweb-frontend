@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
-declare let ga: Function;
+declare let gtag: any;
 
 @Component({
   selector: 'app-root',
@@ -15,8 +15,9 @@ export class AppComponent {
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
+        gtag('config', 'UA-125324127-1', {
+          'page_path': event.urlAfterRedirects,
+        });
       }
     });
   }
