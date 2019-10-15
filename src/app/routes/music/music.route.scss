@@ -28,6 +28,32 @@
   }
 }
 
+.albumList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  justify-content: flex-start;
+}
+
+.album {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  &__image {
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+
+    img {
+      object-fit: cover;
+      height: 200px;
+      width: 200px;
+    }
+  }
+  &__name {
+    margin: .5rem 0;
+  }
+}
+
 @media screen and (max-width: 680px) {
   .artistList {
     justify-content: center;

@@ -31,7 +31,7 @@ export class SignUpModalComponent {
       (user) => {
         gtag('event', 'created_account', {
           'event_category': 'Account Engagement',
-          'event_label': `${this.email}`,
+          'event_label': `${this.username}`,
           'value': 1,
         });
         this.modals.close(user);

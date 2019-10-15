@@ -57,15 +57,15 @@ export class WebsocketService {
   public connection: WebsocketConnection;
 
   constructor() {
-    this.connection = new WebsocketConnection('ws://demos.kaazing.com/echo');
-    this.connection.events = {
-      onOpen: (event) => {
-        this.connection.send('Ayyy');
-      },
-      onMessage: (event) => {},
-      onClose: (event) => {},
-      onError: (event) => {}
-    };
-    this.connection.open();
+    // this.connection = new WebsocketConnection('ws://demos.kaazing.com/echo');
+    // this.connection.events = {
+    //   onOpen: (event) => {
+    //     this.connection.send('Ayyy');
+    //   },
+    //   onMessage: (event) => {},
+    //   onClose: (event) => {},
+    //   onError: (event) => {}
+    // };
+    // this.connection.open();
   }
 }

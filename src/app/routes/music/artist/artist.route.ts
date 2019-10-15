@@ -65,7 +65,10 @@ export class ArtistComponent implements OnInit, OnDestroy {
           });
         });
         this.getArtistEvents(this.artist.id).then((events: any) => {
-          this.events = events;
+          this.events = events.map((event) => {
+            event.event_date = moment(event.event_date);
+            return event;
+          });
           this.upcomingEvents = events.filter((event) => {
             return moment().isBefore(moment(event.event_date));
           });

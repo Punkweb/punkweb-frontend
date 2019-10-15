@@ -46,7 +46,7 @@ export class NavComponent implements OnDestroy, OnInit {
   public openSignUpModal() {
     this.modals.open(SignUpModalComponent, {
       position: {
-        top: '12rem'
+        top: '2rem'
       },
       width: '320px'
     });

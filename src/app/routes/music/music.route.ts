@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import * as moment from 'moment';
 import { ApiService } from '../../services';
 
 @Component({
@@ -10,10 +11,12 @@ import { ApiService } from '../../services';
 })
 export class MusicComponent implements OnDestroy, OnInit {
 
-  public artists = [];
-  public artistsLoaded = false;
   public latestReleases = [];
   public latestReleasesLoaded = false;
+  public artists = [];
+  public artistsLoaded = false;
+  public eventsThisWeek = [];
+  public eventsLoaded = false;
 
   public breadcrumbs = [
     {
@@ -32,15 +35,43 @@ export class MusicComponent implements OnDestroy, OnInit {
   ) { }
 
   public ngOnInit() {
+    this.getLatestReleases().then((latestReleases: any) => {
+      this.latestReleases = latestReleases.map((album) => {
+        album.release_date = moment(album.release_date);
+        return album;
+      });
+    });
     this.getArtists().then((artists: any) => {
       this.artists = artists;
     });
-    this.getLatestReleases().then((latestReleases: any) => {
-      this.latestReleases = latestReleases;
+    this.getEventsThisWeek().then((events: any) => {
+      this.eventsThisWeek = events.map((event) => {
+        event.event_date = moment(event.event_date);
+        return event;
+      });
     });
   }
 
   public ngOnDestroy() { }
+
+  public getLatestReleases() {
+    this.latestReleasesLoaded = false;
+    let promise = new Promise((resolve, reject) => {
+      let latestReleasesSub = this.api.Album.listRoute('get', 'latest_releases', {}, {}).subscribe(
+        (latestReleases) => {
+          this.latestReleasesLoaded = true;
+          resolve(latestReleases);
+        },
+        (err) => {
+          reject(err);
+        },
+        () => {
+          latestReleasesSub.unsubscribe();
+        }
+      );
+    });
+    return promise;
+  }
 
   public getArtists() {
     this.artistsLoaded = false;
@@ -61,20 +92,20 @@ export class MusicComponent implements OnDestroy, OnInit {
     return promise;
   }
 
-  public getLatestReleases() {
-    this.latestReleasesLoaded = false;
+  public getEventsThisWeek() {
+    this.eventsLoaded = false;
     let promise = new Promise((resolve, reject) => {
-      let latestReleasesSub = this.api.Album.listRoute('get', 'latest_releases', {}, {}).subscribe(
-        (latestReleases) => {
-          this.latestReleasesLoaded = true;
-          resolve(latestReleases);
+      let eventsSub = this.api.ArtistEvent.listRoute('get', 'this_week', {}, {}).subscribe(
+        (events) => {
+          this.eventsLoaded = true;
+          resolve(events);
         },
         (err) => {
           reject(err);
         },
         () => {
-          latestReleasesSub.unsubscribe();
-        }
+          eventsSub.unsubscribe();
+        },
       );
     });
     return promise;
