@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../modules/modals';
 import { HttpService } from '../../services';
 import { environment } from '../../../environments/environment';
 
@@ -17,6 +18,7 @@ export class SignUpModalComponent {
   public errorMessage: string;
 
   constructor(
+    private modals: ModalService,
     private http: HttpService,
   ) { }
 
@@ -32,6 +34,7 @@ export class SignUpModalComponent {
           'event_label': `${this.email}`,
           'value': 1,
         });
+        this.modals.close(user);
       },
       (err) => {
         console.log(err);
