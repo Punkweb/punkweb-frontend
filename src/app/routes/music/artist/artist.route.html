@@ -43,9 +43,17 @@
               </thead>
               <tbody>
                 <tr *ngFor="let event of upcomingEvents">
-                  <td>
-                    <div class="event__image">
-                      <a href="#"><img [src]="event.thumbnail" alt="{{event.venue}}, {{event.city}}"></a>
+                  <td (click)="routeToEvent(event)">
+                    <div class="event__title__container">
+                      <div class="event__calendar">
+                        <div class="event__calendar__header">
+                          {{event.event_date.format('MMM')}}
+                        </div>
+                        <div class="event__calendar__body">
+                          {{event.event_date.format('DD')}}
+                        </div>
+                      </div>
+                      <span>{{event.title}}</span>
                     </div>
                   </td>
                   <td><span>{{event.venue}}, {{event.city}}</span></td>
@@ -73,9 +81,17 @@
               </thead>
               <tbody>
                 <tr *ngFor="let event of pastEvents">
-                  <td>
-                    <div class="event__image">
-                      <a href="#"><img [src]="event.thumbnail" alt="{{event.venue}}, {{event.city}}"></a>
+                  <td (click)="routeToEvent(event)">
+                    <div class="event__title__container">
+                      <div class="event__calendar">
+                        <div class="event__calendar__header">
+                          {{event.event_date.format('MMM')}}
+                        </div>
+                        <div class="event__calendar__body">
+                          {{event.event_date.format('DD')}}
+                        </div>
+                      </div>
+                      <span>{{event.title}}</span>
                     </div>
                   </td>
                   <td><span>{{event.venue}}, {{event.city}}</span></td>

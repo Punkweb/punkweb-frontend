@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
   Error404Component,
+  EventComponent,
   HomeComponent,
   LoginComponent,
   MusicComponent,
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'music/artist/:slug',
     component: ArtistComponent,
+  },
+  {
+    path: 'music/event/:slug',
+    component: EventComponent,
   },
   {
     path: '**',

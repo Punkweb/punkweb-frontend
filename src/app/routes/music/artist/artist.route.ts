@@ -152,4 +152,8 @@ export class ArtistComponent implements OnInit, OnDestroy {
   public routeToAlbum(album) {
     this.router.navigate(['/music', 'album', album.slug]);
   }
+
+  public routeToEvent(event) {
+    this.router.navigate(['/music', 'event', event.slug]);
+  }
 }

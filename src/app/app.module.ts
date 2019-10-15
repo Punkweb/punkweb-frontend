@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 // Routes
 import {
   Error404Component,
+  EventComponent,
   HomeComponent,
   LoginComponent,
   MusicComponent,
@@ -63,6 +64,7 @@ import {
     AppComponent,
     // Routes
     Error404Component,
+    EventComponent,
     HomeComponent,
     LoginComponent,
     MusicComponent,

@@ -1,0 +1,20 @@
+<app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
+<div class="container">
+  <div class="mainSpinner" *ngIf="!event"></div>
+  <div class="panel" *ngIf="event">
+    <div class="panel-body padding">
+      <div class="event__flex">
+        <div class="event__imageContainer">
+          <img class="event__image" [src]="event.event_image" *ngIf="event.event_image">
+        </div>
+        <div class="event__detailsContainer">
+          <h3>Details</h3>
+          <hr />
+          <h3>{{event.title}}</h3>
+          <p>{{event.venue}}, {{event.city}}</p>
+          <p>{{event.event_date.format('ddd. MMM Do, YYYY')}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

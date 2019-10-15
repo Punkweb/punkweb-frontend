@@ -1,6 +1,6 @@
 @import 'open-color';
 
-$primary: #4f62ff;
+$primary: $oc-blue-8;
 $primary-hover: lighten($primary, 5%);
 $primary-active: darken($primary, 10%);
 
