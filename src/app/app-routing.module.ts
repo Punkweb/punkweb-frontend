@@ -11,6 +11,9 @@ import {
   ArtistComponent,
   EventComponent,
   LatestComponent,
+  // Board
+  BoardComponent,
+  BoardSubcategoryComponent,
 } from './routes';
 
 const routes: Routes = [
@@ -23,7 +26,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'settings',
+    path: 'account/settings',
     component: SettingsComponent,
   },
   {
@@ -45,6 +48,14 @@ const routes: Routes = [
   {
     path: 'music/latest',
     component: LatestComponent,
+  },
+  {
+    path: 'board',
+    component:  BoardComponent,
+  },
+  {
+    path: 'board/subcategory/:id',
+    component:  BoardSubcategoryComponent,
   },
   {
     path: '**',

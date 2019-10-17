@@ -116,10 +116,18 @@ class ApiEndpoint implements ApiOperations {
 @Injectable()
 export class ApiService {
 
+  public BoardCategories = new ApiEndpoint(this.http, 'board/categories');
+  public BoardSubcategories = new ApiEndpoint(this.http, 'board/subcategories');
+  public BoardThreads = new ApiEndpoint(this.http, 'board/threads');
+  public BoardPosts = new ApiEndpoint(this.http, 'board/posts');
+  public BoardShouts = new ApiEndpoint(this.http, 'board/shouts');
+  public BoardProfiles = new ApiEndpoint(this.http, 'board/profiles');
+
   public Artist = new ApiEndpoint(this.http, 'artists');
   public Album = new ApiEndpoint(this.http, 'albums');
   public Audio = new ApiEndpoint(this.http, 'audio');
   public ArtistEvent = new ApiEndpoint(this.http, 'artist_events');
+  public Users = new ApiEndpoint(this.http, 'users');
 
   constructor(
     private http: HttpService

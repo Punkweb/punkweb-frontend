@@ -26,6 +26,9 @@ import {
   ArtistComponent,
   EventComponent,
   LatestComponent,
+  // Board
+  BoardComponent,
+  BoardSubcategoryComponent,
 } from './routes';
 
 // Components
@@ -77,6 +80,9 @@ import {
     ArtistComponent,
     EventComponent,
     LatestComponent,
+    // Board
+    BoardComponent,
+    BoardSubcategoryComponent,
 
     // Components
     AudioPlayerComponent,

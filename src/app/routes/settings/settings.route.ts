@@ -16,8 +16,12 @@ export class SettingsComponent implements OnDestroy, OnInit {
       link: '/'
     },
     {
+      text: 'Account',
+      link: '/account',
+    },
+    {
       text: 'Settings',
-      link: '/settings',
+      link: null,
     },
   ];
 

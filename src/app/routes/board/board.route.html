@@ -1,0 +1,53 @@
+<app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
+<div class="container">
+  <div class="mainSpinner" *ngIf="!categoriesLoaded"></div>
+  <ng-container *ngIf="categoriesLoaded">
+    <div class="tableContainer" *ngFor="let category of categories">
+      <table>
+        <thead>
+          <tr>
+            <th>{{category.name}}</th>
+            <th>Threads</th>
+            <th>Posts</th>
+            <th>Last Thread</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subcategory of category.subcategories">
+            <td>
+              <div>
+                <a [routerLink]="['/board', 'subcategory', subcategory.id]">{{subcategory.name}}</a>
+              </div>
+              <p [innerHTML]="subcategory.description_clean"></p>
+            </td>
+            <td>{{subcategory.thread_count}}</td>
+            <td>{{subcategory.post_count}}</td>
+            <td>
+              <ng-container *ngIf="subcategory.last_thread">
+                <div>
+                  <a href="#">{{subcategory.last_thread_title}}</a>
+                </div>
+                <div>
+                  <p>17 May 2018, 1:50 AM</p>
+                </div>
+                <div>
+                  <p>by <span [innerHTML]="sanitized(subcategory.last_thread_user)"></span></p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!subcategory.last_thread">
+                <p>No Threads</p>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+  <div class="onlineUsers">
+    <h3>Users Online</h3>
+    <hr />
+    <ul>
+      <li *ngFor="let user of onlineUsers" [innerHTML]="sanitized(user.rendered_username)"></li>
+    </ul>
+  </div>
+</div>
