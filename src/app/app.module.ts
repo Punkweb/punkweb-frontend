@@ -29,6 +29,7 @@ import {
   // Board
   BoardComponent,
   BoardSubcategoryComponent,
+  BoardThreadComponent,
 } from './routes';
 
 // Components
@@ -37,6 +38,7 @@ import {
   NavComponent,
   PageHeaderComponent,
   SearchComponent,
+  ShoutboxComponent,
   SidebarComponent,
   SignUpModalComponent,
 } from './components';
@@ -50,7 +52,6 @@ import {
   ElectronService,
   HttpService,
   SanitizeService,
-  WebsocketService,
 } from './services';
 
 @NgModule({
@@ -83,12 +84,14 @@ import {
     // Board
     BoardComponent,
     BoardSubcategoryComponent,
+    BoardThreadComponent,
 
     // Components
     AudioPlayerComponent,
     NavComponent,
     PageHeaderComponent,
     SearchComponent,
+    ShoutboxComponent,
     SidebarComponent,
     SignUpModalComponent,
   ],
@@ -103,7 +106,6 @@ import {
     ElectronService,
     HttpService,
     SanitizeService,
-    WebsocketService,
   ],
   entryComponents: [
     SignUpModalComponent,

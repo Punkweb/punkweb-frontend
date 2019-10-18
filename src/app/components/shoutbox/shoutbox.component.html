@@ -1,0 +1,22 @@
+<div class="shoutbox panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      Shoutbox
+    </div>
+  </div>
+  <div class="panel-body padding">
+    <p class="errorText" *ngIf="createError && createError.length > 0">{{createError}}</p>
+    <div class="shoutInput">
+      <input class="full-width" type="text" [(ngModel)]="shoutInput">
+      <div class="shoutInput__send" title="Send" (click)="sendShout()">
+        <i class="fa fa-plus fa-fw"></i>
+      </div>
+    </div>
+    <div class="spinner" *ngIf="!shoutsLoaded"></div>
+    <div class="shoutList" *ngIf="shoutsLoaded">
+      <div class="shout" *ngFor="let shout of shouts">
+        <p>{{shout.created.format('HH:mm:ss')}} <span [innerHTML]="shout.rendered_username"></span>: <span [innerHTML]="shout._content_rendered"></span></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 <app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
 <div class="container">
   <div class="mainSpinner" *ngIf="!categoriesLoaded"></div>
+  <app-shoutbox></app-shoutbox>
   <ng-container *ngIf="categoriesLoaded">
     <div class="tableContainer" *ngFor="let category of categories">
       <table>

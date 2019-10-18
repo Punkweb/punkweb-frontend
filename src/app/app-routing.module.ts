@@ -14,6 +14,7 @@ import {
   // Board
   BoardComponent,
   BoardSubcategoryComponent,
+  BoardThreadComponent,
 } from './routes';
 
 const routes: Routes = [
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'board/subcategory/:id',
     component:  BoardSubcategoryComponent,
+  },
+  {
+    path: 'board/thread/:id',
+    component:  BoardThreadComponent,
   },
   {
     path: '**',

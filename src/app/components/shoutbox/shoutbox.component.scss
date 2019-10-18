@@ -1,0 +1,50 @@
+@import '~scss/theming';
+
+.shoutbox {
+  width: 100%;
+}
+
+.shoutInput {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  &__send {
+    background-color: $primary;
+    color: $default-text-on-dark;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 44px;
+    width: 88px;
+  }
+}
+
+.shoutList {
+  border-top: 1px solid $border;
+  border-bottom: 1px solid $border;
+  margin-top: .5rem;
+  min-height: 140px;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.shout {
+  flex: 1;
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $border;
+  }
+}
+
+.errorText {
+  color: $error;
+  font-size: 12px;
+  margin: .5rem 0;
+}

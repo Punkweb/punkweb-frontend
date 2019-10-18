@@ -11,3 +11,4 @@ export * from './music/latest/latest.route';
 // Board
 export * from './board/board.route';
 export * from './board/subcategory/subcategory.route';
+export * from './board/thread/thread.route';

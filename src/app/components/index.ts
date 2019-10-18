@@ -2,6 +2,7 @@ export * from './audio-player/audio-player.component';
 export * from './nav/nav.component';
 export * from './page-header/page-header.component';
 export * from './search/search.component';
+export * from './shoutbox/shoutbox.component';
 export * from './sidebar/sidebar.component';
 
 // Modals

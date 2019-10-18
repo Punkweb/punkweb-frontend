@@ -13,7 +13,7 @@
         <tr *ngFor="let thread of threads">
           <td class="align-left">
             <div>
-              <a [routerLink]="['/thread', thread.id]">{{thread.title}}</a>
+              <a [routerLink]="['/board', 'thread', thread.id]">{{thread.title}}</a>
             </div>
             <div>
               {{moment(thread.created).format('MMM D')}} · <a href="#"><span [innerHTML]="sanitize.cleanHtml(thread.user_rendered_username)"></span></a>

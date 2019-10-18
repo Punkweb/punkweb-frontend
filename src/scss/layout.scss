@@ -84,66 +84,68 @@
 
 /* Padding classes
 *******************************************************************************/
+$padSize: 1.5rem;
 .padding {
-  padding: 1.5rem;
+  padding: $padSize;
 }
 
 .padding-left {
-  padding-left: 1.5rem;
+  padding-left: $padSize;
 }
 
 .padding-right {
-  padding-right: 1.5rem;
+  padding-right: $padSize;
 }
 
 .padding-top {
-  padding-top: 1.5rem;
+  padding-top: $padSize;
 }
 
 .padding-bottom {
-  padding-bottom: 1.5rem;
+  padding-bottom: $padSize;
 }
 
 .padding-vertical {
-  padding: 1.5rem 0;
+  padding: $padSize 0;
 }
 
 .padding-horizontal {
-  padding: 0 1.5rem;
+  padding: 0 $padSize;
 }
 
 /* Margin classes
 *******************************************************************************/
+$margSize: 1.5rem;
 .clearMargin {
   margin: 0;
 }
 
 .margin {
-  margin: 1.5rem;
+  margin: $margSize;
 }
 
 .margin-left {
-  margin-left: 1.5rem;
+  margin-left: $margSize;
 }
 
 .margin-right {
-  margin-right: 1.5rem;
+  margin-right: $margSize;
 }
 
 .margin-top {
-  margin-top: 1.5rem;
+  margin-top: $margSize;
 }
 
 .margin-bottom {
-  margin-bottom: 1.5rem;
+  margin-bottom: $margSize;
 }
 
 .margin-vertical {
-  margin: 1.5rem 0;
+  margin: $margSize 0;
 }
 
 .margin-horizontal {
-  margin: 0 1.5rem;
+  margin: 0 $margSize;
 }
 
 /* Table classes
@@ -156,6 +158,9 @@
 }
 .col-md {
   width: 200px;
+}
+
+@media screen and (min-width: 680px) {
 }
 
 @media screen and (max-width: 680px) {
