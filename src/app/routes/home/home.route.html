@@ -8,18 +8,16 @@
       <p class="welcomeMessage">
         Welcome to Punkweb<span *ngIf="user && user.id">, {{user.username}}</span>
       </p>
-      <h1>What can you do here?</h1>
-      <ul class="disc">
-        <li>
-          Check out the <a [routerLink]="['/music']">Music Section</a> to listen to Punkweb exclusive music, featuring <a (click)="routeToSystemLynx()">SYSTEM LYNX</a>!
-        </li>
-        <li>
-          Check out the custom built <a href="/board/">Forum</a>, that anyone is welcome to register on.
-        </li>
-        <li>
-          Create your own forum board using <a target="_blank" href="https://github.com/Punkweb/punkweb-boards/">Punkweb/punkweb-boards</a>.  Check out the <a target="_blank" href="https://punkweb.net/board/page/docs-index/">Documention</a>.
-        </li>
+      <hr />
+      <p>Punkweb is a music release platform for amatuer musicians and producers.</p>
+      <h4>What can Punkweb offer me as an artist?</h4>
+      <ul>
+        <li>Unlimited song uploads and streaming.</li>
+        <li>List upcoming concerts and events.</li>
+        <li>Sell merch risk free.  Manage your own shop independently.</li>
+        <li>No contracts.  Keep <strong>all</strong> the rights to <strong>your</strong> music.</li>
+        <li><strong>... It's completely free!</strong></li>
       </ul>
-    </div>
+      <p>Artists on Punkweb can stream their music, inform fans about upcoming events, and sell merch.  All in one place!</p>
   </div>
 </div>
