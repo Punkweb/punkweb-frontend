@@ -14,6 +14,7 @@ export class BoardSubcategoryComponent implements OnDestroy, OnInit {
 
   public subcategoryId = null;
   public subcategory = null;
+  public subcategoryLoaded = false;
   public threads = [];
 
   public breadcrumbs = [
@@ -61,9 +62,11 @@ export class BoardSubcategoryComponent implements OnDestroy, OnInit {
   public ngOnDestroy() { }
 
   public getSubcategory(id) {
+    this.subcategoryLoaded = false;
     let promise = new Promise((resolve, reject) => {
       let subcategorySub = this.api.BoardSubcategories.read(id).subscribe(
         (subcategory) => {
+          this.subcategoryLoaded = true;
           resolve(subcategory);
         },
         (err) => {

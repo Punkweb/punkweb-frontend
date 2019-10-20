@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModule } from '../../../app.module';
-import { LatestComponent } from './latest.route';
+import { AppModule } from '../../../../app.module';
+import { ArtistShopComponent } from './shop.route';
 
-describe('LatestComponent', () => {
-  let component: LatestComponent;
-  let fixture: ComponentFixture<LatestComponent>;
+describe('ArtistShopComponent', () => {
+  let component: ArtistShopComponent;
+  let fixture: ComponentFixture<ArtistShopComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('LatestComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LatestComponent);
+    fixture = TestBed.createComponent(ArtistShopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

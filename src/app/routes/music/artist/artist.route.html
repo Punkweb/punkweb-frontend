@@ -22,6 +22,11 @@
             <label>{{album.release_date.format('Y')}}</label>
           </div>
         </div>
+        <ng-container *ngIf="artist.spreadshirt_shop_slug">
+          <h3>Shop</h3>
+          <hr />
+          <a class="shopLink" (click)="routeToShop()">View the {{artist.name}} shop</a>
+        </ng-container>
         <h3>About</h3>
         <hr />
         <p [innerHTML]="artistBio()"></p>

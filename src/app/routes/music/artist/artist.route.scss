@@ -82,6 +82,11 @@
   }
 }
 
+.shopLink {
+  display: block;
+  margin: 1rem 0;
+}
+
 @media screen and (max-width: 680px) {
   .albumList {
     justify-content: center;

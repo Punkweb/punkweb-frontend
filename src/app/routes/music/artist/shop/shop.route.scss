@@ -1,0 +1,13 @@
+:host {
+  height: 100%;
+}
+
+.container {
+  height: calc(100vh - 140px);
+}
+
+iframe {
+  border: none;
+  height: calc(100vh - 140px);
+  width: 100%;
+}

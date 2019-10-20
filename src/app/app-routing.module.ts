@@ -9,8 +9,8 @@ import {
   MusicComponent,
   AlbumComponent,
   ArtistComponent,
+  ArtistShopComponent,
   EventComponent,
-  LatestComponent,
   // Board
   BoardComponent,
   BoardSubcategoryComponent,
@@ -19,16 +19,16 @@ import {
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-  },
-  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'account/settings',
     component: SettingsComponent,
+  },
+  {
+    path: '',
+    component: HomeComponent,
   },
   {
     path: 'music',
@@ -43,12 +43,12 @@ const routes: Routes = [
     component: ArtistComponent,
   },
   {
-    path: 'music/event/:slug',
-    component: EventComponent,
+    path: 'music/artist/:slug/shop',
+    component: ArtistShopComponent,
   },
   {
-    path: 'music/latest',
-    component: LatestComponent,
+    path: 'music/event/:slug',
+    component: EventComponent,
   },
   {
     path: 'board',

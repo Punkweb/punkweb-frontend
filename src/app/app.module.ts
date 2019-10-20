@@ -24,8 +24,8 @@ import {
   MusicComponent,
   AlbumComponent,
   ArtistComponent,
+  ArtistShopComponent,
   EventComponent,
-  LatestComponent,
   // Board
   BoardComponent,
   BoardSubcategoryComponent,
@@ -79,8 +79,8 @@ import {
     MusicComponent,
     AlbumComponent,
     ArtistComponent,
+    ArtistShopComponent,
     EventComponent,
-    LatestComponent,
     // Board
     BoardComponent,
     BoardSubcategoryComponent,

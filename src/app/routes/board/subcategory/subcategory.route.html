@@ -1,6 +1,7 @@
 <app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
 <div class="container">
-  <div class="tableContainer">
+  <div class="mainSpinner" *ngIf="!subcategoryLoaded"></div>
+  <div class="tableContainer" *ngIf="subcategoryLoaded">
     <table>
       <thead>
         <tr>
