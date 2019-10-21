@@ -1,0 +1,12 @@
+<div class="song-lyrics">
+  <ng-container *ngIf="data && data.song">
+    <h1>{{data.song.title}}</h1>
+    <div>By <a>{{data.song.artist_name}}</a></div>
+    <hr />
+    <p [innerHTML]="lyricsSanitized"></p>
+    <hr />
+    <div>
+      © {{data.song.artist_name}} {{releaseYear}}
+    </div>
+  </ng-container>
+</div>

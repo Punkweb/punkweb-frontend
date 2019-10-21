@@ -41,6 +41,7 @@ import {
   ShoutboxComponent,
   SidebarComponent,
   SignUpModalComponent,
+  SongLyricsModalComponent,
 } from './components';
 
 // Services
@@ -94,6 +95,7 @@ import {
     ShoutboxComponent,
     SidebarComponent,
     SignUpModalComponent,
+    SongLyricsModalComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -109,6 +111,7 @@ import {
   ],
   entryComponents: [
     SignUpModalComponent,
+    SongLyricsModalComponent,
   ],
 })
 export class AppModule { }

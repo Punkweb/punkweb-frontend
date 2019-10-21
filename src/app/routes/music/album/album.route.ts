@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
+import { ModalService } from '../../../modules/modals';
 import { ApiService, AudioPlayerService } from '../../../services';
+import { SongLyricsModalComponent } from '../../../components';
 
 @Component({
   'selector': 'app-route-album',
@@ -42,6 +44,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private modals: ModalService,
     private api: ApiService,
     private audio: AudioPlayerService,
   ) { }
@@ -130,5 +133,17 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   public clickSong(index) {
     this.audio.playQueue = this.tracks.slice(index);
+  }
+
+  public clickSongLyrics(song) {
+    this.modals.open(SongLyricsModalComponent, {
+      data: {
+        song,
+      },
+      position: {
+        top: '2rem'
+      },
+      width: '640px',
+    });
   }
 }

@@ -7,3 +7,4 @@ export * from './sidebar/sidebar.component';
 
 // Modals
 export * from './sign-up/sign-up.modal';
+export * from './song-lyrics/song-lyrics.modal';

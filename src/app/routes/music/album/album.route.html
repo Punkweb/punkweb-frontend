@@ -24,9 +24,10 @@
                 <th class="col-x-sm">
                   #
                 </th>
-                <th>
+                <th class="col-full">
                   Title
                 </th>
+                <th class="col-x-sm"></th>
               </tr>
             </thead>
             <tbody>
@@ -34,6 +35,11 @@
                 <td>{{song.track_num}}</td>
                 <td (click)="clickSong(i)">
                   <a>{{song.title}}</a>
+                </td>
+                <td>
+                  <ng-container *ngIf="song.bbcode_lyrics && song.bbcode_lyrics.length > 0">
+                    <a (click)="clickSongLyrics(song)">Lyrics</a>
+                  </ng-container>
                 </td>
               </tr>
             </tbody>
