@@ -4,15 +4,15 @@
   <div class="panel" *ngIf="event">
     <div class="panel-body padding">
       <div class="event__flex">
-        <div class="event__imageContainer">
-          <img class="event__image" [src]="event.event_image" *ngIf="event.event_image">
+        <div class="event__imageContainer" *ngIf="event.event_image">
+          <img class="event__image" [src]="event.event_image">
         </div>
         <div class="event__detailsContainer">
           <h3>Details</h3>
           <hr />
           <h3>{{event.title}}</h3>
-          <p>{{event.venue}}, {{event.city}}</p>
-          <p>{{event.event_date.format('ddd. MMM Do, YYYY')}}</p>
+          <h5>{{event.event_date.format('ddd. MMM Do, YYYY')}}</h5>
+          <p>{{event.venue}} <br/>{{event.address_line}} <br/>{{event.city}} {{event.state}} {{event.zip_code}}</p>
         </div>
       </div>
     </div>

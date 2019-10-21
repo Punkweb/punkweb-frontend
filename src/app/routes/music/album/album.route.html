@@ -45,6 +45,12 @@
             </tbody>
           </table>
         </div>
+        <p *ngIf="album.record_label_tag">
+          © ℗ {{releaseDate.format('YYYY')}} {{album.record_label_tag}}
+        </p>
+        <p *ngIf="!album.record_label_tag">
+          © {{releaseDate.format('YYYY')}} {{album.artist_name}}
+        </p>
       </div>
     </div>
   </div>
