@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalService } from '../../modules/modals';
-import { AuthService, HttpService } from '../../services';
+import { ApiService, AuthService, HttpService } from '../../services';
 import { environment } from '../../../environments/environment';
-
-declare var gtag: any;
 
 @Component({
   'selector': 'app-modal-sign-up',
@@ -21,6 +19,7 @@ export class SignUpModalComponent {
   constructor(
     private router: Router,
     private modals: ModalService,
+    private api: ApiService,
     private auth: AuthService,
     private http: HttpService,
   ) { }
@@ -35,10 +34,15 @@ export class SignUpModalComponent {
       password: this.password1,
     }).subscribe(
       (user) => {
-        gtag('event', 'created_account', {
-          'event_category': 'Account Engagement',
-          'event_label': `${this.username}`,
-          'value': 1,
+        let analyticsSub = this.api.AnalyticsEvent.create({
+          category: 'account_engagement',
+          action: 'account_created',
+          label: `${this.username}`
+        }).subscribe(
+          () => {},
+          () => {},
+          () => {
+          analyticsSub.unsubscribe();
         });
         this.auth.login(this.username, this.password1).subscribe(() => {
           this.router.navigate(['/']);

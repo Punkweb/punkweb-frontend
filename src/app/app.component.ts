@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, isDevMode, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -23,10 +23,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.routerSub = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        gtag('config', 'UA-125324127-1', {
-          'page_path': event.urlAfterRedirects,
-        });
+      if (!isDevMode()) {
+        if (event instanceof NavigationEnd) {
+          gtag('config', 'UA-125324127-1', {
+            'page_path': event.urlAfterRedirects,
+          });
+        }
       }
     });
   }

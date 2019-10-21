@@ -5,8 +5,6 @@ import 'rxjs/add/operator/do';
 import { HttpService } from './http.service';
 import { environment } from '../../environments/environment';
 
-declare var gtag: any;
-
 interface Token {
   token: string;
   id: string;
@@ -34,11 +32,6 @@ export class AuthService {
       'password': password
     }).do(
       (token: Token) => {
-        gtag('event', 'signed_in', {
-          'event_category': 'Account Engagement',
-          'event_label': `${username}`,
-          'value': 1,
-        });
         this.setAuthToken(token);
         this.getUser();
       }

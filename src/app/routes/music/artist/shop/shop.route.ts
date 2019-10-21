@@ -4,8 +4,6 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import { ApiService, SanitizeService } from '../../../../services';
 
-declare var gtag: any;
-
 @Component({
   'selector': 'app-route-artist-shop',
   'templateUrl': './shop.route.html',
@@ -48,11 +46,6 @@ export class ArtistShopComponent implements OnInit, OnDestroy {
       console.log(params);
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
-        gtag('event', 'view_artist', {
-          'event_category': 'Music Engagement',
-          'event_label': `${this.artist.name}`,
-          'value': 1,
-        });
         this.breadcrumbs[2].text = this.artist.name;
         this.breadcrumbs[2].link = '/music/artist/' + this.artist.slug;
       });

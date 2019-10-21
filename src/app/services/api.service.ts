@@ -116,6 +116,8 @@ class ApiEndpoint implements ApiOperations {
 @Injectable()
 export class ApiService {
 
+  public AnalyticsEvent = new ApiEndpoint(this.http, 'analytics/analytics_events');
+
   public BoardCategories = new ApiEndpoint(this.http, 'board/categories');
   public BoardSubcategories = new ApiEndpoint(this.http, 'board/subcategories');
   public BoardThreads = new ApiEndpoint(this.http, 'board/threads');

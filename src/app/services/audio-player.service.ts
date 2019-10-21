@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ApiService } from './api.service';
 
 declare var window: any;
-declare var gtag: any;
 
 @Injectable()
 export class AudioPlayerService {
@@ -17,7 +17,9 @@ export class AudioPlayerService {
   private _duration = 0;
   private _trackPercent = 0;
 
-  constructor() {
+  constructor(
+    private api: ApiService,
+  ) {
     if (window.AudioContext) {
       this.AudioContext = window.AudioContext;
     } else if (window.webkitAudioContext) {
@@ -91,6 +93,16 @@ export class AudioPlayerService {
     this.instance.pause();
     this.instance.src = url;
     this.instance.load();
+    let songStartedSub = this.api.AnalyticsEvent.create({
+      category: 'music_engagement',
+      action: 'started_song',
+      label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`
+    }).subscribe(
+      () => {},
+      () => {},
+      () => {
+      songStartedSub.unsubscribe();
+    });
   }
 
   public createAudio() {
@@ -98,22 +110,27 @@ export class AudioPlayerService {
       this.instance = new Audio();
       this.instance.preload = 'metadata';
       this.bind('canplaythrough', () => {
-        gtag('event', 'started_song', {
-          'event_category': 'Music Engagement',
-          'event_label': `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
-          'value': 1,
-        });
         this.play();
       });
       this.bind('ended', () => {
-        gtag('event', 'finished_song', {
-          'event_category': 'Music Engagement',
-          'event_label': `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
-          'value': this._duration,
+        let songFinished = this.api.AnalyticsEvent.create({
+          category: 'music_engagement',
+          action: 'finished_song',
+          label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
+          metadata: {
+            song_length: this._duration,
+          },
+        }).subscribe(
+          () => {},
+          () => {},
+          () => {
+          songFinished.unsubscribe();
         });
         this._playQueue.shift();
         if (this._playQueue.length > 0) {
           this.load(this._playQueue[0].file);
+        } else {
+          this.destroyAudio();
         }
       });
       this.bind('timeupdate', () => {

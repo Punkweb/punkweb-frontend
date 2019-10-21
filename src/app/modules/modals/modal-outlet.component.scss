@@ -7,7 +7,6 @@
   top: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
   background-color: rgba(15, 33, 43, 0.7);
   padding: 1rem;
   &--backdropDisabled {
@@ -20,8 +19,10 @@
     margin: 0 auto;
     padding: 1rem;
     overflow: auto;
+    min-height: 200px;
+    max-height: 720px;
     min-width: 280px;
-    max-width: 1440px;
+    max-width: 1280px;
   }
   &__close {
     color: white;
@@ -97,5 +98,15 @@
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .modal {
+    &__content {
+      max-height: 580px;
+      max-width: 100%;
+      top: 0 !important;
+    }
   }
 }

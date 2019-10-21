@@ -1,0 +1,13 @@
+.songLyrics {
+  p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .songLyrics {
+    p {
+      font-size: 13px;
+    }
+  }
+}
