@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { ApiService } from './api.service';
 
 declare var window: any;
@@ -93,16 +93,6 @@ export class AudioPlayerService {
     this.instance.pause();
     this.instance.src = url;
     this.instance.load();
-    let songStartedSub = this.api.AnalyticsEvent.create({
-      category: 'music_engagement',
-      action: 'started_song',
-      label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`
-    }).subscribe(
-      () => {},
-      () => {},
-      () => {
-      songStartedSub.unsubscribe();
-    });
   }
 
   public createAudio() {
@@ -113,19 +103,22 @@ export class AudioPlayerService {
         this.play();
       });
       this.bind('ended', () => {
-        let songFinished = this.api.AnalyticsEvent.create({
-          category: 'music_engagement',
-          action: 'finished_song',
-          label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
-          metadata: {
-            song_length: this._duration,
-          },
-        }).subscribe(
-          () => {},
-          () => {},
-          () => {
-          songFinished.unsubscribe();
-        });
+        if (!isDevMode()) {
+          let songFinished = this.api.AnalyticsEvent.create({
+            category: 'music_engagement',
+            action: 'finished_song',
+            label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
+            metadata: {
+              song_id: this._playQueue[0].id,
+              song_length: this._duration,
+            },
+          }).subscribe(
+            () => {},
+            () => {},
+            () => {
+            songFinished.unsubscribe();
+          });
+        }
         this._playQueue.shift();
         if (this._playQueue.length > 0) {
           this.load(this._playQueue[0].file);

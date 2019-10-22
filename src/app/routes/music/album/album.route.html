@@ -27,6 +27,7 @@
                 <th class="col-full">
                   Title
                 </th>
+                <th class="col-x-sm align-center">Plays</th>
                 <th class="col-x-sm"></th>
               </tr>
             </thead>
@@ -35,6 +36,9 @@
                 <td>{{song.track_num}}</td>
                 <td (click)="clickSong(i)">
                   <a>{{song.title}}</a>
+                </td>
+                <td class="align-center">
+                  {{song.total_song_plays}}
                 </td>
                 <td>
                   <ng-container *ngIf="song.bbcode_lyrics && song.bbcode_lyrics.length > 0">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalService } from '../../modules/modals';
 import { ApiService, AuthService, HttpService } from '../../services';
@@ -34,16 +34,18 @@ export class SignUpModalComponent {
       password: this.password1,
     }).subscribe(
       (user) => {
-        let analyticsSub = this.api.AnalyticsEvent.create({
-          category: 'account_engagement',
-          action: 'account_created',
-          label: `${this.username}`
-        }).subscribe(
-          () => {},
-          () => {},
-          () => {
-          analyticsSub.unsubscribe();
-        });
+        if (!isDevMode()) {
+          let analyticsSub = this.api.AnalyticsEvent.create({
+            category: 'account_engagement',
+            action: 'account_created',
+            label: `${this.username}`
+          }).subscribe(
+            () => {},
+            () => {},
+            () => {
+            analyticsSub.unsubscribe();
+          });
+        }
         this.auth.login(this.username, this.password1).subscribe(() => {
           this.router.navigate(['/']);
         });
