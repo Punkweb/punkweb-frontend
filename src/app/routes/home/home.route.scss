@@ -1,3 +1,46 @@
+@import '~scss/mixins';
+@import '~scss/theming';
+
+.homeHeader {
+  position: relative;
+  height: 450px;
+  width: 100%;
+  overflow: hidden;
+  img {
+    height: 450px;
+    object-fit: cover;
+    width: 100%;
+  }
+  &__imgWrap {
+    height: 450px;
+    overflow: hidden;
+    &:before {
+      content: '';
+      background-image: linear-gradient(to top, rgba(black, 1), rgba(black, 0));
+      position: absolute;
+      height: 100px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    &:after {
+      content: '';
+      display: block;
+      height: 9999px;
+    }
+  }
+  &__title {
+    color: white;
+    font-size: 48px;
+    text-shadow: 2px 2px 2px black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 2rem;
+  }
+}
+
 .contactForm {
   display: flex;
   flex-direction: column;
@@ -25,4 +68,14 @@
 
 .errorText {
   color: red;
+}
+
+@media screen and (max-width: 680px) {
+  .homeHeader {
+    height: 250px;
+    &__imgWrap {
+      height: 250px;
+      object-fit: none;
+    }
+  }
 }
