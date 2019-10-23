@@ -9,10 +9,6 @@
       <h1 class="homeHeader__title">Punkweb</h1>
     </div>
     <div class="panel-body padding">
-      <p class="welcomeMessage">
-        Welcome to Punkweb<span *ngIf="user && user.id">, {{user.username}}</span>
-      </p>
-      <hr />
       <p>Punkweb is a music release platform for amatuer musicians and producers.</p>
       <h4>What can Punkweb offer me as an artist?</h4>
       <ul>
@@ -25,8 +21,12 @@
       <p>Artists on Punkweb can stream their music, inform fans about upcoming events, and sell merch.  All in one place!</p>
       <h4>Contact Us</h4>
       <div class="contactForm" *ngIf="!contactSuccess">
+        <blockquote>
+          The site is under construction, but we're looking for artists who're interested in joining today.<br>
+          Shoot us your email and some brief information about your act and we'll send you an email reply.
+        </blockquote>
         <small class="margin-bottom">Replies will be sent to the email entered below.</small>
-        <input class="margin-bottom" type="text" placeholder="Email or Name" [(ngModel)]="contactInfo" />
+        <input class="margin-bottom" type="text" placeholder="Email" [(ngModel)]="contactInfo" />
         <input class="margin-bottom" type="text" placeholder="Subject" [(ngModel)]="subject" />
         <textarea class="margin-bottom" placeholder="Body" [(ngModel)]="body"></textarea>
         <p class="errorText" *ngIf="contactError">{{contactError}}</p>

@@ -1,6 +1,16 @@
 @import '~scss/mixins';
 @import '~scss/theming';
 
+ul {
+  padding-inline-start: 20px;
+}
+
+blockquote {
+  font-size: 13px;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
 .homeHeader {
   position: relative;
   height: 450px;
