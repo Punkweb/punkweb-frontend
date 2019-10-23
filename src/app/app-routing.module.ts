@@ -4,6 +4,7 @@ import {
   Error404Component,
   HomeComponent,
   LoginComponent,
+  MainShopComponent,
   SettingsComponent,
   // Music
   MusicComponent,
@@ -19,6 +20,10 @@ import {
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent,
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
@@ -27,8 +32,8 @@ const routes: Routes = [
     component: SettingsComponent,
   },
   {
-    path: '',
-    component: HomeComponent,
+    path: 'shop',
+    component: MainShopComponent,
   },
   {
     path: 'music',

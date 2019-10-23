@@ -19,6 +19,7 @@ import {
   Error404Component,
   HomeComponent,
   LoginComponent,
+  MainShopComponent,
   SettingsComponent,
   // Music
   MusicComponent,
@@ -76,6 +77,7 @@ import {
     Error404Component,
     HomeComponent,
     LoginComponent,
+    MainShopComponent,
     SettingsComponent,
     // Music
     MusicComponent,

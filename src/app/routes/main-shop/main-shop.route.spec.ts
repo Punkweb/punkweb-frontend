@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from '../../app.module';
-import { SettingsComponent } from './settings.route';
+import { MainShopComponent } from './main-shop.route';
 
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('MainShopComponent', () => {
+  let component: MainShopComponent;
+  let fixture: ComponentFixture<MainShopComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('SettingsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SettingsComponent);
+    fixture = TestBed.createComponent(MainShopComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
