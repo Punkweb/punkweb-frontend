@@ -146,4 +146,20 @@ export class AlbumComponent implements OnInit, OnDestroy {
       width: '640px',
     });
   }
+
+  public totalDuration() {
+    let reduced = this.tracks.map((obj) => obj.duration).reduce((a, b) => a + b);
+    return this.displayMins(reduced);
+  }
+
+  public display(seconds) {
+    const format = val => `0${Math.floor(val)}`.slice(-2);
+    const minutes = seconds / 60;
+    return [minutes, seconds % 60].map(format).join(':');
+  }
+
+  public displayMins(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    return minutes;
+  }
 }

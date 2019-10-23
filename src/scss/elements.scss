@@ -139,6 +139,26 @@ small {
   overflow-x: auto;
 }
 
+.border-table {
+  tbody {
+    tr {
+      border-bottom: 1px solid $border;
+    }
+  }
+}
+
+.small-pad-table {
+  th, td {
+    padding: .5rem;
+  }
+}
+
+.no-pad-table {
+  th, td {
+    padding: 0;
+  }
+}
+
 table {
   background-color: $table-background;
   border: none;

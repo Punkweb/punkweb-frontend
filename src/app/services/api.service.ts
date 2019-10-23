@@ -99,7 +99,7 @@ class ApiEndpoint implements ApiOperations {
   }
 
   public detailRoute(method: string, route: string, id: number | string, payload = {}, params = {}): Observable<any> {
-    const request = this.http.request(method, `${this.createUrl()}${route}/${id}`, payload, params);
+    const request = this.http.request(method, `${this.createUrl()}${id}/${route}`, payload, params);
     return request
       .catch((error: any) => Observable.throw(error));
   }

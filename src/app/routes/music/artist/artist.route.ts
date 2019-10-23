@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/co
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
-import { ApiService, SanitizeService } from '../../../services';
+import { ApiService, AudioPlayerService, SanitizeService } from '../../../services';
 
 @Component({
   'selector': 'app-route-artist',
@@ -16,6 +16,8 @@ export class ArtistComponent implements OnInit, OnDestroy {
   public moment = moment;
 
   public artist = null;
+  public top10 = [];
+  public top10Loaded = false;
   public albums = [];
   public albumsLoaded = false;
   public events = [];
@@ -44,6 +46,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private api: ApiService,
+    private audio: AudioPlayerService,
     private sanitize: SanitizeService
   ) { }
 
@@ -52,6 +55,9 @@ export class ArtistComponent implements OnInit, OnDestroy {
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
         this.breadcrumbs[2].text = this.artist.name;
+        this.getTop10Songs(this.artist.slug).then((topSongs: any) => {
+          this.top10 = topSongs;
+        });
         this.getArtistAlbums(this.artist.id).then((albums: any) => {
           this.albums = albums.map((album) => {
             album.release_date = moment(album.release_date);
@@ -92,6 +98,25 @@ export class ArtistComponent implements OnInit, OnDestroy {
         },
         () => {
           artistSub.unsubscribe();
+        },
+      );
+    });
+    return promise;
+  }
+
+  public getTop10Songs(slug) {
+    this.top10Loaded = false;
+    let promise = new Promise((resolve, reject) => {
+      let topSongsSub = this.api.Artist.detailRoute('get', 'top_10', slug).subscribe(
+        (topSongs) => {
+          this.top10Loaded = true;
+          resolve(topSongs);
+        },
+        (err) => {
+          reject(err);
+        },
+        () => {
+          topSongsSub.unsubscribe();
         },
       );
     });
@@ -186,5 +211,9 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   public routeToShop() {
     this.router.navigate(['/music', 'artist', this.artist.slug, 'shop']);
+  }
+
+  public clickTop10Song(index) {
+    this.audio.playQueue = this.top10.slice(index);
   }
 }

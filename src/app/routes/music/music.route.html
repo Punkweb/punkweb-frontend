@@ -3,19 +3,7 @@
   <div class="music">
     <div class="panel">
       <div class="panel-body padding">
-        <h3 style="margin-top: 0;">Latest Releases</h3>
-        <hr />
-        <div class="spinner" *ngIf="!latestReleasesLoaded"></div>
-        <div class="albumList" *ngIf="latestReleasesLoaded">
-          <div class="album" *ngFor="let album of latestReleases">
-            <div class="album__image">
-              <img [src]="album.thumbnail" alt="{{album.title}}" (click)="routeToAlbum(album)">
-            </div>
-            <h5 class="album__name"><a (click)="routeToAlbum(album)">{{album.title}}</a></h5>
-            <label>{{album.release_date.format('YYYY')}}</label>
-          </div>
-        </div>
-        <h3>Artists</h3>
+        <h3 style="margin-top: 0;">Artists</h3>
         <hr />
         <div class="spinner" *ngIf="!artistsLoaded"></div>
         <div class="artistList" *ngIf="artistsLoaded">

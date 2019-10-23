@@ -1,3 +1,4 @@
+@import '~scss/mixins';
 @import '~scss/theming';
 
 .artist {
@@ -10,7 +11,36 @@ app-chart {
 
 .chartContainer {
   max-width: 600px;
+  margin: 0 auto;
   overflow-x: auto;
+}
+
+.top10List {
+  display: flex;
+  flex-direction: column;
+  .item {
+    border-bottom: 1px solid $border;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    &__img {
+      height: 50px;
+      width: 50px;
+    }
+    &__rank {
+      padding: 0 1rem;
+    }
+    &__title {
+      @include bold;
+      color: $primary;
+      flex: 1;
+    }
+    &__plays {
+      text-align: right;
+    }
+  }
 }
 
 .artistHeader {
