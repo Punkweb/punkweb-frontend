@@ -13,6 +13,13 @@ export class HomeComponent implements OnDestroy, OnInit {
   public user = null;
   public artists = [];
 
+  public contactInfo = '';
+  public subject = '';
+  public body = '';
+
+  public contactSuccess = null;
+  public contactError = null;
+
   private authSub: Subscription = null;
 
   constructor(
@@ -40,6 +47,41 @@ export class HomeComponent implements OnDestroy, OnInit {
     if (this.authSub) {
       this.authSub.unsubscribe();
     }
+  }
+
+  public sendDisabled() {
+    return !this.contactInfo || !this.subject || !this.body;
+  }
+
+  public sendContactForm() {
+    if (this.sendDisabled()) {
+      return;
+    }
+    let promise = new Promise((resolve, reject) => {
+      let contactSub = this.api.ContactForms.create({
+        contact_info: this.contactInfo,
+        subject: this.subject,
+        body: this.body,
+      }).subscribe(
+        (created) => {
+          this.contactInfo = '';
+          this.subject = '';
+          this.body = '';
+          resolve(created);
+        },
+        (err) => {
+          reject(err);
+        },
+        () => {
+          contactSub.unsubscribe();
+        },
+      );
+    });
+    return promise.then((created) => {
+      this.contactSuccess = `Thanks for reaching out.  If an email was provided we'll get back to you soon.`;
+    }).catch((err) => {
+      this.contactError = `There was an error submitting your contact form.  Try again later.`;
+    });
   }
 
   public routeToSystemLynx() {

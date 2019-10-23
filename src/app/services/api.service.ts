@@ -118,6 +118,8 @@ export class ApiService {
 
   public AnalyticsEvent = new ApiEndpoint(this.http, 'analytics/analytics_events');
 
+  public ContactForms = new ApiEndpoint(this.http, 'contact_forms');
+
   public BoardCategories = new ApiEndpoint(this.http, 'board/categories');
   public BoardSubcategories = new ApiEndpoint(this.http, 'board/subcategories');
   public BoardThreads = new ApiEndpoint(this.http, 'board/threads');

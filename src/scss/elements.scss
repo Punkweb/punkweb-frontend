@@ -269,7 +269,7 @@ input, select, textarea {
   outline: none;
   padding: .75rem 1rem;
   transition: box-shadow 0.25s ease-in-out;
-  @include placeholder(rgba(255, 255, 255, 0.5));
+  @include placeholder($default-text-on-dark);
 }
 
 option, optgroup {

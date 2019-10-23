@@ -19,5 +19,15 @@
         <li><strong>... It's completely free!</strong></li>
       </ul>
       <p>Artists on Punkweb can stream their music, inform fans about upcoming events, and sell merch.  All in one place!</p>
+      <h4>Contact Us</h4>
+      <div class="contactForm" *ngIf="!contactSuccess">
+        <small class="margin-bottom">Replies will be sent to the email entered below.</small>
+        <input class="margin-bottom" type="text" placeholder="Email or Name" [(ngModel)]="contactInfo" />
+        <input class="margin-bottom" type="text" placeholder="Subject" [(ngModel)]="subject" />
+        <textarea class="margin-bottom" placeholder="Body" [(ngModel)]="body"></textarea>
+        <p class="errorText" *ngIf="contactError">{{contactError}}</p>
+        <button class="button-primary" [disabled]="sendDisabled()" (click)="sendContactForm()">Send</button>
+      </div>
+      <p class="successText" *ngIf="contactSuccess">{{contactSuccess}}</p>
   </div>
 </div>
