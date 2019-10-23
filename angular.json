@@ -49,6 +49,7 @@
               "node_modules/codemirror/mode/python/python.js",
               "node_modules/codemirror/mode/ruby/ruby.js",
               "node_modules/codemirror/mode/sass/sass.js",
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
               "src/bbcode.js"
             ]
           },
@@ -113,6 +114,7 @@
               "node_modules/codemirror/mode/python/python.js",
               "node_modules/codemirror/mode/ruby/ruby.js",
               "node_modules/codemirror/mode/sass/sass.js",
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
               "src/bbcode.js"
             ],
             "styles": [

@@ -27,6 +27,11 @@
           <hr />
           <a class="shopLink" (click)="routeToShop()">View the {{artist.name}} shop</a>
         </ng-container>
+        <h3>Plays This Week</h3>
+        <hr />
+        <div class="chartContainer">
+          <app-chart [data]="playsCanvasRef"></app-chart>
+        </div>
         <h3>About</h3>
         <hr />
         <p [innerHTML]="artistBio()"></p>

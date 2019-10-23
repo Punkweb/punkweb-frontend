@@ -4,6 +4,15 @@
 
 }
 
+app-chart {
+  min-width: 400px;
+}
+
+.chartContainer {
+  max-width: 600px;
+  overflow-x: auto;
+}
+
 .artistHeader {
   position: relative;
   height: 450px;

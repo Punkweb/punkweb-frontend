@@ -35,6 +35,7 @@ import {
 // Components
 import {
   AudioPlayerComponent,
+  ChartComponent,
   NavComponent,
   PageHeaderComponent,
   SearchComponent,
@@ -89,6 +90,7 @@ import {
 
     // Components
     AudioPlayerComponent,
+    ChartComponent,
     NavComponent,
     PageHeaderComponent,
     SearchComponent,

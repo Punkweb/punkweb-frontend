@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
@@ -10,6 +10,8 @@ import { ApiService, SanitizeService } from '../../../services';
   'styleUrls': ['./artist.route.scss']
 })
 export class ArtistComponent implements OnInit, OnDestroy {
+
+  public playsCanvasRef: any;
 
   public moment = moment;
 
@@ -47,7 +49,6 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.paramsSub = this.route.params.subscribe((params) => {
-      console.log(params);
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
         this.breadcrumbs[2].text = this.artist.name;
@@ -69,6 +70,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
             return moment().isAfter(moment(event.event_date));
           });
         });
+        this.initCanvas();
       });
     });
   }
@@ -136,6 +138,38 @@ export class ArtistComponent implements OnInit, OnDestroy {
       );
     });
     return promise;
+  }
+
+  public initCanvas() {
+    let playsLabels = this.artist.plays_this_week.slice(0).reverse().map((date) => {
+      return date.date;
+    });
+    let playsData = this.artist.plays_this_week.slice(0).reverse().map((date) => {
+      return date.plays;
+    });
+    this.playsCanvasRef = {
+      type: 'bar',
+      data: {
+        labels: playsLabels,
+        datasets: [{
+          label: 'Song Plays By Day',
+          data: playsData,
+          backgroundColor: '#6741d9',
+          borderColor: '#6741d9',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1,
+            }
+          }]
+        }
+      }
+    };
   }
 
   public artistBio(artist) {

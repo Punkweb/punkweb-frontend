@@ -1,0 +1,13 @@
+@import '~scss/mixins';
+@import '~scss/theming';
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+}
