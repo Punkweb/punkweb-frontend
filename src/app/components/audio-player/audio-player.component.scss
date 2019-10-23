@@ -1,7 +1,6 @@
 @import '~scss/mixins';
 @import '~scss/theming';
 
-
 .musicPlayer {
   background-color: $nav-background;
   color: $default-text-on-dark;
@@ -101,8 +100,12 @@
 
 @media screen and (max-width: 680px) {
   .musicPlayer {
+    height: 90px;
     &__controls {
       margin: 0;
+    }
+    &__buttons {
+      margin-bottom: .5rem;
     }
   }
 }

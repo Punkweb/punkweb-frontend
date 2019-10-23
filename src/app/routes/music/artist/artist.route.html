@@ -7,15 +7,33 @@
         <div class="artistHeader__imgWrap">
           <img src="{{artist.image}}" />
         </div>
-        <h1 class="artistHeader__artistName">{{artist.name}}</h1>
+        <div class="artistHeader__content">
+          <h1 class="artistHeader__artistName">{{artist.name}}</h1>
+          <button class="button-primary" (click)="clickMainPlay()">Play</button>
+          <div class="artistHeader__tabs">
+            <div class="artistHeader__tab"
+              [ngClass]="{'artistHeader__tab--selected': selectedTab === 'music'}"
+              (click)="selectedTab = 'music'">Music</div>
+            <div class="artistHeader__tab"
+              [ngClass]="{'artistHeader__tab--selected': selectedTab === 'about'}"
+              (click)="selectedTab = 'about'">About</div>
+            <div class="artistHeader__tab"
+              [ngClass]="{'artistHeader__tab--selected': selectedTab === 'events'}"
+              (click)="selectedTab = 'events'">Events</div>
+            <div class="artistHeader__tab"
+              [ngClass]="{'artistHeader__tab--selected': selectedTab === 'shop'}"
+              *ngIf="artist.spreadshirt_shop_slug"
+              (click)="routeToShop()">Shop</div>
+          </div>
+        </div>
       </div>
-      <div class="panel-body padding">
+      <div class="panel-body padding" *ngIf="selectedTab === 'music'">
         <h3>Popular</h3>
         <hr />
         <div class="spinner" *ngIf="!top10Loaded"></div>
         <ng-container *ngIf="top10Loaded">
           <div class="top10List">
-            <div class="item" *ngFor="let song of top10; let i = index;" (click)="clickTop10Song(i)">
+            <div class="item" *ngFor="let song of top10Shown; let i = index;" (click)="clickTop10Song(i)">
               <div class="item__img">
                 <img [src]="song.album_thumbnail" alt="" />
               </div>
@@ -26,15 +44,12 @@
                 {{song.title}}
               </div>
               <div class="item__plays">
-                {{song.total_plays}}
+                {{displaySongPlays(song.total_plays)}}
               </div>
             </div>
           </div>
-        </ng-container>
-        <ng-container *ngIf="artist.spreadshirt_shop_slug">
-          <h3>Shop</h3>
-          <hr />
-          <a class="shopLink" (click)="routeToShop()">View the {{artist.name}} shop</a>
+          <button class="button-hollow-primary" *ngIf="showMoreButton()" (click)="clickShowMore()">Show More</button>
+          <button class="button-hollow-primary" *ngIf="showLessButton()" (click)="clickShowLess()">Show Less</button>
         </ng-container>
         <h3>Albums</h3>
         <hr />
@@ -48,9 +63,18 @@
             <label>{{album.release_date.format('Y')}}</label>
           </div>
         </div>
+      </div>
+      <div class="panel-body padding" *ngIf="selectedTab === 'about'">
         <h3>About</h3>
         <hr />
         <p [innerHTML]="artistBio()"></p>
+        <h3>Plays This Week</h3>
+        <hr />
+        <div class="chartContainer">
+          <app-chart [data]="playsCanvasRef"></app-chart>
+        </div>
+      </div>
+      <div class="panel-body padding" *ngIf="selectedTab === 'events'">
         <h3>Upcoming Events</h3>
         <hr />
         <div class="spinner" *ngIf="!eventsLoaded"></div>
@@ -123,11 +147,6 @@
             </table>
           </div>
         </ng-container>
-        <h3>Plays This Week</h3>
-        <hr />
-        <div class="chartContainer">
-          <app-chart [data]="playsCanvasRef"></app-chart>
-        </div>
       </div>
     </div>
   </div>

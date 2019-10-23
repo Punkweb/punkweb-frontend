@@ -45,13 +45,12 @@ export class AlbumComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private modals: ModalService,
+    public audio: AudioPlayerService,
     private api: ApiService,
-    private audio: AudioPlayerService,
   ) { }
 
   public ngOnInit() {
     this.paramsSub = this.route.params.subscribe((params) => {
-      console.log(params);
       this.getAlbum(params.slug).then((album: any) => {
         this.album = album;
         this.releaseDate = moment(album.release_date);
@@ -129,6 +128,13 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   public routeToArtist(artist) {
     this.router.navigate(['/music', 'artist', artist.slug]);
+  }
+
+  public isCurrentSong(track) {
+    if (!this.audio || !this.audio.playQueue || this.audio.playQueue.length < 1) {
+      return;
+    }
+    return this.audio.playQueue[0].id === track.id;
   }
 
   public clickSong(index) {

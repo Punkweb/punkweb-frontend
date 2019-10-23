@@ -142,7 +142,7 @@ small {
 .border-table {
   tbody {
     tr {
-      border-bottom: 1px solid $border;
+      border-bottom: 2px solid $border;
     }
   }
 }
@@ -438,11 +438,43 @@ progress::-webkit-progress-value {
   cursor: pointer;
   display: inline-block;
   font-family: 'Open Sans';
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   outline: none;
   padding: .75rem 1rem;
   min-width: 100px;
+  text-align: center;
+  text-decoration: none !important;
+  transition: all .25s ease-in-out;
+  &:hover {
+    background-color: mix(black, $background, 10%);
+    border-color: mix(black, $background, 10%);
+  }
+  &:disabled {
+    background-color: $oc-gray-5;
+    border: 1px solid $oc-gray-6;
+    cursor: not-allowed;
+    &:hover {
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    }
+  }
+}
+
+@mixin button-circle($background, $color, $size) {
+  appearance: none;
+  background-color: $background;
+  border: 1px solid $background;
+  border-radius: 50%;
+  color: $color !important;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Open Sans';
+  font-size: 14px;
+  line-height: calc($size - 7px);
+  font-weight: 600;
+  outline: none;
+  width: $size;
+  height: $size;
   text-align: center;
   text-decoration: none !important;
   transition: all .25s ease-in-out;
@@ -493,6 +525,18 @@ progress::-webkit-progress-value {
   }
   &-orange {
     @include button($oc-orange-7, white);
+  }
+}
+
+.button-circle {
+  @include button-circle($oc-gray-7, white, 50px);
+  &-primary {
+    @include button-circle($primary, white, 50px);
+  }
+  &--small {
+    @include button-circle($oc-gray-7, white, 30px);
+    font-size: 12px;
+    line-height: 24px;
   }
 }
 

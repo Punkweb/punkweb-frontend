@@ -1,4 +1,19 @@
 @import '~scss/mixins';
+@import '~scss/theming';
+
+.songTitle {
+  color: inherit;
+  text-decoration: none;
+}
+
+.currentSong {
+  border-bottom: 2px solid $primary;
+  color: $primary;
+}
+
+.clickable {
+  cursor: pointer;
+}
 
 .album {
   &__info {

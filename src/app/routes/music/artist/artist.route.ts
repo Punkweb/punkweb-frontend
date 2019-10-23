@@ -16,7 +16,9 @@ export class ArtistComponent implements OnInit, OnDestroy {
   public moment = moment;
 
   public artist = null;
+  public shopUrl = null;
   public top10 = [];
+  public top10Shown = [];
   public top10Loaded = false;
   public albums = [];
   public albumsLoaded = false;
@@ -25,6 +27,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
   public upcomingEvents = [];
   public pastEvents = [];
 
+  public selectedTab = 'music';
   public breadcrumbs = [
     {
       text: 'Home',
@@ -54,9 +57,12 @@ export class ArtistComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params.subscribe((params) => {
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
+        this.shopUrl = this.artist.spreadshirt_shop_slug ?
+          this.sanitize.cleanSrc('https://shop.spreadshirt.com/' + this.artist.spreadshirt_shop_slug) : null;
         this.breadcrumbs[2].text = this.artist.name;
         this.getTop10Songs(this.artist.slug).then((topSongs: any) => {
           this.top10 = topSongs;
+          this.top10Shown = this.top10.slice(0, 5);
         });
         this.getArtistAlbums(this.artist.id).then((albums: any) => {
           this.albums = albums.map((album) => {
@@ -197,6 +203,30 @@ export class ArtistComponent implements OnInit, OnDestroy {
     };
   }
 
+  public displaySongPlays(plays) {
+    if (plays < 100) {
+      return '< 100';
+    } else {
+      return plays;
+    }
+  }
+
+  public showMoreButton() {
+    return this.top10Shown.length <= 5 && this.top10.length !== 5 && this.top10Shown.length !== this.top10.length;
+  }
+
+  public showLessButton() {
+    return this.top10Shown.length > 5;
+  }
+
+  public clickShowMore() {
+    this.top10Shown = this.top10;
+  }
+
+  public clickShowLess() {
+    this.top10Shown = this.top10.slice(0, 5);
+  }
+
   public artistBio(artist) {
     return this.sanitize.cleanHtml(this.artist._bio_rendered);
   }
@@ -211,6 +241,10 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   public routeToShop() {
     this.router.navigate(['/music', 'artist', this.artist.slug, 'shop']);
+  }
+
+  public clickMainPlay() {
+    this.audio.playQueue = this.top10.slice(0);
   }
 
   public clickTop10Song(index) {

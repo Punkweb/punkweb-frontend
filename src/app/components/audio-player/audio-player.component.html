@@ -11,8 +11,14 @@
     </div>
     <div class="musicPlayer__controls">
       <div class="musicPlayer__buttons">
-        <button class="button" (click)="audio.play()" *ngIf="audio.paused"><i class="fas fa-play"></i></button>
-        <button class="button" (click)="audio.pause()" *ngIf="!audio.paused"><i class="fas fa-pause"></i></button>
+        <button class="button-circle button-circle--small margin-right"
+          (click)="audio.back()"><i class="fas fa-backward fa-fw"></i></button>
+        <button class="button-circle-primary button-circle--small margin-right"
+          (click)="audio.play()" *ngIf="audio.paused"><i class="fas fa-play fa-fw"></i></button>
+        <button class="button-circle-primary button-circle--small margin-right"
+          (click)="audio.pause()" *ngIf="!audio.paused"><i class="fas fa-pause fa-fw"></i></button>
+        <button class="button-circle button-circle--small margin-right"
+          (click)="audio.next()"><i class="fas fa-forward fa-fw"></i></button>
       </div>
       <div class="musicPlayer__flex">
         <div id="currentTime">{{timeFormat(audio.currentTime)}}</div>

@@ -11,4 +11,8 @@ export class SanitizeService {
   public cleanHtml(htmlStr: string) {
     return this.sanitizer.bypassSecurityTrustHtml(htmlStr);
   }
+
+  public cleanSrc(srcStr: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(srcStr);
+  }
 }

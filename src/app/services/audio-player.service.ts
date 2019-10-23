@@ -11,6 +11,8 @@ export class AudioPlayerService {
   public audioCtx: any;
   public events = [];
 
+  public history = [];
+
   private AudioContext = null;
   private _playQueue = [];
   private _currentTime = 0;
@@ -87,6 +89,24 @@ export class AudioPlayerService {
     return this.instance.volume;
   }
 
+  public back() {
+    if (this.history.length < 1) {
+      return;
+    }
+    this.playQueue.unshift(this.history.pop());
+    this.load(this._playQueue[0].file);
+  }
+
+  public next() {
+    this.history.push(this._playQueue[0]);
+    this._playQueue.shift();
+    if (this._playQueue.length > 0) {
+      this.load(this._playQueue[0].file);
+    } else {
+      this.destroyAudio();
+    }
+  }
+
   public load(url) {
     this.destroyAudio();
     this.createAudio();
@@ -119,6 +139,7 @@ export class AudioPlayerService {
             songFinished.unsubscribe();
           });
         }
+        this.history.push(this.playQueue[0]);
         this._playQueue.shift();
         if (this._playQueue.length > 0) {
           this.load(this._playQueue[0].file);

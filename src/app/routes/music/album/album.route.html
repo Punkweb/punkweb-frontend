@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="tableContainer">
-          <table>
+          <table class="border-table">
             <thead>
               <tr>
                 <th class="col-x-sm">
@@ -28,19 +28,19 @@
                   Title
                 </th>
                 <th class="col-x-sm align-center"><i class="fa fa-clock fa-fw"></i></th>
-                <th class="col-x-sm"></th>
+                <th class="col-x-sm align-right"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let song of tracks; index as i">
+              <tr *ngFor="let song of tracks; index as i" [ngClass]="{'currentSong': isCurrentSong(song)}">
                 <td>{{song.track_num}}</td>
-                <td (click)="clickSong(i)">
-                  <a>{{song.title}}</a>
+                <td class="clickable" (click)="clickSong(i)">
+                  <span class="songTitle" [ngClass]="{'currentSongLink': isCurrentSong(song)}">{{song.title}}</span>
                 </td>
                 <td class="align-center">
                   {{display(song.duration)}}
                 </td>
-                <td>
+                <td class="align-right">
                   <ng-container *ngIf="song.bbcode_lyrics && song.bbcode_lyrics.length > 0">
                     <a (click)="clickSongLyrics(song)">Lyrics</a>
                   </ng-container>

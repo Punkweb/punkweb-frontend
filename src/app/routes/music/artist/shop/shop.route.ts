@@ -12,6 +12,7 @@ import { ApiService, SanitizeService } from '../../../../services';
 export class ArtistShopComponent implements OnInit, OnDestroy {
 
   public artist = null;
+  public shopUrl = null;
 
   public breadcrumbs = [
     {
@@ -46,6 +47,7 @@ export class ArtistShopComponent implements OnInit, OnDestroy {
       console.log(params);
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
+        this.shopUrl = this.sanitize.cleanSrc('https://shop.spreadshirt.com/' + this.artist.spreadshirt_shop_slug);
         this.breadcrumbs[2].text = this.artist.name;
         this.breadcrumbs[2].link = '/music/artist/' + this.artist.slug;
       });
