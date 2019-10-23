@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
@@ -30,6 +31,7 @@ export class MusicComponent implements OnDestroy, OnInit {
   ];
 
   constructor(
+    private meta: Meta,
     private router: Router,
     private api: ApiService,
   ) { }

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ApiService, AuthService } from '../../services';
@@ -23,10 +24,23 @@ export class HomeComponent implements OnDestroy, OnInit {
   private authSub: Subscription = null;
 
   constructor(
+    private meta: Meta,
     private router: Router,
     private api: ApiService,
     private auth: AuthService,
-  ) { }
+  ) {
+    this.meta.addTags([
+      { property: 'og:title', content: 'Punkweb' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://www.punkweb.net' },
+      { property: 'og:image', content: 'https://www.punkweb.net/assets/img/mic-and-interface.jpg' },
+      { property: 'og:description', content: 'A music release platform for amatuer musicians and producers', },
+      { name: 'twitter:card', content: 'summary', },
+      { name: 'twitter:title', content: 'Punkweb', },
+      { name: 'twitter:description', content: 'A music release platform for amatuer musicians and producers', },
+      { name: 'twitter:image', content: 'https://www.punkweb.net/assets/img/mic-and-interface.jpg', },
+    ]);
+  }
 
   public ngOnInit() {
     this.authSub = this.auth.user$.subscribe((user) => {
