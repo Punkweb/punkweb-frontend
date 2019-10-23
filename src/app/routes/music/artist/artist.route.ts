@@ -203,6 +203,13 @@ export class ArtistComponent implements OnInit, OnDestroy {
     };
   }
 
+  public isCurrentSong(track) {
+    if (!this.audio || !this.audio.playQueue || this.audio.playQueue.length < 1) {
+      return;
+    }
+    return this.audio.playQueue[0].id === track.id;
+  }
+
   public displaySongPlays(plays) {
     if (plays < 100) {
       return '< 100';

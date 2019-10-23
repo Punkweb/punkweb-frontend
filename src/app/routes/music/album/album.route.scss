@@ -9,10 +9,23 @@
 .currentSong {
   border-bottom: 2px solid $primary;
   color: $primary;
+  .songTitle {
+    @include bold;
+  }
+}
+
+.transitions {
+  transition: all .2s ease;
 }
 
 .clickable {
   cursor: pointer;
+}
+
+.hoverable {
+  &:hover {
+    background-color: $oc-gray-1;
+  }
 }
 
 .album {

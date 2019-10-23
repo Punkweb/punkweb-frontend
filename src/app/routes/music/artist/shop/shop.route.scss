@@ -3,11 +3,11 @@
 }
 
 .container {
-  height: calc(100vh - 140px);
+  height: calc(100% - 72px);
 }
 
 iframe {
   border: none;
-  height: calc(100vh - 140px);
+  height: 100%;
   width: 100%;
 }

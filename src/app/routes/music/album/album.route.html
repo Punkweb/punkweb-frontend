@@ -32,10 +32,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let song of tracks; index as i" [ngClass]="{'currentSong': isCurrentSong(song)}">
+              <tr *ngFor="let song of tracks; index as i" class="transitions hoverable" [ngClass]="{'currentSong': isCurrentSong(song)}">
                 <td>{{song.track_num}}</td>
                 <td class="clickable" (click)="clickSong(i)">
-                  <span class="songTitle" [ngClass]="{'currentSongLink': isCurrentSong(song)}">{{song.title}}</span>
+                  <span class="transitions songTitle" [ngClass]="{'currentSongLink': isCurrentSong(song)}">{{song.title}}</span>
                 </td>
                 <td class="align-center">
                   {{display(song.duration)}}

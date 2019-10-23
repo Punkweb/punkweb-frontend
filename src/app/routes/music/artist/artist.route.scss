@@ -15,6 +15,20 @@ app-chart {
   overflow-x: auto;
 }
 
+.transitions {
+  transition: all .2s ease;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.hoverable {
+  &:hover {
+    background-color: $oc-gray-1;
+  }
+}
+
 iframe {
   border: none;
   height: calc(100vh - 140px);
@@ -27,7 +41,7 @@ iframe {
   font-size: 14px;
   margin-bottom: 1rem;
   .item {
-    border-bottom: 1px solid $border;
+    border-bottom: 2px solid $border;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -43,13 +57,18 @@ iframe {
       width: 50px;
     }
     &__title {
-      @include bold;
-      color: $primary;
       flex: 1;
     }
     &__plays {
       text-align: right;
       width: 50px;
+    }
+  }
+  .item--selected {
+    border-bottom: 2px solid $primary;
+    .item__title {
+      @include bold;
+      color: $primary;
     }
   }
 }

@@ -33,7 +33,10 @@
         <div class="spinner" *ngIf="!top10Loaded"></div>
         <ng-container *ngIf="top10Loaded">
           <div class="top10List">
-            <div class="item" *ngFor="let song of top10Shown; let i = index;" (click)="clickTop10Song(i)">
+            <div class="transitions hoverable item"
+              *ngFor="let song of top10Shown; let i = index;"
+              [ngClass]="{'item--selected': isCurrentSong(song) }"
+              (click)="clickTop10Song(i)">
               <div class="item__img">
                 <img [src]="song.album_thumbnail" alt="" />
               </div>
