@@ -1,4 +1,5 @@
 import { Injectable, isDevMode } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { ApiService } from './api.service';
 
 declare var window: any;
@@ -20,6 +21,8 @@ export class AudioPlayerService {
   private _trackPercent = 0;
 
   constructor(
+    private title: Title,
+    private meta: Meta,
     private api: ApiService,
   ) {
     if (window.AudioContext) {
@@ -113,6 +116,11 @@ export class AudioPlayerService {
     this.instance.pause();
     this.instance.src = url;
     this.instance.load();
+    this.title.setTitle(`Punkweb | ${this._playQueue[0].title}`);
+    this.meta.addTag({
+      name: 'author',
+      content: `${this._playQueue[0].artist_name}`
+    });
   }
 
   public createAudio() {
@@ -148,6 +156,9 @@ export class AudioPlayerService {
         }
       });
       this.bind('timeupdate', () => {
+        if (!this.instance) {
+          return;
+        }
         this._currentTime = this.instance.currentTime;
         this._duration = this.instance.duration;
         this._trackPercent = ((this._currentTime / this._duration)  * 100);
@@ -173,6 +184,8 @@ export class AudioPlayerService {
       } finally {
         this.instance = null;
       }
+      this.title.setTitle(`Punkweb`);
+      this.meta.removeTag('author');
     }
   }
 
