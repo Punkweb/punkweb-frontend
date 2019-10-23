@@ -164,7 +164,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
           yAxes: [{
             ticks: {
               beginAtZero: true,
-              stepSize: 1,
+              stepSize: 100,
             }
           }]
         }
