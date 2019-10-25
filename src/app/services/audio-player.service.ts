@@ -169,16 +169,24 @@ export class AudioPlayerService {
       try {
         this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
       } catch (e) {
+        this.audioSrc = null;
         console.log('No audio source');
       }
       try {
         this.audioAnalyser = this.audioCtx.createAnalyser();
       } catch (e) {
+        this.audioAnalyser = null;
         console.log('No audio analyser');
       }
-      this.audioSrc.connect(this.audioAnalyser);
-      this.audioAnalyser.connect(this.audioCtx.destination);
-      this.audioAnalyser.fftSize = 256;
+      if (this.audioSrc && this.audioAnalyser) {
+        try {
+          this.audioSrc.connect(this.audioAnalyser);
+          this.audioAnalyser.connect(this.audioCtx.destination);
+          this.audioAnalyser.fftSize = 256;
+        } catch (e) {
+          console.log('Failed to init audio source or analyser');
+        }
+      }
     }
     if (this.audioAnalyser) {
       this.bufferLength = this.audioAnalyser.frequencyBinCount;
