@@ -20,6 +20,7 @@
         <button class="button-circle--small margin-right"
           (click)="audio.next()"><i class="fas fa-forward fa-fw"></i></button>
         <button class="button-circle--small showViz"
+          *ngIf="audio.audioAnalyser"
           (click)="visualizerHidden = !visualizerHidden"
           [ngClass]="{'button-circle--small-primary': !visualizerHidden}">
           <i class="fas fa-chart-bar fa-fw"></i>
@@ -43,6 +44,6 @@
     </div>
   </div>
 </div>
-<div class="visualizer" [hidden]="visualizerHidden || audio.playQueue.length < 1">
+<div class="visualizer" [hidden]="!audio.audioAnalyser || visualizerHidden || audio.playQueue.length < 1">
   <canvas #visualizerCanvas height="90px" width="316px"></canvas>
 </div>

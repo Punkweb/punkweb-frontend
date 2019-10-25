@@ -164,13 +164,19 @@ export class AudioPlayerService {
     }
     if (!this.audioSrc) {
       this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
-      this.audioAnalyser = this.audioCtx.createAnalyser();
-      this.audioSrc.connect(this.audioAnalyser);
-      this.audioAnalyser.connect(this.audioCtx.destination);
-      this.audioAnalyser.fftSize = 256;
+      try {
+        this.audioAnalyser = this.audioCtx.createAnalyser();
+        this.audioSrc.connect(this.audioAnalyser);
+        this.audioAnalyser.connect(this.audioCtx.destination);
+        this.audioAnalyser.fftSize = 256;
+      } catch (e) {
+        this.audioSrc.connect(this.audioCtx.destination);
+      }
     }
-    this.bufferLength = this.audioAnalyser.frequencyBinCount;
-    this.dataArray = new Uint8Array(this.bufferLength);
+    if (this.audioAnalyser) {
+      this.bufferLength = this.audioAnalyser.frequencyBinCount;
+      this.dataArray = new Uint8Array(this.bufferLength);
+    }
   }
 
   public destroyAudio() {
