@@ -1,5 +1,36 @@
 <div class="sidebar">
-  <a class="sidebar-item" [routerLink]="['/']" routerLinkActive="sidebar-item--active" [routerLinkActiveOptions]="{exact: true}">
-    <i class="fa fa-home" aria-hidden="true"></i><span>Home</span>
+  <a class="sidebar-item"
+    [routerLink]="['/']"
+    routerLinkActive="sidebar-item--active"
+    [routerLinkActiveOptions]="{exact: true}">
+    <i class="fas fa-home fa-fw" aria-hidden="true"></i><span>Home</span>
+  </a>
+  <a class="sidebar-item"
+    [routerLink]="['/music']"
+    routerLinkActive="sidebar-item--active">
+    <i class="fas fa-music fa-fw" aria-hidden="true"></i><span>Music</span>
+  </a>
+  <a class="sidebar-item"
+    [routerLink]="['/about']"
+    routerLinkActive="sidebar-item--active"
+    [routerLinkActiveOptions]="{exact: true}">
+    <i class="fas fa-info fa-fw" aria-hidden="true"></i><span>About</span>
+  </a>
+  <a class="sidebar-item"
+    *ngIf="authenticated"
+    (click)="signOut()">
+    <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i><span>Sign Out</span>
+  </a>
+  <a class="sidebar-item"
+    *ngIf="!authenticated"
+    (click)="openSignUpModal()">
+    <i class="fas fa-user-plus fa-fw" aria-hidden="true"></i><span>Sign Up</span>
+  </a>
+  <a class="sidebar-item"
+    *ngIf="!authenticated"
+    [routerLink]="['/login']"
+    routerLinkActive="sidebar-item--active"
+    [routerLinkActiveOptions]="{exact: true}">
+    <i class="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i><span>Login</span>
   </a>
 </div>

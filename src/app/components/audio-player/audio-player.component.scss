@@ -1,6 +1,10 @@
 @import '~scss/mixins';
 @import '~scss/theming';
 
+:host {
+  position: relative;
+}
+
 .musicPlayer {
   background-color: $nav-background;
   color: $default-text-on-dark;
@@ -31,6 +35,7 @@
     margin: 0 4rem;
   }
   &__buttons {
+    position: relative;
     text-align: center;
     margin-bottom: 1.5rem;
   }
@@ -51,7 +56,7 @@
   &__volumeContainer {
     position: relative;
     width: 100px;
-    margin: 0 1.5rem;
+    margin-left: 1.5rem;
     padding: 1rem 0;
     height: 5px;
   }
@@ -96,6 +101,19 @@
     top: calc(50% - 2.5px);
     left: 0;
   }
+}
+
+.showViz {
+  position: absolute;
+  right: 0;
+}
+
+.visualizer {
+  position: absolute;
+  height: 90px;
+  width: 316px;
+  top: -106px;
+  right: 28px;
 }
 
 @media screen and (max-width: 680px) {

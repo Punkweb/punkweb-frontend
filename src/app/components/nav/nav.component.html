@@ -1,12 +1,16 @@
 <div class="nav">
   <div class="container">
     <div class="nav-content">
-      <a class="nav-title" [routerLink]="['/']">punk web</a>
+      <a class="nav-title" [routerLink]="['/']">punkweb</a>
       <div class="nav-links">
         <a class="nav-link" [routerLink]="['/music']" title="Music">
           <span class="nav-link-icon"><i class="fas fa-music fa-fw"></i></span>
           <span>Music</span>
           <!-- <span class="hideOnMobile">Music</span> -->
+        </a>
+        <a class="nav-link" [routerLink]="['/about']" title="About">
+          <span class="nav-link-icon"></span><i class="fas fa-info fa-fw"></i>
+          <span class="hideOnMobile">About</span>
         </a>
         <!-- <a class="nav-link" [routerLink]="['/shop']" title="Shop">
           <span class="nav-link-icon"><i class="fas fa-shopping-cart fa-fw"></i></span>
@@ -24,15 +28,18 @@
       <div class="nav-spacer"></div>
       <div class="nav-links" *ngIf="authenticated">
         <a class="nav-link" (click)="signOut()" title="Sign Out">
-          <i class="fas fa-sign-out-alt"></i>
+          <i class="nav-link-icon fas fa-sign-out-alt"></i>
+          <span class="hideOnMobile"> Sign Out</span>
         </a>
       </div>
       <div class="nav-links" *ngIf="!authenticated">
         <a class="nav-link" (click)="openSignUpModal()" title="Sign Up">
-          <i class="fas fa-user-plus"></i>
+          <i class="nav-link-icon fas fa-user-plus"></i>
+          <span class="hideOnMobile">Sign Up</span>
         </a>
         <a class="nav-link" [routerLink]="['/login']" title="Login">
-          <i class="fas fa-sign-in-alt"></i>
+          <i class="nav-link-icon fas fa-sign-in-alt"></i>
+          <span class="hideOnMobile">Login</span>
         </a>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ModalService } from '../../modules/modals';
+import { SignUpModalComponent } from '../sign-up/sign-up.modal';
 import { AuthService } from '../../services';
 
 @Component({
@@ -35,5 +36,19 @@ export class SidebarComponent implements OnDestroy, OnInit {
     if (this.authSub) {
       this.authSub.unsubscribe();
     }
+  }
+
+  public signOut() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+
+  public openSignUpModal() {
+    this.modals.open(SignUpModalComponent, {
+      position: {
+        top: '2rem'
+      },
+      width: '320px'
+    });
   }
 }

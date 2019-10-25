@@ -7,9 +7,12 @@ declare var window: any;
 @Injectable()
 export class AudioPlayerService {
 
-  public instance: any;
-  public audioSrc: any;
-  public audioCtx: any;
+  public instance: any = null;
+  public audioCtx: any = null;
+  public audioSrc: any = null;
+  public audioAnalyser: any = null;
+  public bufferLength = null;
+  public dataArray = null;
   public events = [];
 
   public history = [];
@@ -32,7 +35,7 @@ export class AudioPlayerService {
     } else {
       this.AudioContext = null;
     }
-    this.createAudio();
+    this.audioCtx = new this.AudioContext();
   }
 
   public play() {
@@ -111,21 +114,16 @@ export class AudioPlayerService {
   }
 
   public load(url) {
-    this.destroyAudio();
     this.createAudio();
-    this.instance.pause();
     this.instance.src = url;
     this.instance.load();
     this.title.setTitle(`Punkweb | ${this._playQueue[0].title}`);
-    this.meta.addTag({
-      name: 'author',
-      content: `${this._playQueue[0].artist_name}`
-    });
   }
 
   public createAudio() {
     if (!this.instance) {
       this.instance = new Audio();
+      this.instance.crossOrigin = 'anonymous';
       this.instance.preload = 'metadata';
       this.bind('canplaythrough', () => {
         this.play();
@@ -164,28 +162,21 @@ export class AudioPlayerService {
         this._trackPercent = ((this._currentTime / this._duration)  * 100);
       });
     }
-    if (!this.audioCtx) {
-      this.audioCtx = new this.AudioContext();
-    }
     if (!this.audioSrc) {
       this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
+      this.audioAnalyser = this.audioCtx.createAnalyser();
+      this.audioSrc.connect(this.audioAnalyser);
+      this.audioAnalyser.connect(this.audioCtx.destination);
+      this.audioAnalyser.fftSize = 256;
     }
+    this.bufferLength = this.audioAnalyser.frequencyBinCount;
+    this.dataArray = new Uint8Array(this.bufferLength);
   }
 
   public destroyAudio() {
     if (this.instance) {
       this.pause();
-      for (let i = 0; i < this.events.length; i++) {
-        this.instance.removeEventListener(this.events[i].name, this.events[i].callback);
-        this.events.splice(i, 1);
-      }
-      try {
-        this.instance.src = '';
-      } finally {
-        this.instance = null;
-      }
       this.title.setTitle(`Punkweb`);
-      this.meta.removeTag('author');
     }
   }
 

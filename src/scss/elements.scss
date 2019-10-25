@@ -6,7 +6,7 @@
 * { box-sizing: border-box; }
 
 html, body {
-  color: $default-text-on-light;
+  color: $default-text;
   font-family: 'Open Sans';
   font-size: 100%;
   margin: 0;
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination {
-  color: $default-text-on-light;
+  color: $default-text;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -121,13 +121,13 @@ mark {
 pre {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  color: $default-text-on-light;
+  color: $default-text;
   margin: 0 1rem;
   padding: 1rem;
 }
 
 code {
-  color: $default-text-on-light;
+  color: $default-text;
 }
 
 small {
@@ -195,7 +195,7 @@ table {
     background-color: $table-header;
     color: $table-header-text;
     a {
-      color: white !important;
+      color: $table-header-text !important;
     }
   }
   .header--lg {
@@ -239,9 +239,6 @@ table {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     font-size: 16px;
-    a {
-      color: $primary;
-    }
   }
 }
 
@@ -261,15 +258,16 @@ legend {
 }
 
 input, select, textarea {
+  background-color: $input-background;
   border: 1px solid $border;
   border-radius: 4px;
   box-shadow: none;
-  color: $default-text-on-light;
+  color: $default-text;
   font-size: 16px;
   outline: none;
   padding: .75rem 1rem;
   transition: box-shadow 0.25s ease-in-out;
-  @include placeholder($default-text-on-dark);
+  @include placeholder(lighten($default-text, 50%));
 }
 
 option, optgroup {
@@ -530,11 +528,14 @@ progress::-webkit-progress-value {
 
 .button-circle {
   @include button-circle($oc-gray-7, white, 50px);
+}
+
+.button-circle--small {
+  @include button-circle($oc-gray-7, white, 30px);
+  font-size: 12px;
+  line-height: 24px;
   &-primary {
-    @include button-circle($primary, white, 50px);
-  }
-  &--small {
-    @include button-circle($oc-gray-7, white, 30px);
+    @include button-circle($primary, white, 30px);
     font-size: 12px;
     line-height: 24px;
   }

@@ -1,7 +1,6 @@
 <!-- <app-page-header></app-page-header> -->
 <div class="container">
   <div class="panel">
-
     <div class="homeHeader">
       <div class="homeHeader__imgWrap">
         <img [src]="'/assets/img/mic-and-interface.jpg'" alt="">
@@ -13,6 +12,7 @@
       <h4>What can Punkweb offer me as an artist?</h4>
       <ul>
         <li>Unlimited song uploads and streaming.</li>
+        <li>Schedule releases for a specific date.</li>
         <li>Add lyrics to your tracks.  Let your words be heard.</li>
         <li>List upcoming concerts and events.</li>
         <li>Design and sell merch risk free, without inventory.  Keep all your earnings.</li>
@@ -33,5 +33,6 @@
         <button class="button-primary" [disabled]="sendDisabled()" (click)="sendContactForm()">Send</button>
       </div>
       <p class="successText" *ngIf="contactSuccess">{{contactSuccess}}</p>
+    </div>
   </div>
 </div>

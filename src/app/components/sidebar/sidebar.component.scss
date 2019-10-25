@@ -2,7 +2,7 @@
 @import '~scss/theming';
 
 .sidebar {
-  background-color: $primary;
+  background-color: $sidebar-background;
   box-shadow: 0 2px 16px rgba($oc-gray-9, .5);
   color: $default-text;
   height: 100%;
@@ -36,7 +36,7 @@
       }
     }
     &:active, &:hover {
-      background-color: darken($primary, 5%);
+      background-color: rgba($primary, .5);
     }
   }
 }
