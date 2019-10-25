@@ -166,8 +166,16 @@ export class AudioPlayerService {
       });
     }
     if (!this.audioSrc) {
-      this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
-      this.audioAnalyser = this.audioCtx.createAnalyser();
+      try {
+        this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
+      } catch (e) {
+        console.log('No audio source');
+      }
+      try {
+        this.audioAnalyser = this.audioCtx.createAnalyser();
+      } catch (e) {
+        console.log('No audio analyser');
+      }
       this.audioSrc.connect(this.audioAnalyser);
       this.audioAnalyser.connect(this.audioCtx.destination);
       this.audioAnalyser.fftSize = 256;
