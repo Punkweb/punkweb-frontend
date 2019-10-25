@@ -29,6 +29,10 @@ app-chart {
   }
 }
 
+.eventsTable {
+  min-width: 600px;
+}
+
 iframe {
   border: none;
   height: calc(100vh - 140px);
@@ -53,7 +57,7 @@ iframe {
     }
     &__rank {
       text-align: left;
-      margin-left: 14px;
+      margin-left: .75rem;
       width: 50px;
     }
     &__title {
@@ -61,6 +65,7 @@ iframe {
     }
     &__plays {
       text-align: right;
+      margin-right: .75rem;
       width: 50px;
     }
   }
@@ -104,15 +109,22 @@ iframe {
   &__content {
     position: absolute;
     bottom: 0;
-    left: 24px;
+    left: 0;
+    right: 0;
     margin: 0;
+    padding: 0 1rem;
   }
   &__artistName {
-    @include font-range(32, 48);
+    @include font-range(40, 56);
     color: white;
     text-shadow: 2px 2px 2px black;
     margin: 0;
     margin-bottom: 1.5rem;
+  }
+  &__buttons {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
   }
   &__tabs {
     display: flex;
@@ -180,18 +192,28 @@ iframe {
 
 @media screen and (max-width: 680px) {
   .artistHeader {
-    height: 200px;
+    height: 300px;
     img {
-      height: 200px;
+      height: 300px;
     }
     &__imgWrap {
-      height: 200px;
+      height: 300px;
     }
     &__content {
-      left: 16px;
+      justify-content: center;
+    }
+    &__buttons {
+      justify-content: center;
+    }
+    &__tabs {
+      justify-content: center;
     }
     &__artistName {
       margin-bottom: .75rem;
+      text-align: center;
+    }
+    &__playButton {
+      text-align: center;
     }
     &__tabs {
       margin-top: .75rem;
@@ -218,5 +240,8 @@ iframe {
         width: 40px;
       }
     }
+  }
+  .plays {
+    text-align: center;
   }
 }

@@ -58,10 +58,11 @@ export class AudioPlayerComponent implements OnDestroy, OnInit {
 
   public openVisualizer() {
     this.modals.open(VisualizerModalComponent, {
-      height: '320px',
+      height: '540px',
       width: '320px',
+      padding: '0',
       position: {
-        top: 'calc(50% - 160px)',
+        top: '2rem',
       }
     }).subscribe(
       () => {},

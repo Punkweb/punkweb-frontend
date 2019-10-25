@@ -9,7 +9,9 @@
         </div>
         <div class="artistHeader__content">
           <h1 class="artistHeader__artistName">{{artist.name}}</h1>
-          <button class="button-primary" (click)="clickMainPlay()">Play</button>
+          <div class="artistHeader__buttons">
+            <button class="artistHeader__playButton button-primary" (click)="clickMainPlay()">Play</button>
+          </div>
           <div class="artistHeader__tabs">
             <div class="artistHeader__tab"
               [ngClass]="{'artistHeader__tab--selected': selectedTab === 'music'}"
@@ -73,6 +75,10 @@
         <p [innerHTML]="artistBio()"></p>
         <h3>Plays This Week</h3>
         <hr />
+        <div class="plays">
+          <h3>Total Plays This Week:</h3>
+          <h1>{{totalPlaysThisWeek}}</h1>
+        </div>
         <div class="chartContainer">
           <app-chart [data]="playsCanvasRef"></app-chart>
         </div>
@@ -86,12 +92,12 @@
         </ng-container>
         <ng-container *ngIf="eventsLoaded && upcomingEvents.length > 0">
           <div class="tableContainer">
-            <table class="noBorderTable">
+            <table class="eventsTable noBorderTable">
               <thead>
                 <tr>
-                  <th>Event</th>
-                  <th>Location</th>
-                  <th>Date</th>
+                  <th class="col-md">Event</th>
+                  <th class="col-md">Location</th>
+                  <th class="col-md">Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -124,12 +130,12 @@
         </ng-container>
         <ng-container *ngIf="eventsLoaded&& pastEvents.length > 0">
           <div class="tableContainer">
-            <table class="noBorderTable">
+            <table class="eventsTable noBorderTable">
               <thead>
                 <tr>
-                  <th>Event</th>
-                  <th>Location</th>
-                  <th>Date</th>
+                  <th class="col-lrg">Event</th>
+                  <th class="col-md">Location</th>
+                  <th class="col-md">Date</th>
                 </tr>
               </thead>
               <tbody>

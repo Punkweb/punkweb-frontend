@@ -39,6 +39,19 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
     this.renderFrame();
   }
 
+  public timeFormat(time) {
+    let hrs = Math.floor(time / 3600);
+    let mins = Math.floor(time / 60);
+    let secs = Math.floor(time - mins * 60);
+    let str = '';
+    if (hrs > 0) {
+      str += '' + hrs + ':' + (mins < 10 ? '0' : '');
+    }
+    str += '' + mins + ':' + (secs < 10 ? '0' : '');
+    str += '' + secs;
+    return str;
+  }
+
   public renderFrame() {
     window.requestAnimationFrame(() => {
       this.renderFrame();
@@ -49,10 +62,13 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
       let barHeight;
       this.canvasCtx.fillStyle = '#212529';
       this.canvasCtx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-      // this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
       for (let i = 0; i < this.audio.bufferLength; i++) {
         barHeight = this.audio.dataArray[i];
-        this.canvasCtx.fillStyle = '#6741d9';
+        let r = Math.abs(barHeight -  255) + 103;
+        let g = Math.abs(barHeight - 255) + 65;
+        let b = Math.abs(barHeight - 255) + 217;
+        let grayscale = `rgb(${r}, ${g}, ${b})`;
+        this.canvasCtx.fillStyle = grayscale;
         this.canvasCtx.fillRect(x, this.canvasHeight - (barHeight * .4), this.barWidth, barHeight);
         x += this.barWidth + .25;
       }

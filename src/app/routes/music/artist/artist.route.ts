@@ -16,6 +16,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
   public moment = moment;
 
   public artist = null;
+  public totalPlaysThisWeek = 0;
   public shopUrl = null;
   public top10 = [];
   public top10Shown = [];
@@ -57,6 +58,13 @@ export class ArtistComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params.subscribe((params) => {
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
+        this.totalPlaysThisWeek = this.artist.plays_this_week.map(
+          (obj) => {
+            return obj.plays;
+          }
+        ).reduce((a, b) => {
+          return a + b;
+        });
         this.shopUrl = this.artist.spreadshirt_shop_slug ?
           this.sanitize.cleanSrc('https://shop.spreadshirt.com/' + this.artist.spreadshirt_shop_slug) : null;
         this.breadcrumbs[2].text = this.artist.name;
@@ -83,6 +91,8 @@ export class ArtistComponent implements OnInit, OnDestroy {
           });
         });
         this.initCanvas();
+      }).catch((err) => {
+        this.router.navigate(['/error']);
       });
     });
   }

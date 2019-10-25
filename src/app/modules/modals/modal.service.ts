@@ -14,6 +14,7 @@ export class ModalService {
     closeDisabled: false,
     height: 'auto',
     width: 'auto',
+    padding: '1rem',
     position: {},
     data: {},
   };

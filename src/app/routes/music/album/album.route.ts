@@ -63,6 +63,8 @@ export class AlbumComponent implements OnInit, OnDestroy {
         this.getTracks(this.album.id).then((tracks: any) => {
           this.tracks = tracks;
         });
+      }).catch((err) => {
+        this.router.navigate(['/error']);
       });
     });
   }
