@@ -24,6 +24,8 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
 
   public data: any = null;
 
+  private renderIterations = 0;
+
   constructor(
     private router: Router,
     private modals: ModalService,
@@ -56,22 +58,42 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
     window.requestAnimationFrame(() => {
       this.renderFrame();
     });
-    if (this.audio && this.audio.audioAnalyser) {
-      let x = 0;
-      this.audio.audioAnalyser.getByteFrequencyData(this.audio.dataArray);
-      let barHeight;
-      this.canvasCtx.fillStyle = '#212529';
-      this.canvasCtx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-      for (let i = 0; i < this.audio.bufferLength; i++) {
-        barHeight = this.audio.dataArray[i];
-        let r = Math.abs(barHeight -  255) + 103;
-        let g = Math.abs(barHeight - 255) + 65;
-        let b = Math.abs(barHeight - 255) + 217;
-        let grayscale = `rgb(${r}, ${g}, ${b})`;
-        this.canvasCtx.fillStyle = grayscale;
-        this.canvasCtx.fillRect(x, this.canvasHeight - (barHeight * .4), this.barWidth, barHeight);
-        x += this.barWidth + .25;
-      }
+    this.renderIterations++;
+    if (this.renderIterations % 3 !== 0) {
+      return;
+    }
+    if (this.renderIterations > 300) {
+      this.renderIterations = 0;
+    }
+    if (!this.audio || !this.audio.audioAnalyser) {
+      return;
+    }
+    let x = 0;
+    let x1 = 0;
+    this.audio.audioAnalyser.getByteFrequencyData(this.audio.dataArray);
+    let barHeight;
+    let r, g, b, grayscale;
+    this.canvasCtx.fillStyle = '#212529';
+    this.canvasCtx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    for (let i1 = this.audio.bufferLength - 1; i1 >= 0; i1--) {
+      barHeight = this.audio.dataArray[i1];
+      r = Math.abs(barHeight -  255) + 121;
+      g = Math.abs(barHeight - 255) + 80;
+      b = Math.abs(barHeight - 255) + 242;
+      grayscale = `rgba(${r}, ${g}, ${b}, .9)`;
+      this.canvasCtx.fillStyle = grayscale;
+      this.canvasCtx.fillRect(x1, this.canvasHeight - (barHeight * .4), this.barWidth, barHeight);
+      x1 += this.barWidth;
+    }
+    for (let i = 0; i < this.audio.bufferLength; i++) {
+      barHeight = this.audio.dataArray[i];
+      r = Math.abs(barHeight -  255) + 121;
+      g = Math.abs(barHeight - 255) + 80;
+      b = Math.abs(barHeight - 255) + 242;
+      grayscale = `rgba(${r}, ${g}, ${b}, .9)`;
+      this.canvasCtx.fillStyle = grayscale;
+      this.canvasCtx.fillRect(x, this.canvasHeight - (barHeight * .4), this.barWidth, barHeight);
+      x += this.barWidth;
     }
   }
 }
