@@ -162,17 +162,21 @@ export class AudioPlayerService {
         this._trackPercent = ((this._currentTime / this._duration)  * 100);
       });
     }
-    // if (!this.audioSrc) {
-    //   this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
-    //   this.audioAnalyser = this.audioCtx.createAnalyser();
-    //   this.audioSrc.connect(this.audioAnalyser);
-    //   this.audioAnalyser.connect(this.audioCtx.destination);
-    //   this.audioAnalyser.fftSize = 256;
-    // }
-    // if (this.audioAnalyser) {
-    //   this.bufferLength = this.audioAnalyser.frequencyBinCount;
-    //   this.dataArray = new Uint8Array(this.bufferLength);
-    // }
+    try {
+      if (!this.audioSrc) {
+        this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
+        this.audioAnalyser = this.audioCtx.createAnalyser();
+        this.audioSrc.connect(this.audioAnalyser);
+        this.audioAnalyser.connect(this.audioCtx.destination);
+        this.audioAnalyser.fftSize = 256;
+      }
+      if (this.audioAnalyser) {
+        this.bufferLength = this.audioAnalyser.frequencyBinCount;
+        this.dataArray = new Uint8Array(this.bufferLength);
+      }
+    } catch (e) {
+      console.log('Audio Analyser or Audio Source not available.');
+    }
   }
 
   public destroyAudio() {

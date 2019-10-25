@@ -32,23 +32,23 @@ export class AudioPlayerComponent implements AfterViewInit, OnDestroy, OnInit {
   public ngOnDestroy() { }
 
   public renderFrame() {
-    // window.requestAnimationFrame(() => {
-    //   this.renderFrame();
-    // });
-    // if (this.audio && this.audio.audioAnalyser) {
-    //   let x = 0;
-    //   this.audio.audioAnalyser.getByteFrequencyData(this.audio.dataArray);
-    //   let barWidth = (this.canvasWidth / this.audio.bufferLength) * 1;
-    //   let barHeight;
-    //   this.canvasCtx.fillStyle = '#212529';
-    //   this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-    //   for (let i = 0; i < this.audio.bufferLength; i++) {
-    //     barHeight = this.audio.dataArray[i];
-    //     this.canvasCtx.fillStyle = '#6741d9';
-    //     this.canvasCtx.fillRect(x, this.canvasHeight - (barHeight / 3), barWidth, barHeight);
-    //     x += barWidth;
-    //   }
-    // }
+    window.requestAnimationFrame(() => {
+      this.renderFrame();
+    });
+    if (this.audio && this.audio.audioAnalyser) {
+      let x = 0;
+      this.audio.audioAnalyser.getByteFrequencyData(this.audio.dataArray);
+      let barWidth = (this.canvasWidth / this.audio.bufferLength) * 1;
+      let barHeight;
+      this.canvasCtx.fillStyle = '#212529';
+      this.canvasCtx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+      for (let i = 0; i < this.audio.bufferLength; i++) {
+        barHeight = this.audio.dataArray[i];
+        this.canvasCtx.fillStyle = '#6741d9';
+        this.canvasCtx.fillRect(x, this.canvasHeight - (barHeight / 3), barWidth, barHeight);
+        x += barWidth;
+      }
+    }
   }
 
   public timeFormat(time) {
