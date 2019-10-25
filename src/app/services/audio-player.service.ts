@@ -177,9 +177,9 @@ export class AudioPlayerService {
       }
       if (this.audioSrc && this.audioAnalyser) {
         try {
+          this.audioSrc.connect(this.audioCtx.destination);
           this.audioSrc.connect(this.audioAnalyser);
-          this.audioAnalyser.connect(this.audioCtx.destination);
-          this.audioAnalyser.fftSize = 256;
+          this.audioAnalyser.fftSize = 32;
         } catch (e) {
           console.log('Failed to init audio source or analyser');
         }

@@ -1,0 +1,10 @@
+<div class="visualizer" [hidden]="audio.playQueue.length < 1">
+  <canvas #visualizerCanvas height="106px" width="320px"></canvas>
+  <div class="thumbnail">
+    <img [src]="audio.playQueue[0].album_thumbnail" alt="">
+  </div>
+  <div class="text">
+    <h4>{{audio.playQueue[0].title}}</h4>
+    <label>By {{audio.playQueue[0].artist_name}}</label>
+  </div>
+</div>

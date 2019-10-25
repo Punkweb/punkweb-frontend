@@ -44,6 +44,7 @@ import {
   SidebarComponent,
   SignUpModalComponent,
   SongLyricsModalComponent,
+  VisualizerModalComponent,
 } from './components';
 
 // Services
@@ -100,6 +101,7 @@ import {
     SidebarComponent,
     SignUpModalComponent,
     SongLyricsModalComponent,
+    VisualizerModalComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -116,6 +118,7 @@ import {
   entryComponents: [
     SignUpModalComponent,
     SongLyricsModalComponent,
+    VisualizerModalComponent,
   ],
 })
 export class AppModule { }

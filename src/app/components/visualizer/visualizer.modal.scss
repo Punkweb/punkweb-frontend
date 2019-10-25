@@ -1,0 +1,44 @@
+@import '~scss/theming';
+
+.visualizer {
+  background-color: $oc-gray-9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  canvas {
+    position: absolute;
+    bottom: 0;
+    z-index: 12;
+  }
+
+  .thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    text-align: center;
+
+    img {
+      position: absolute;
+      bottom: 20px;
+      left: calc(50% - 100px);
+    }
+  }
+
+  .text {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: white;
+    z-index: 12;
+
+    h4 {
+      margin: .5rem 0;
+    }
+  }
+}

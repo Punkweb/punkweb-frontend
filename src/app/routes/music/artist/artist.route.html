@@ -29,7 +29,7 @@
       </div>
       <div class="panel-body padding" *ngIf="selectedTab === 'music'">
         <h3>Popular</h3>
-        <hr />
+        <hr class="clearMargin" />
         <div class="spinner" *ngIf="!top10Loaded"></div>
         <ng-container *ngIf="top10Loaded">
           <div class="top10List">

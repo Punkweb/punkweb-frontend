@@ -18,11 +18,10 @@
         <button class="button-circle--small margin-right"
           (click)="audio.pause()" *ngIf="!audio.paused"><i class="fas fa-pause fa-fw"></i></button>
         <button class="button-circle--small margin-right"
-          (click)="audio.next()"><i class="fas fa-forward fa-fw"></i></button>
+          (click)="audio.next()"><i class="fas fa-eye fa-fw"></i></button>
         <button class="button-circle--small showViz"
           *ngIf="audio.audioAnalyser"
-          (click)="visualizerHidden = !visualizerHidden"
-          [ngClass]="{'button-circle--small-primary': !visualizerHidden}">
+          (click)="openVisualizer()">
           <i class="fas fa-chart-bar fa-fw"></i>
         </button>
       </div>
@@ -43,7 +42,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="visualizer" [hidden]="!audio.audioAnalyser || visualizerHidden || audio.playQueue.length < 1">
-  <canvas #visualizerCanvas height="90px" width="316px"></canvas>
 </div>
