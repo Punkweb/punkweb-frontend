@@ -164,14 +164,15 @@ export class AudioPlayerService {
     }
     if (!this.audioSrc) {
       this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
-      try {
-        this.audioAnalyser = this.audioCtx.createAnalyser();
-        this.audioSrc.connect(this.audioAnalyser);
-        this.audioAnalyser.connect(this.audioCtx.destination);
-        this.audioAnalyser.fftSize = 256;
-      } catch (e) {
-        this.audioSrc.connect(this.audioCtx.destination);
-      }
+      this.audioSrc.connect(this.audioCtx.destination);
+      // try {
+      //   this.audioAnalyser = this.audioCtx.createAnalyser();
+      //   this.audioSrc.connect(this.audioAnalyser);
+      //   this.audioAnalyser.connect(this.audioCtx.destination);
+      //   this.audioAnalyser.fftSize = 256;
+      // } catch (e) {
+      //   this.audioSrc.connect(this.audioCtx.destination);
+      // }
     }
     if (this.audioAnalyser) {
       this.bufferLength = this.audioAnalyser.frequencyBinCount;
