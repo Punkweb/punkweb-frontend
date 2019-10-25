@@ -120,10 +120,7 @@ export class AudioPlayerService {
   }
 
   public createAudio() {
-    this.audioCtx = new this.AudioContext({
-      latencyHint: 'interactive',
-      sampleRate: 44100,
-    });
+    this.audioCtx = new this.AudioContext();
     if (!this.instance) {
       this.instance = new Audio();
       this.instance.crossOrigin = 'anonymous';
