@@ -531,13 +531,11 @@ progress::-webkit-progress-value {
 }
 
 .button-circle--small {
-  @include button-circle($oc-gray-7, white, 30px);
-  font-size: 12px;
-  line-height: 24px;
+  @include button-circle($oc-gray-7, white, 36px);
+  font-size: 16px;
   &-primary {
-    @include button-circle($primary, white, 30px);
-    font-size: 12px;
-    line-height: 24px;
+    @include button-circle($primary, white, 36px);
+    font-size: 16px;
   }
 }
 

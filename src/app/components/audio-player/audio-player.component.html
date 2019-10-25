@@ -18,11 +18,11 @@
         <button class="button-circle--small margin-right"
           (click)="audio.pause()" *ngIf="!audio.paused"><i class="fas fa-pause fa-fw"></i></button>
         <button class="button-circle--small margin-right"
-          (click)="audio.next()"><i class="fas fa-eye fa-fw"></i></button>
+          (click)="audio.next()"><i class="fas fa-forward fa-fw"></i></button>
         <button class="button-circle--small showViz"
           *ngIf="audio.audioAnalyser"
           (click)="openVisualizer()">
-          <i class="fas fa-chart-bar fa-fw"></i>
+          <i class="fas fa-eye fa-fw"></i>
         </button>
       </div>
       <div class="musicPlayer__flex">
