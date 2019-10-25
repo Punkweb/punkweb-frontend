@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalService } from '../../modules/modals';
 import { AudioPlayerService } from '../../services';
 import { VisualizerModalComponent } from '../visualizer/visualizer.modal';
@@ -11,6 +12,7 @@ import { VisualizerModalComponent } from '../visualizer/visualizer.modal';
 export class AudioPlayerComponent implements OnDestroy, OnInit {
 
   constructor(
+    private router: Router,
     private modals: ModalService,
     public audio: AudioPlayerService,
   ) { }
@@ -54,6 +56,14 @@ export class AudioPlayerComponent implements OnDestroy, OnInit {
       clickPercent = 0;
     }
     this.audio.setVolume(clickPercent);
+  }
+
+  public routeToAlbum(song) {
+    this.router.navigate(['/music', 'album', song.album_slug]);
+  }
+
+  public routeToArtist(song) {
+    this.router.navigate(['/music', 'artist', song.artist_slug]);
   }
 
   public openVisualizer() {

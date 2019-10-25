@@ -5,6 +5,18 @@
   position: relative;
 }
 
+.songTitle {
+  a {
+    color: white;
+  }
+}
+
+.songArtist {
+  a {
+    color: white;
+  }
+}
+
 .musicPlayer {
   background-color: $nav-background;
   color: $default-text-on-dark;

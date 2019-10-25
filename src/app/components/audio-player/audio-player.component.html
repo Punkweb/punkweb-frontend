@@ -5,8 +5,12 @@
         <img [src]="audio.playQueue[0].album_thumbnail" alt="">
       </div>
       <div>
-        <div>{{audio.playQueue[0].title}}</div>
-        <div>{{audio.playQueue[0].artist_name}}</div>
+        <div class="songTitle">
+          <a (click)="routeToAlbum(audio.playQueue[0])">
+            {{audio.playQueue[0].title}}
+          </a>
+        </div>
+        <div class="songArtist">By <a (click)="routeToArtist(audio.playQueue[0])">{{audio.playQueue[0].artist_name}}</a></div>
       </div>
     </div>
     <div class="musicPlayer__controls">

@@ -21,6 +21,15 @@
       left: 0;
       z-index: 112;
     }
+    &:before {
+      content: '';
+      background-image: linear-gradient(to top, rgba(black, 1), rgba(black, 0));
+      position: absolute;
+      height: 100px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
   }
 
   .text {

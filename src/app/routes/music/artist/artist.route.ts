@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/co
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
+import { ModalService } from '../../../modules/modals';
 import { ApiService, AudioPlayerService, SanitizeService } from '../../../services';
+import { SongLyricsModalComponent, VisualizerModalComponent } from '../../../components';
 
 @Component({
   'selector': 'app-route-artist',
@@ -49,6 +51,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private modals: ModalService,
     private api: ApiService,
     private audio: AudioPlayerService,
     private sanitize: SanitizeService
@@ -262,9 +265,29 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   public clickMainPlay() {
     this.audio.playQueue = this.top10.slice(0);
+    this.modals.open(VisualizerModalComponent, {
+      height: '540px',
+      width: '320px',
+      padding: '0',
+      position: {
+        top: '2rem',
+      }
+    }).subscribe(
+      () => {}
+    );
   }
 
   public clickTop10Song(index) {
     this.audio.playQueue = this.top10.slice(index);
+    this.modals.open(VisualizerModalComponent, {
+      height: '540px',
+      width: '320px',
+      padding: '0',
+      position: {
+        top: '2rem',
+      }
+    }).subscribe(
+      () => {}
+    );
   }
 }
