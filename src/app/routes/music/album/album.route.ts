@@ -144,9 +144,10 @@ export class AlbumComponent implements OnInit, OnDestroy {
     this.modals.open(VisualizerModalComponent, {
       height: '540px',
       width: '320px',
+      containerPadding: '0',
       padding: '0',
       position: {
-        top: '2rem',
+        top: '1rem',
       }
     }).subscribe(
       () => {}

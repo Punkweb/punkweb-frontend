@@ -16,7 +16,7 @@ export class AuthService {
   public authUrl = `${environment.apiUrl}/token-auth/`;
   public usersUrl = `${environment.apiUrl}/users/`;
   public user: any = {};
-  public user$ = new BehaviorSubject<any>({});
+  public user$ = new BehaviorSubject<any>(null);
 
   constructor(
     private http: HttpService,

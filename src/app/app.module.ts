@@ -20,7 +20,7 @@ import {
   HomeComponent,
   LoginComponent,
   MainShopComponent,
-  SettingsComponent,
+  AccountComponent,
   // Music
   MusicComponent,
   AlbumComponent,
@@ -79,7 +79,7 @@ import {
     HomeComponent,
     LoginComponent,
     MainShopComponent,
-    SettingsComponent,
+    AccountComponent,
     // Music
     MusicComponent,
     AlbumComponent,

@@ -1,6 +1,9 @@
 <div class="modal"
   [hidden]="!visible"
   [ngClass]="{'modal--backdropDisabled': options.backdropDisabled}"
+  [ngStyle]="{
+    'padding': options.containerPadding
+  }"
   (click)="close()">
     <div class="modal__content"
       [ngStyle]="{

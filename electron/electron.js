@@ -5,9 +5,9 @@ const storage = require('electron-json-storage');
 const ARGS = process.argv.slice(1);
 const DEBUG = ARGS.some(val => val === '--debug');
 const DEV_URL = 'http://localhost:4200';
-const PROD_URL = 'https://www.google.com';
+const PROD_URL = 'https://www.punkweb.net';
 const APP_ICON = `${__dirname}/img/app-48x48.png`;
-const TRAY_ICON = `${__dirname}/img/app-24x24.png`
+const TRAY_ICON = `${__dirname}/img/app-24x24.png`;
 
 let win, settings;
 
@@ -18,7 +18,9 @@ let defaultSettings = {
 let settingsFilePromise = new Promise((resolve, reject) => {
   try {
     storage.get('settings', (err, data) => {
-      if (err) throw err;
+      if (err) {
+        throw err;
+      }
       resolve(data);
     });
   } catch (exception) {
@@ -36,7 +38,7 @@ function updateSetting(key, value, callback = (err, data) => {}) {
 function closeDialog(callback) {
   const closeDialogConfig = {
     title: 'Are you sure you want to close the app?',
-    message: `You have unsaved data that would be lost from closing the application, are you sure you want to continue?`,
+    message: `?`,
     checkboxLabel: `Don't show me this again`,
     buttons: ['Cancel', 'Ok'],
     icon: APP_ICON,
@@ -113,7 +115,7 @@ app.on('ready', () => {
     },
   ]);
   tray = new Tray(TRAY_ICON);
-  tray.setToolTip('punkweb-ngx');
+  tray.setToolTip('Punkweb Music');
   tray.setContextMenu(trayMenu);
   createWindow();
 });

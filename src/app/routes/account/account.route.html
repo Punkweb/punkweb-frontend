@@ -1,8 +1,8 @@
 <app-page-header [breadcrumbs]="breadcrumbs"></app-page-header>
 <div class="container">
-  <div class="mainSpinner"></div>
-  <div class="panel">
+  <div class="mainSpinner" *ngIf="!user"></div>
+  <!-- <div class="panel" *ngIf="user">
     <div class="panel-body padding">
     </div>
-  </div>
+  </div> -->
 </div>

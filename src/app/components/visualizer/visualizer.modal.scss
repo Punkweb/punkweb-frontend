@@ -41,6 +41,12 @@
   }
 }
 
+small {
+  display: block;
+  text-align: center;
+  margin: .5rem 0;
+}
+
 .musicPlayer {
   position: absolute;
   bottom: 0;
@@ -54,7 +60,7 @@
   &__buttons {
     position: relative;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   &__flex {
     display: flex;

@@ -64,14 +64,14 @@
     "typescript": "~2.7.2"
   },
   "build": {
-    "appId": "com.punkweb.template",
+    "appId": "com.punkweb.music",
     "directories": {
       "app": "electron/",
       "buildResources": "electron/",
       "output": "electronDist/"
     },
     "mac": {
-      "category": "public.app-category.productivity"
+      "category": "public.app-category.music"
     },
     "nsis": {
       "oneClick": false,

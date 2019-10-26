@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
+  AccountComponent,
   Error404Component,
   HomeComponent,
   LoginComponent,
   MainShopComponent,
-  SettingsComponent,
   // Music
   MusicComponent,
   AlbumComponent,
@@ -28,8 +28,8 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'account/settings',
-    component: SettingsComponent,
+    path: 'account',
+    component: AccountComponent,
   },
   {
     path: 'shop',

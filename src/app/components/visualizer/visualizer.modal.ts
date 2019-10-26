@@ -9,7 +9,7 @@ import { AudioPlayerService } from '../../services';
   'templateUrl': './visualizer.modal.html',
   'styleUrls': ['./visualizer.modal.scss']
 })
-export class VisualizerModalComponent implements AfterViewInit, OnInit {
+export class VisualizerModalComponent implements AfterViewInit, OnDestroy, OnInit {
 
   @ViewChild('visualizerCanvas')
   public visualizerCanvas: ElementRef;
@@ -22,6 +22,8 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
   public bufferLength = this.audio.bufferLength;
   public barWidth = (this.canvasWidth / this.audio.bufferLength) * 1;
 
+  public stopRenderer = false;
+
   public data: any = null;
 
   private renderIterations = 0;
@@ -33,7 +35,11 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
   ) { }
 
   public ngOnInit() {
-    console.log(this.data);
+    this.stopRenderer = false;
+  }
+
+  public ngOnDestroy() {
+    this.stopRenderer = true;
   }
 
   public ngAfterViewInit() {
@@ -54,7 +60,17 @@ export class VisualizerModalComponent implements AfterViewInit, OnInit {
     return str;
   }
 
+  public clickNext() {
+    this.audio.next();
+    if (this.audio.playQueue.length === 0) {
+      this.modals.close(null);
+    }
+  }
+
   public renderFrame() {
+    if (this.stopRenderer) {
+      return;
+    }
     window.requestAnimationFrame(() => {
       this.renderFrame();
     });
