@@ -6,6 +6,7 @@ import {
   HomeComponent,
   LoginComponent,
   MainShopComponent,
+  VisualizerComponent,
   // Music
   MusicComponent,
   AlbumComponent,
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'music/event/:slug',
     component: EventComponent,
+  },
+  {
+    path: 'music/visualizer',
+    component: VisualizerComponent,
   },
   {
     path: 'board',

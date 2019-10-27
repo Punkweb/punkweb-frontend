@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import { ModalService } from '../../../modules/modals';
 import { ApiService, AudioPlayerService } from '../../../services';
-import { SongLyricsModalComponent, VisualizerModalComponent } from '../../../components';
+import { SongLyricsModalComponent } from '../../../components';
 
 @Component({
   'selector': 'app-route-album',
@@ -141,17 +141,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   public clickSong(index) {
     this.audio.playQueue = this.tracks.slice(index);
-    this.modals.open(VisualizerModalComponent, {
-      height: '540px',
-      width: '320px',
-      containerPadding: '0',
-      padding: '0',
-      position: {
-        top: '1rem',
-      }
-    }).subscribe(
-      () => {}
-    );
+    this.router.navigate(['/music', 'visualizer']);
   }
 
   public clickSongLyrics(song) {

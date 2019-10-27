@@ -1,0 +1,15 @@
+<div class="visualizer" [ngClass]="{'visualizer--show': audio && audio.playQueue.length > 0}">
+  <div class="text" *ngIf="audio && audio.playQueue.length > 0">
+    <h4>{{audio.playQueue[0]?.title}}</h4>
+    <label>By {{audio.playQueue[0]?.artist_name}}</label>
+    <button class="button-circle margin-top" (click)="clickBack()">Back</button>
+  </div>
+  <div class="text" *ngIf="!audio || audio.playQueue.length < 1">
+    <label>No songs in play queue.</label>
+    <button class="button-circle margin-top" (click)="clickBack()">Back</button>
+  </div>
+  <div class="canvasContainer">
+    <canvas class="showOnMobile hideOnDesktop" id="visualizerMobile" width="320px" height="423px"></canvas>
+    <canvas class="showOnDesktop hideOnMobile" id="visualizerDesktop" width="768px" height="450px"></canvas>
+  </div>
+</div>

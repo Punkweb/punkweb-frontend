@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import { ModalService } from '../../../modules/modals';
 import { ApiService, AudioPlayerService, SanitizeService } from '../../../services';
-import { SongLyricsModalComponent, VisualizerModalComponent } from '../../../components';
+import { SongLyricsModalComponent } from '../../../components';
 
 @Component({
   'selector': 'app-route-artist',
@@ -264,32 +264,15 @@ export class ArtistComponent implements OnInit, OnDestroy {
   }
 
   public clickMainPlay() {
+    if (!this.top10) {
+      return;
+    }
     this.audio.playQueue = this.top10.slice(0);
-    this.modals.open(VisualizerModalComponent, {
-      height: '540px',
-      width: '320px',
-      containerPadding: '0',
-      padding: '0',
-      position: {
-        top: '1rem',
-      }
-    }).subscribe(
-      () => {}
-    );
+    this.router.navigate(['/music', 'visualizer']);
   }
 
   public clickTop10Song(index) {
     this.audio.playQueue = this.top10.slice(index);
-    this.modals.open(VisualizerModalComponent, {
-      height: '540px',
-      width: '320px',
-      containerPadding: '0',
-      padding: '0',
-      position: {
-        top: '1rem',
-      }
-    }).subscribe(
-      () => {}
-    );
+    this.router.navigate(['/music', 'visualizer']);
   }
 }

@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import { Router } from '@angular/router';
 import { ModalService } from '../../modules/modals';
 import { AudioPlayerService } from '../../services';
-import { VisualizerModalComponent } from '../visualizer/visualizer.modal';
 
 @Component({
   'selector': 'app-audio-player',
@@ -67,18 +66,6 @@ export class AudioPlayerComponent implements OnDestroy, OnInit {
   }
 
   public openVisualizer() {
-    this.modals.open(VisualizerModalComponent, {
-      height: '540px',
-      width: '320px',
-      containerPadding: '0',
-      padding: '0',
-      position: {
-        top: '1rem',
-      }
-    }).subscribe(
-      () => {},
-      () => {},
-      () => {},
-    );
+    this.router.navigate(['/music', 'visualizer']);
   }
 }

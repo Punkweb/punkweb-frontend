@@ -167,10 +167,19 @@ $margSize: 1.5rem;
 }
 
 @media screen and (min-width: 680px) {
+  .hideOnDesktop {
+    display: none !important;
+  }
+  .showOnDesktop {
+    display: block !important;
+  }
 }
 
 @media screen and (max-width: 680px) {
   .hideOnMobile {
     display: none !important;
+  }
+  .showOnMobile {
+    display: block !important;
   }
 }

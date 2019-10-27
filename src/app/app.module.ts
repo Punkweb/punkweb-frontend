@@ -27,6 +27,7 @@ import {
   ArtistComponent,
   ArtistShopComponent,
   EventComponent,
+  VisualizerComponent,
   // Board
   BoardComponent,
   BoardSubcategoryComponent,
@@ -44,7 +45,6 @@ import {
   SidebarComponent,
   SignUpModalComponent,
   SongLyricsModalComponent,
-  VisualizerModalComponent,
 } from './components';
 
 // Services
@@ -80,6 +80,7 @@ import {
     LoginComponent,
     MainShopComponent,
     AccountComponent,
+    VisualizerComponent,
     // Music
     MusicComponent,
     AlbumComponent,
@@ -101,7 +102,6 @@ import {
     SidebarComponent,
     SignUpModalComponent,
     SongLyricsModalComponent,
-    VisualizerModalComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -118,7 +118,6 @@ import {
   entryComponents: [
     SignUpModalComponent,
     SongLyricsModalComponent,
-    VisualizerModalComponent,
   ],
 })
 export class AppModule { }

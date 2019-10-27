@@ -9,6 +9,7 @@ export * from './music/album/album.route';
 export * from './music/artist/artist.route';
 export * from './music/artist/shop/shop.route';
 export * from './music/event/event.route';
+export * from './music/visualizer/visualizer.route';
 // Board
 export * from './board/board.route';
 export * from './board/subcategory/subcategory.route';
