@@ -25,10 +25,10 @@ export class DateRangeComponent {
     width: '200px',
   };
 
-  @ViewChild('startDatePicker')
+  @ViewChild('startDatePicker', { static: false })
   public startDatePicker;
 
-  @ViewChild('endDatePicker')
+  @ViewChild('endDatePicker', { static: false })
   public endDatePicker;
 
   @Output()

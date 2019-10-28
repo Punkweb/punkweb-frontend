@@ -1,6 +1,6 @@
 import { Injectable, ComponentFactoryResolver } from '@angular/core';
 import { ModalOutletComponent } from './modal-outlet.component';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class ModalService {

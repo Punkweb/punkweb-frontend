@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ModalService } from '../../modules/modals';
 import { SignUpModalComponent } from '../sign-up/sign-up.modal';
 import { AuthService } from '../../services';

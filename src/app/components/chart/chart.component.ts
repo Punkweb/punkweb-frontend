@@ -16,7 +16,7 @@ declare let Chart: any;
 })
 export class ChartComponent implements AfterViewInit, OnDestroy {
 
-  @ViewChild('canvasElement')
+  @ViewChild('canvasElement', { static: false })
   public canvasElement: ElementRef;
 
   public chartRef: any;

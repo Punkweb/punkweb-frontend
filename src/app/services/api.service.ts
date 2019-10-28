@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+import {
+  of as observableOf,
+  throwError as observableThrowError,
+  combineLatest as observableCombineLatest,
+  Observable,
+} from 'rxjs';
+import { flatMap, map, catchError } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { environment } from '../../environments/environment';
 
@@ -33,46 +33,54 @@ class ApiEndpoint implements ApiOperations {
 
   public create(payload = {}): Observable<any> {
     const request = this.http.post(this.createUrl(), payload);
-    return request
-      .catch((error: any) => Observable.throw(error));
+    return request.pipe(catchError((error: any) => {
+      return observableThrowError(error);
+    }));
   }
 
   public read(id: number | string, params = {}): Observable<any> {
     const request = this.http.get(this.createUrl(id), params);
-    return request
-      .catch((error: any) => Observable.throw(error));
+    return request.pipe(catchError((error: any) => {
+      return observableThrowError(error);
+    }));
   }
 
   public list(params = {}): Observable<any> {
     const request = this.http.get(this.createUrl(), params);
-    return request
-      .map((response: ListResponse) => {
+    return request.pipe(
+      map((response: ListResponse) => {
         const results = Object.assign(response.results, {
           count: response.count,
           next: response.next,
           previous: response.previous
         });
         return results;
-      }).catch((error: any) => Observable.throw(error));
+      }), catchError((error: any) => {
+        return observableThrowError(error);
+      }));
   }
 
   public paged(params = {}): Observable<any> {
-    const request = this.http.get(this.createUrl(), params);
-    return request
-      .flatMap((firstPage: ListResponse) => {
-        const pageObservables: Observable<any>[] = [Observable.of(firstPage.results)];
+    let request = this.http.get(this.createUrl(), params);
+    return request.pipe(
+      flatMap((firstPage: ListResponse) => {
+        let pageObservables: Observable<any>[] = [observableOf(firstPage.results)];
         // construct each page url for each existing page, starting at 2
         if (firstPage.next) {
           for (let i = 2; i <= Math.ceil(firstPage.count / firstPage.results.length); i++) {
-            const page = this.http.get(this.createUrl(), Object.assign(params, { page: i }))
-              .map((pageResponse: ListResponse) => pageResponse.results);
+            const page = this.http.get(this.createUrl(), Object.assign(params, { page: i })).pipe(
+              map((pageResponse: ListResponse) => pageResponse.results));
             pageObservables.push(page);
           }
         }
-        return Observable.combineLatest(pageObservables)
-          .map((nested) => nested.reduce((acc, cur) => acc.concat(cur), []))
-          .catch((error: any) => Observable.throw(error));
-      }).catch((error: any) => Observable.throw(error));
+        return observableCombineLatest(pageObservables).pipe(
+          map((nested) => nested.reduce((acc, cur) => acc.concat(cur), [])),
+          catchError((error: any) => {
+            return observableThrowError(error);
+          }));
+      }), catchError((error: any) => {
+        return observableThrowError(error);
+      }));
   }
 
   public update(id: number | string, payload = {}, put = false): Observable<any> {
@@ -82,26 +90,30 @@ class ApiEndpoint implements ApiOperations {
     } else {
       request = this.http.patch(this.createUrl(id), payload);
     }
-    return request
-      .catch((error: any) => Observable.throw(error));
+    return request.pipe(catchError((error: any) => {
+      return observableThrowError(error);
+    }));
   }
 
   public delete(id: number | string): Observable<any> {
     const request = this.http.delete(this.createUrl(id));
-    return request
-      .catch((error: any) => Observable.throw(error));
+    return request.pipe(catchError((error: any) => {
+      return observableThrowError(error);
+    }));
   }
 
   public listRoute(method: string, route: string, payload = {}, params = {}): Observable<any> {
     const request = this.http.request(method, `${this.createUrl()}${route}`, payload, params);
-    return request
-      .catch((error: any) => Observable.throw(error));
+    return request.pipe(catchError((error: any) => {
+      return observableThrowError(error);
+    }));
   }
 
   public detailRoute(method: string, route: string, id: number | string, payload = {}, params = {}): Observable<any> {
     const request = this.http.request(method, `${this.createUrl()}${id}/${route}`, payload, params);
-    return request
-      .catch((error: any) => Observable.throw(error));
+    return request.pipe(catchError((error: any) => {
+      return observableThrowError(error);
+    }));
   }
 
   private createUrl(id: number | string = null): string {

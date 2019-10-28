@@ -8,7 +8,7 @@ import { ModalService } from './modal.service';
 })
 export class ModalOutletComponent {
 
-  @ViewChild('content', { read: ViewContainerRef })
+  @ViewChild('content', { read: ViewContainerRef, static: false })
   public content;
 
   public active: ComponentRef<any>;

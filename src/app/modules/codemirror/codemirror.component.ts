@@ -24,7 +24,7 @@ declare var CodeMirror: any;
 })
 export class CodeMirrorComponent implements AfterViewInit {
 
-  @ViewChild('codemirror')
+  @ViewChild('codemirror', { static: false })
   public textarea;
   public codemirror;
 

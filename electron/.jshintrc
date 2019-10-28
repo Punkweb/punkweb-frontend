@@ -1,8 +1,0 @@
-{
-  "browser": false,
-  "curly": true,
-  "esversion": 6,
-  "eqeqeq": true,
-  "maxlen": 120,
-  "node": true
-}

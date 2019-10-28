@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { environment } from '../../environments/environment';
 
@@ -30,12 +29,10 @@ export class AuthService {
     return this.http.post(this.authUrl, {
       'username': username,
       'password': password
-    }).do(
-      (token: Token) => {
-        this.setAuthToken(token);
-        this.getUser();
-      }
-    );
+    }).pipe(tap((token: Token) => {
+      this.setAuthToken(token);
+      this.getUser();
+    }));
   }
 
   public logout() {
