@@ -41,6 +41,7 @@
 
 .calendarWidget {
   align-items: center;
+  background-color: white;
   display: flex;
   flex-direction: column;
   border: 1px solid $border;
@@ -59,6 +60,7 @@
     width: 100%;
   }
   &__day {
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;

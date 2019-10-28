@@ -22,12 +22,6 @@
   cursor: pointer;
 }
 
-.hoverable {
-  &:hover {
-    background-color: $border;
-  }
-}
-
 .album {
   &__info {
     &__flex {

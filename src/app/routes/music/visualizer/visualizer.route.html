@@ -4,6 +4,9 @@
     <label>By {{audio.playQueue[0]?.artist_name}}</label>
     <button class="button-circle margin-top" (click)="clickBack()">Back</button>
   </div>
+  <!-- <div class="visualizerText">
+    <p>Renderer: <span class="name">{{formatRendererName()}}</span></p>
+  </div> -->
   <div class="text" *ngIf="!audio || audio.playQueue.length < 1">
     <label>No songs in play queue.</label>
     <button class="button-circle margin-top" (click)="clickBack()">Back</button>

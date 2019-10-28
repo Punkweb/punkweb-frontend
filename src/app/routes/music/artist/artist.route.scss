@@ -23,12 +23,6 @@ app-chart {
   cursor: pointer;
 }
 
-.hoverable {
-  &:hover {
-    background-color: $border;
-  }
-}
-
 .eventsTable {
   min-width: 600px;
 }

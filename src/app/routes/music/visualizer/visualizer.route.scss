@@ -11,6 +11,15 @@
   justify-content: center;
   display: flex;
   position: relative;
+  .visualizerText {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    color: white;
+    .name {
+      text-transform: capitalize;
+    }
+  }
   .text {
     position: absolute;
     display: flex;

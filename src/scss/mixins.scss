@@ -47,11 +47,11 @@
   }
 
   &::-webkit-scrollbar-track {
-    background-color: $primary;
+    background-color: darken($body-background, 10%)
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $primary-active;
+    background-color: $primary;
   }
 }
 

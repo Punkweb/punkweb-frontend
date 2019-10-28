@@ -101,13 +101,13 @@ details, summary {
 }
 
 a {
-  color: $primary-active;
+  color: $primary;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
 
   &:link, &:visited {
-    color: $primary-active;
+    color: $primary;
   }
   &:hover {
     text-decoration: underline;

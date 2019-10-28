@@ -1,20 +1,25 @@
 import { AudioPlayerService } from '../../../services';
 import { Random, Renderer, State, Squire } from '../../../squire';
 
-export class VisualizerState extends State {
+export class FlowerOfLifeState extends State {
+
+  public rendererName = 'flower-of-life';
 
   public bufferLength = this.audio.bufferLength;
   public barWidth = (this.engineCtx.size.w / this.audio.bufferLength) * 1;
 
-  public mainR = 107;
+  public mainR = 103;
   public mainG = 65;
   public mainB = 217;
 
   constructor(public engineCtx: Squire, public audio: AudioPlayerService) {
     super(engineCtx);
+    console.log('flower of state created');
   }
 
-  public init() { }
+  public init() {
+    console.log('flower of life state init');
+  }
 
   public render(rend: Renderer) {
     if (!this.audio || !this.audio.audioAnalyser) {
@@ -27,11 +32,11 @@ export class VisualizerState extends State {
     let itemsCount;
     for (let i = 0; i < this.bufferLength; i++) {
       frequency = this.audio.dataArray[i];
-      itemsCount = 32;
-      radius = frequency * .55;
-      r = Math.abs(radius - 255) + this.mainR;
-      g = Math.abs(radius - 255) + this.mainG;
-      b = Math.abs(radius - 255) + this.mainB;
+      itemsCount = 7;
+      radius = frequency * .3;
+      r = Math.abs(frequency - 255) + this.mainR;
+      g = Math.abs(frequency - 255) + this.mainG;
+      b = Math.abs(frequency - 255) + this.mainB;
       grayscale = `rgba(${r}, ${g}, ${b}, .1)`;
 
       center = {
@@ -45,7 +50,7 @@ export class VisualizerState extends State {
       let itemRadius;
       let itemr, itemg, itemb;
       for (let j = 0; j < itemsCount; j++) {
-        itemRadius = (center.r * .1);
+        itemRadius = (center.r);
         item = {
           color: center.color,
           x: (center.x + center.r * Math.cos(2 * Math.PI * j / itemsCount)),

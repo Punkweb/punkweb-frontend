@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { debounce } from 'lodash';
 import { AudioPlayerService } from '../../../services';
-import { Squire } from '../../../squire';
-import { VisualizerState } from './visualizer.state';
+import { Squire, State } from '../../../squire';
+import { MandalaState } from './mandala.state';
+import { FlowerOfLifeState } from './flower-of-life.state';
 
 @Component({
   'selector': 'app-route-visualizer',
@@ -17,6 +18,7 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
 
   private visualizerMobile: Squire = null;
   private visualizerDesktop: Squire = null;
+  private currentState: State = null;
 
   public innerWidth = 0;
 
@@ -44,10 +46,12 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
   public ngAfterViewInit() { }
 
   public initMobile() {
+    console.log('init Mobile');
     try {
       this.visualizerMobile = new Squire('visualizerMobile');
     } finally {
-      this.visualizerMobile.stateManager.state = new VisualizerState(this.visualizerMobile, this.audio);
+      this.currentState = new MandalaState(this.visualizerMobile, this.audio);
+      this.visualizerMobile.stateManager.state = this.currentState;
       this.visualizerMobile.run();
     }
   }
@@ -60,10 +64,12 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   public initDesktop() {
+    console.log('init Desktop');
     try {
       this.visualizerDesktop = new Squire('visualizerDesktop');
     } finally {
-      this.visualizerDesktop.stateManager.state = new VisualizerState(this.visualizerDesktop, this.audio);
+      this.currentState = new MandalaState(this.visualizerDesktop, this.audio);
+      this.visualizerDesktop.stateManager.state = this.currentState;
       this.visualizerDesktop.run();
     }
   }
@@ -75,10 +81,14 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
     }
   }
 
+  public formatRendererName() {
+    let anystate = <any> this.currentState;
+    return anystate.rendererName.replace(/-/g, ' ');
+  }
+
   @HostListener('window:resize', ['$event'])
   public onResize(event) {
     this.innerWidth = window.innerWidth;
-    console.log('called');
     if (this.innerWidth > 768) {
       this.destroyMobile();
       this.destroyDesktop();
