@@ -1,11 +1,14 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 declare var window: any;
 
 @Injectable()
 export class AudioPlayerService {
+
+  public user = null;
 
   public instance: any = null;
   public audioCtx: any = null;
@@ -27,6 +30,7 @@ export class AudioPlayerService {
     private title: Title,
     private meta: Meta,
     private api: ApiService,
+    private auth: AuthService,
   ) {
     if (window.AudioContext) {
       this.AudioContext = window.AudioContext;
@@ -35,6 +39,12 @@ export class AudioPlayerService {
     } else {
       this.AudioContext = null;
     }
+    this.auth.user$.subscribe((user) => {
+      if (!user) {
+        return;
+      }
+      this.user = user;
+    });
   }
 
   public play() {
@@ -130,14 +140,23 @@ export class AudioPlayerService {
       });
       this.bind('ended', () => {
         if (!isDevMode()) {
+          let metadata: any = {
+            song_id: this._playQueue[0].id,
+            song_length: this._duration,
+            user_id: null,
+            user_is_staff: false,
+          };
+          if (this.user) {
+            metadata.user_id = this.user.id;
+            if (this.user.is_staff || this.user.is_superuser) {
+              metadata.user_is_staff = true;
+            }
+          }
           let songFinished = this.api.AnalyticsEvent.create({
             category: 'music_engagement',
             action: 'finished_song',
             label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
-            metadata: {
-              song_id: this._playQueue[0].id,
-              song_length: this._duration,
-            },
+            metadata: metadata,
           }).subscribe(
             () => {},
             () => {},

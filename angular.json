@@ -111,7 +111,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "new-punkweb-ngx:build"
+            "browserTarget": "punkweb-ngx:build"
           }
         },
         "test": {
@@ -249,5 +249,5 @@
       }
     }
   },
-  "defaultProject": "punkweb-ngx",
+  "defaultProject": "punkweb-ngx"
 }

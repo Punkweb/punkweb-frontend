@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ModalService } from '../../../modules/modals';
 import { ApiService, AudioPlayerService, SanitizeService } from '../../../services';
-import { SongLyricsModalComponent } from '../../../components';
 
 @Component({
   'selector': 'app-route-artist',
@@ -61,13 +60,17 @@ export class ArtistComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params.subscribe((params) => {
       this.getArtist(params.slug).then((artist: any) => {
         this.artist = artist;
-        this.totalPlaysThisWeek = this.artist.plays_this_week.map(
-          (obj) => {
-            return obj.plays;
-          }
-        ).reduce((a, b) => {
-          return a + b;
-        });
+        if (this.artist.plays_this_week && this.artist.plays_this_week.length > 0) {
+          this.totalPlaysThisWeek = this.artist.plays_this_week.map(
+            (obj) => {
+              return obj.plays;
+            }
+          ).reduce((a, b) => {
+            return a + b;
+          });
+        } else {
+          this.totalPlaysThisWeek = 0;
+        }
         this.shopUrl = this.artist.spreadshirt_shop_slug ?
           this.sanitize.cleanSrc('https://shop.spreadshirt.com/' + this.artist.spreadshirt_shop_slug) : null;
         this.breadcrumbs[2].text = this.artist.name;
@@ -185,12 +188,20 @@ export class ArtistComponent implements OnInit, OnDestroy {
   }
 
   public initCanvas() {
-    let playsLabels = this.artist.plays_this_week.slice(0).reverse().map((date) => {
-      return date.date;
-    });
-    let playsData = this.artist.plays_this_week.slice(0).reverse().map((date) => {
-      return date.plays;
-    });
+    let playsLabels;
+    let playsData;
+    if (this.artist.plays_this_week && this.artist.plays_this_week.length > 0) {
+      playsLabels = Array(7).fill('').map((val, idx) => {
+        return moment().subtract(idx, 'days').format('YYYY-MM-DD');
+      }).reverse();
+      playsData = Array(7).fill(0);
+      this.artist.plays_this_week.forEach((playsOnDate) => {
+        playsData[playsLabels.indexOf(playsOnDate.date)] = playsOnDate.plays;
+      });
+    } else {
+      playsLabels = [];
+      playsData = [];
+    }
     this.playsCanvasRef = {
       type: 'bar',
       data: {

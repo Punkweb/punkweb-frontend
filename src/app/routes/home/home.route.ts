@@ -30,6 +30,9 @@ export class HomeComponent implements OnDestroy, OnInit {
 
   public ngOnInit() {
     this.authSub = this.auth.user$.subscribe((user) => {
+      if (!user) {
+        return;
+      }
       this.user = user;
     });
     let artistsSub = this.api.Artist.list().subscribe(

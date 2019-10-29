@@ -34,27 +34,32 @@
         <hr class="clearMargin" />
         <div class="spinner" *ngIf="!top10Loaded"></div>
         <ng-container *ngIf="top10Loaded">
-          <div class="top10List">
-            <div class="transitions item"
-              *ngFor="let song of top10Shown; let i = index;"
-              [ngClass]="{'item--selected': isCurrentSong(song) }"
-              (click)="clickTop10Song(i)">
-              <div class="item__img">
-                <img [src]="song.album_thumbnail" alt="" />
-              </div>
-              <div class="item__rank">
-                {{i + 1}}
-              </div>
-              <div class="item__title">
-                {{song.title}}
-              </div>
-              <div class="item__plays">
-                {{displaySongPlays(song.total_plays)}}
+          <ng-container *ngIf="top10.length < 1">
+            <p>This artist doesn't have any plays yet.</p>
+          </ng-container>
+          <ng-container *ngIf="top10.length > 0">
+            <div class="top10List">
+              <div class="transitions item"
+                *ngFor="let song of top10Shown; let i = index;"
+                [ngClass]="{'item--selected': isCurrentSong(song) }"
+                (click)="clickTop10Song(i)">
+                <div class="item__img">
+                  <img [src]="song.album_thumbnail" alt="" />
+                </div>
+                <div class="item__rank">
+                  {{i + 1}}
+                </div>
+                <div class="item__title">
+                  {{song.title}}
+                </div>
+                <div class="item__plays">
+                  {{displaySongPlays(song.total_plays)}}
+                </div>
               </div>
             </div>
-          </div>
-          <button class="button-hollow-primary" *ngIf="showMoreButton()" (click)="clickShowMore()">Show More</button>
-          <button class="button-hollow-primary" *ngIf="showLessButton()" (click)="clickShowLess()">Show Less</button>
+            <button class="button-hollow-primary" *ngIf="showMoreButton()" (click)="clickShowMore()">Show More</button>
+            <button class="button-hollow-primary" *ngIf="showLessButton()" (click)="clickShowLess()">Show Less</button>
+          </ng-container>
         </ng-container>
         <h3>Albums</h3>
         <hr />

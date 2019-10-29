@@ -27,15 +27,6 @@ export class MandalaState extends State {
     if (!this.audio || !this.audio.audioAnalyser) {
       return;
     }
-    // if (this.audio.playQueue && this.audio.playQueue.length > 0) {
-    //   this.albumImage = new Image(400, 400);
-    //   this.albumImage.src = this.audio.playQueue[0].album_thumbnail_lrg;
-    //   rend.image(
-    //     this.albumImage, // img
-    //     0, 0, 400, 400, // src
-    //     (this.engineCtx.size.w / 2) - 160, (this.engineCtx.size.h / 2) - 160, 320, 320 // dest
-    //   );
-    // }
     let x = 0;
     let frequency, radius;
     let r, g, b, grayscale;
