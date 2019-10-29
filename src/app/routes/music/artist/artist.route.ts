@@ -258,7 +258,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
     this.top10Shown = this.top10.slice(0, 5);
   }
 
-  public artistBio(artist) {
+  public artistBio() {
     return this.sanitize.cleanHtml(this.artist._bio_rendered);
   }
 
