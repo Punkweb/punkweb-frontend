@@ -21,7 +21,7 @@ export class EventComponent implements OnDestroy, OnInit {
     },
     {
       text: 'Artist',
-      link: '/music/artist',
+      link: null,
     },
     {
       text: 'Event',

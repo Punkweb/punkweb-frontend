@@ -26,6 +26,8 @@ export class AudioPlayerService {
   private _duration = 0;
   private _trackPercent = 0;
 
+  private listenTimer = null;
+
   constructor(
     private title: Title,
     private meta: Meta,
@@ -137,6 +139,34 @@ export class AudioPlayerService {
       this.instance.preload = 'metadata';
       this.bind('canplaythrough', () => {
         this.play();
+        if (!isDevMode()) {
+          clearTimeout(this.listenTimer);
+          this.listenTimer = setTimeout(() => {
+            let metadata: any = {
+              song_id: this._playQueue[0].id,
+              song_length: this._duration,
+              user_id: null,
+              user_is_staff: false,
+            };
+            if (this.user) {
+              metadata.user_id = this.user.id;
+              if (this.user.is_staff || this.user.is_superuser) {
+                metadata.user_is_staff = true;
+              }
+            }
+            let analyticsSub = this.api.AnalyticsEvent.create({
+              category: 'music_engagement',
+              action: '30_second_song_play',
+              label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
+              metadata: metadata,
+            }).subscribe(
+              () => {},
+              () => {},
+              () => {
+                analyticsSub.unsubscribe();
+            });
+          }, this._duration < 31 ? this._duration * 1000 : 30000);
+        }
       });
       this.bind('ended', () => {
         if (!isDevMode()) {

@@ -19,7 +19,9 @@
       }"
       (click)="$event.stopPropagation()">
         <div class="modal__close" [hidden]="options?.closeDisabled" (click)="close()">
-          <span class="modal__closeIcon">&#10006;</span>
+          <span class="modal__closeIcon">
+            <i class="fa fa-times"></i>
+          </span>
         </div>
         <ng-container #content></ng-container>
     </div>

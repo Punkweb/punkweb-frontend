@@ -25,7 +25,8 @@
           (click)="audio.next()"><i class="fas fa-forward fa-fw"></i></button>
         <button class="button-circle--small showViz"
           *ngIf="audio.audioAnalyser"
-          (click)="openVisualizer()">
+          [routerLink]="['/music/visualizer']"
+          routerLinkActive="button-circle--small-primary">
           <i class="fas fa-eye fa-fw"></i>
         </button>
       </div>

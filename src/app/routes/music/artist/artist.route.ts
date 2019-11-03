@@ -209,19 +209,52 @@ export class ArtistComponent implements OnInit, OnDestroy {
         datasets: [{
           label: 'Song Plays By Day',
           data: playsData,
-          backgroundColor: '#6741d9',
-          borderColor: '#6741d9',
+          backgroundColor: '#c92a2a',
+          borderColor: '#c92a2a',
           borderWidth: 1
         }]
       },
       options: {
+        legend: {
+          labels: {
+            fontColor: 'white'
+          },
+        },
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              stepSize: 100,
+          xAxes: [
+            {
+              ticks: {
+                fontColor: 'white',
+              },
+              pointLabels: {
+                fontColor: 'white',
+              },
+              gridLines: {
+                color: 'rgba(255, 255, 255, 0.2)'
+              },
+              angleLines: {
+                color: 'white'
+              }
             }
-          }]
+          ],
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                fontColor: 'white',
+                stepSize: 100,
+              },
+              pointLabels: {
+                fontColor: 'white'
+              },
+              gridLines: {
+                color: 'rgba(255, 255, 255, 0.2)'
+              },
+              angleLines: {
+                color: 'white'
+              }
+            }
+          ]
         }
       }
     };
@@ -279,11 +312,11 @@ export class ArtistComponent implements OnInit, OnDestroy {
       return;
     }
     this.audio.playQueue = this.top10.slice(0);
-    this.router.navigate(['/music', 'visualizer']);
+    // this.router.navigate(['/music', 'visualizer']);
   }
 
   public clickTop10Song(index) {
     this.audio.playQueue = this.top10.slice(index);
-    this.router.navigate(['/music', 'visualizer']);
+    // this.router.navigate(['/music', 'visualizer']);
   }
 }

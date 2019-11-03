@@ -449,8 +449,8 @@ progress::-webkit-progress-value {
     border-color: mix(black, $background, 10%);
   }
   &:disabled {
-    background-color: $oc-gray-5;
-    border: 1px solid $oc-gray-6;
+    background-color: lighten($background, 20%);
+    border: 1px solid $border;
     cursor: not-allowed;
     &:hover {
       box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
@@ -552,6 +552,17 @@ progress::-webkit-progress-value {
   }
   &-orange {
     @include button-hollow($oc-orange-7, white);
+  }
+}
+
+.button--small {
+  @include button($oc-gray-7, white);
+  font-size: 12px;
+  padding: .5rem .75rem;
+  &-primary {
+    @include button($primary, white);
+    font-size: 12px;
+    padding: .5rem .75rem;
   }
 }
 

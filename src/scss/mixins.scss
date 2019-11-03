@@ -47,7 +47,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background-color: darken($body-background, 10%)
+    background-color: lighten($body-background, 10%)
   }
 
   &::-webkit-scrollbar-thumb {

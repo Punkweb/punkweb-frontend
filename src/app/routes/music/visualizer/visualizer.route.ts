@@ -6,6 +6,7 @@ import { AudioPlayerService } from '../../../services';
 import { Squire, State } from '../../../squire';
 import { MandalaState } from './mandala.state';
 import { FlowerOfLifeState } from './flower-of-life.state';
+import { BarsState } from './bars.state';
 
 @Component({
   'selector': 'app-route-visualizer',

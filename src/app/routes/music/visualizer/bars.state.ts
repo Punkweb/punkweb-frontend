@@ -1,18 +1,16 @@
 import { AudioPlayerService } from '../../../services';
 import { Random, Renderer, State, Squire } from '../../../squire';
 
-export class MandalaState extends State {
+export class BarsState extends State {
 
   public rendererName = 'mandala';
-
-  private albumImage = null;
 
   public bufferLength = this.audio.bufferLength;
   public barWidth = (this.engineCtx.size.w / this.audio.bufferLength) * 1;
 
-  public mainR = 201;
-  public mainG = 42;
-  public mainB = 42;
+  public mainR = 103;
+  public mainG = 65;
+  public mainB = 217;
 
   constructor(public engineCtx: Squire, public audio: AudioPlayerService) {
     super(engineCtx);
@@ -28,39 +26,25 @@ export class MandalaState extends State {
       return;
     }
     let x = 0;
-    let frequency, radius;
+    let frequency, height;
     let r, g, b, grayscale;
     let center;
-    let itemsCount;
-    for (let i = 1; i < this.bufferLength; i++) {
+    for (let i = 0; i < this.bufferLength; i++) {
       frequency = this.audio.dataArray[i];
-      itemsCount = 32;
-      radius = frequency * .55;
+      height = frequency;
       r = Math.abs(frequency - 255) + this.mainR;
       g = Math.abs(frequency - 255) + this.mainG;
       b = Math.abs(frequency - 255) + this.mainB;
-      grayscale = `rgba(${r}, ${g}, ${b}, .2)`;
+      grayscale = `rgba(${r}, ${g}, ${b}, 1)`;
 
       center = {
         color: grayscale,
-        x: this.engineCtx.size.w / 2,
-        y: this.engineCtx.size.h / 2,
-        r: radius
+        x: x,
+        y: this.engineCtx.size.h - height,
+        w: this.barWidth,
+        h: height,
       };
-      rend.circle(center.color, center.x, center.y, center.r);
-      let item;
-      let itemRadius;
-      let itemr, itemg, itemb;
-      for (let j = 0; j < itemsCount; j++) {
-        itemRadius = (center.r * .1);
-        item = {
-          color: center.color,
-          x: (center.x + center.r * Math.cos(2 * Math.PI * j / itemsCount)),
-          y: (center.y + center.r * Math.sin(2 * Math.PI * j / itemsCount)),
-          r: itemRadius,
-        };
-        rend.circle(item.color, item.x, item.y, item.r);
-      }
+      rend.rect(center.color, center.x, center.y, center.w, center.h);
       x += this.barWidth;
     }
   }

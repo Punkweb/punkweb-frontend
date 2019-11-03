@@ -7,13 +7,14 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(15, 33, 43, 0.7);
+  background-color: rgba(28, 28, 28, 0.7);
   padding: 1rem;
   &--backdropDisabled {
     background-color: transparent;
   }
   &__content {
-    background-color: #ffffff;
+    background-color: $modal-background;
+    color: $modal-text;
     border-radius: 4px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
     margin: 0 auto;
@@ -25,7 +26,7 @@
     max-width: 1280px;
   }
   &__close {
-    color: white;
+    color: $modal-text;
     cursor: pointer;
     font-size: 20px;
     line-height: 32px;

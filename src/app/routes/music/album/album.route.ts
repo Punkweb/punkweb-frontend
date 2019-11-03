@@ -31,7 +31,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
     },
     {
       text: 'Artist',
-      link: '/music/artist/'
+      link: null,
     },
     {
       text: 'Album',
@@ -141,7 +141,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   public clickSong(index) {
     this.audio.playQueue = this.tracks.slice(index);
-    this.router.navigate(['/music', 'visualizer']);
+    // this.router.navigate(['/music', 'visualizer']);
   }
 
   public clickSongLyrics(song) {
