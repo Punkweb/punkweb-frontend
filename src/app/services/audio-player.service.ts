@@ -17,6 +17,7 @@ export class AudioPlayerService {
   public bufferLength = null;
   public dataArray = null;
   public events = [];
+  public playTimeouts = [];
 
   public history = [];
 
@@ -25,8 +26,6 @@ export class AudioPlayerService {
   private _currentTime = 0;
   private _duration = 0;
   private _trackPercent = 0;
-
-  private listenTimer = null;
 
   constructor(
     private title: Title,
@@ -51,14 +50,23 @@ export class AudioPlayerService {
 
   public play() {
     this.instance.play();
+    if (!isDevMode()) {
+      this.addPlayTimeout(this._playQueue[0]);
+    }
   }
 
   public pause() {
     this.instance.pause();
+    if (!isDevMode()) {
+      this.clearPlayTimeouts();
+    }
   }
 
   public stop() {
     this.instance.pause();
+    if (!isDevMode()) {
+      this.clearPlayTimeouts();
+    }
   }
 
   public mute() {
@@ -131,6 +139,41 @@ export class AudioPlayerService {
     this.title.setTitle(`Punkweb | ${this._playQueue[0].title}`);
   }
 
+  public addPlayTimeout(song: any) {
+    let timeout = setTimeout(() => {
+      let metadata: any = {
+        song_id: song.id,
+        song_length: song.duration,
+        user_id: null,
+        user_is_staff: false,
+      };
+      if (this.user) {
+        metadata.user_id = this.user.id;
+        if (this.user.is_staff || this.user.is_superuser) {
+          metadata.user_is_staff = true;
+        }
+      }
+      let analyticsSub = this.api.AnalyticsEvent.create({
+        category: 'music_engagement',
+        action: '30_second_song_play',
+        label: `${song.artist_name}: ${song.title}`,
+        metadata: metadata,
+      }).subscribe(
+        () => {},
+        () => {},
+        () => {
+          analyticsSub.unsubscribe();
+      });
+    }, song.duration < 31 ? song.duration * 1000 : 30000);
+    this.playTimeouts.push(timeout);
+  }
+
+  public clearPlayTimeouts() {
+    this.playTimeouts.forEach((id) => {
+      clearTimeout(id);
+    });
+  }
+
   public createAudio() {
     this.audioCtx = new this.AudioContext();
     if (!this.instance) {
@@ -140,32 +183,8 @@ export class AudioPlayerService {
       this.bind('canplaythrough', () => {
         this.play();
         if (!isDevMode()) {
-          clearTimeout(this.listenTimer);
-          this.listenTimer = setTimeout(() => {
-            let metadata: any = {
-              song_id: this._playQueue[0].id,
-              song_length: this._duration,
-              user_id: null,
-              user_is_staff: false,
-            };
-            if (this.user) {
-              metadata.user_id = this.user.id;
-              if (this.user.is_staff || this.user.is_superuser) {
-                metadata.user_is_staff = true;
-              }
-            }
-            let analyticsSub = this.api.AnalyticsEvent.create({
-              category: 'music_engagement',
-              action: '30_second_song_play',
-              label: `${this._playQueue[0].artist_name}: ${this._playQueue[0].title}`,
-              metadata: metadata,
-            }).subscribe(
-              () => {},
-              () => {},
-              () => {
-                analyticsSub.unsubscribe();
-            });
-          }, this._duration < 31 ? this._duration * 1000 : 30000);
+          this.clearPlayTimeouts();
+          this.addPlayTimeout(this._playQueue[0]);
         }
       });
       this.bind('ended', () => {
@@ -244,6 +263,7 @@ export class AudioPlayerService {
     if (this.instance) {
       this.pause();
       this.title.setTitle(`Punkweb`);
+      this.clearPlayTimeouts();
     }
   }
 
