@@ -178,7 +178,7 @@ export class AudioPlayerService {
       this.instance = new Audio();
       // this.instance.crossOrigin = 'anonymous';
       this.instance.preload = 'metadata';
-      this.bind('canplaythrough', () => {
+      this.bind('canplay', () => {
         this.play();
         if (!isDevMode()) {
           this.clearPlayTimeouts();
