@@ -23,12 +23,12 @@
           (click)="audio.pause()" *ngIf="!audio.paused"><i class="fas fa-pause fa-fw"></i></button>
         <button class="button-circle--small"
           (click)="audio.next()"><i class="fas fa-forward fa-fw"></i></button>
-        <button class="button-circle--small showViz"
+        <!-- <button class="button-circle--small showViz"
           *ngIf="audio.audioAnalyser"
           [routerLink]="['/music/visualizer']"
           routerLinkActive="button-circle--small-primary">
           <i class="fas fa-eye fa-fw"></i>
-        </button>
+        </button> -->
       </div>
       <div class="musicPlayer__flex">
         <div id="currentTime">{{timeFormat(audio.currentTime)}}</div>

@@ -64,8 +64,4 @@ export class AudioPlayerComponent implements OnDestroy, OnInit {
   public routeToArtist(song) {
     this.router.navigate(['/music', 'artist', song.artist_slug]);
   }
-
-  public openVisualizer() {
-    this.router.navigate(['/music', 'visualizer']);
-  }
 }

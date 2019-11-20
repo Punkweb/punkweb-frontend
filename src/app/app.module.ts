@@ -27,7 +27,7 @@ import {
   ArtistComponent,
   ArtistShopComponent,
   EventComponent,
-  VisualizerComponent,
+  // VisualizerComponent,
   // Board
   BoardComponent,
   BoardSubcategoryComponent,
@@ -80,7 +80,7 @@ import {
     LoginComponent,
     MainShopComponent,
     AccountComponent,
-    VisualizerComponent,
+    // VisualizerComponent,
     // Music
     MusicComponent,
     AlbumComponent,

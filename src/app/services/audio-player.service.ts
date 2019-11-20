@@ -46,6 +46,7 @@ export class AudioPlayerService {
       }
       this.user = user;
     });
+    // this.createAudio();
   }
 
   public play() {
@@ -175,7 +176,9 @@ export class AudioPlayerService {
   }
 
   public createAudio() {
-    this.audioCtx = new this.AudioContext();
+    if (!this.audioCtx) {
+      this.audioCtx = new this.AudioContext();
+    }
     if (!this.instance) {
       this.instance = new Audio();
       this.instance.crossOrigin = 'anonymous';
@@ -235,27 +238,29 @@ export class AudioPlayerService {
         this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
       } catch (e) {
         this.audioSrc = null;
-        console.log('No audio source');
+        console.log('Failed to init audio source');
       }
       try {
-        this.audioAnalyser = this.audioCtx.createAnalyser();
+        this.audioSrc.connect(this.audioCtx.destination);
       } catch (e) {
-        this.audioAnalyser = null;
-        console.log('No audio analyser');
+        console.log('Failed to connect audio source');
       }
-      if (this.audioSrc && this.audioAnalyser) {
-        try {
-          this.audioSrc.connect(this.audioCtx.destination);
-          this.audioSrc.connect(this.audioAnalyser);
-          this.audioAnalyser.fftSize = 32;
-        } catch (e) {
-          console.log('Failed to init audio source or analyser');
-        }
-      }
-    }
-    if (this.audioAnalyser) {
-      this.bufferLength = this.audioAnalyser.frequencyBinCount;
-      this.dataArray = new Uint8Array(this.bufferLength);
+      // try {
+      //   this.audioAnalyser = this.audioCtx.createAnalyser();
+      // } catch (e) {
+      //   this.audioAnalyser = null;
+      //   console.log('No audio analyser');
+      // }
+      // if (this.audioAnalyser) {
+      //   try {
+      //     this.bufferLength = this.audioAnalyser.frequencyBinCount;
+      //     this.dataArray = new Uint8Array(this.bufferLength);
+      //     this.audioSrc.connect(this.audioAnalyser);
+      //     this.audioAnalyser.fftSize = 32;
+      //   } catch (e) {
+      //     console.log('Failed to init audio analyser');
+      //   }
+      // }
     }
   }
 
