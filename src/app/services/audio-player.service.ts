@@ -46,7 +46,7 @@ export class AudioPlayerService {
       }
       this.user = user;
     });
-    // this.createAudio();
+    this.createAudio();
   }
 
   public play() {

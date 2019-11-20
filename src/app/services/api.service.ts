@@ -129,6 +129,7 @@ class ApiEndpoint implements ApiOperations {
 export class ApiService {
 
   public AnalyticsEvent = new ApiEndpoint(this.http, 'analytics/analytics_events');
+  public ClientError = new ApiEndpoint(this.http, 'analytics/client_errors');
 
   public ContactForms = new ApiEndpoint(this.http, 'contact_forms');
 

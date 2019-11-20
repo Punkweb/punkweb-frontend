@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -54,6 +54,7 @@ import {
   AuthService,
   AuthTokenInterceptor,
   ElectronService,
+  GlobalErrorHandler,
   HttpService,
   SanitizeService,
 } from './services';
@@ -108,6 +109,7 @@ import {
     {provide: APP_BASE_HREF, useValue : '/' },
     // Services
     {provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true},
+    {provide: ErrorHandler, useClass: GlobalErrorHandler},
     ApiService,
     AudioPlayerService,
     AuthService,
