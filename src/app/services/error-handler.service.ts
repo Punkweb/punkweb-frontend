@@ -12,11 +12,17 @@ export class GlobalErrorHandler implements ErrorHandler {
     console.log(error);
     if (!isDevMode()) {
       let errorSub = this.api.ClientError.create({
-        error_body: error
+        error_body: error.toString()
       }).subscribe(
-        () => {},
-        () => {},
         () => {
+          console.log('got here');
+        },
+        (err) => {
+          console.log(err);
+          console.log('failed');
+        },
+        () => {
+          console.log('ended');
           errorSub.unsubscribe();
         }
       );
