@@ -141,7 +141,6 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   public clickSong(index) {
     this.audio.playQueue = this.tracks.slice(index);
-    // this.router.navigate(['/music', 'visualizer']);
   }
 
   public clickSongLyrics(song) {

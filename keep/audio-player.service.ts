@@ -13,8 +13,12 @@ export class AudioPlayerService {
   public instance: any = null;
   public audioCtx: any = null;
   public audioSrc: any = null;
+  public audioAnalyser: any = null;
+  public bufferLength = null;
+  public dataArray = null;
   public events = [];
   public playTimeouts = [];
+
   public history = [];
 
   private AudioContext = null;
@@ -42,7 +46,7 @@ export class AudioPlayerService {
       }
       this.user = user;
     });
-    this.createAudio();
+    // this.createAudio();
   }
 
   public play() {
@@ -130,9 +134,7 @@ export class AudioPlayerService {
   }
 
   public load(url) {
-    this.destroyAudio();
     this.createAudio();
-    this.instance.pause();
     this.instance.src = url;
     this.instance.load();
     this.title.setTitle(`Punkweb | ${this._playQueue[0].title}`);
@@ -174,9 +176,14 @@ export class AudioPlayerService {
   }
 
   public createAudio() {
+    if (!this.audioCtx) {
+      this.audioCtx = new this.AudioContext();
+    } else {
+      this.audioCtx.resume();
+    }
     if (!this.instance) {
       this.instance = new Audio();
-      // this.instance.crossOrigin = 'anonymous';
+      this.instance.crossOrigin = 'anonymous';
       this.instance.preload = 'metadata';
       this.bind('canplaythrough', () => {
         this.play();
@@ -228,11 +235,6 @@ export class AudioPlayerService {
         this._trackPercent = ((this._currentTime / this._duration)  * 100);
       });
     }
-    if (!this.audioCtx) {
-      this.audioCtx = new this.AudioContext();
-    } else {
-      // this.audioCtx.resume();
-    }
     if (!this.audioSrc) {
       try {
         this.audioSrc = this.audioCtx.createMediaElementSource(this.instance);
@@ -240,10 +242,26 @@ export class AudioPlayerService {
         this.audioSrc = null;
         console.log('Failed to init audio source');
       }
+      try {
+        this.audioSrc.connect(this.audioCtx.destination);
+      } catch (e) {
+        console.log('Failed to connect audio source');
+      }
       // try {
-      //   this.audioSrc.connect(this.audioCtx.destination);
+      //   this.audioAnalyser = this.audioCtx.createAnalyser();
       // } catch (e) {
-      //   console.log('Failed to connect audio source');
+      //   this.audioAnalyser = null;
+      //   console.log('No audio analyser');
+      // }
+      // if (this.audioAnalyser) {
+      //   try {
+      //     this.bufferLength = this.audioAnalyser.frequencyBinCount;
+      //     this.dataArray = new Uint8Array(this.bufferLength);
+      //     this.audioSrc.connect(this.audioAnalyser);
+      //     this.audioAnalyser.fftSize = 32;
+      //   } catch (e) {
+      //     console.log('Failed to init audio analyser');
+      //   }
       // }
     }
   }
@@ -251,17 +269,8 @@ export class AudioPlayerService {
   public destroyAudio() {
     if (this.instance) {
       this.pause();
-      for (let i = 0; i < this.events.length; i++) {
-        this.instance.removeEventListener(this.events[i].name, this.events[i].callback);
-        this.events.splice(i, 1);
-      }
-      try {
-        this.instance.src = '';
-      } finally {
-        this.title.setTitle(`Punkweb`);
-        this.clearPlayTimeouts();
-        this.instance = null;
-      }
+      this.title.setTitle(`Punkweb`);
+      this.clearPlayTimeouts();
     }
   }
 

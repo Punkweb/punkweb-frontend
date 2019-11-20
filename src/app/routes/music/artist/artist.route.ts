@@ -312,11 +312,9 @@ export class ArtistComponent implements OnInit, OnDestroy {
       return;
     }
     this.audio.playQueue = this.top10.slice(0);
-    // this.router.navigate(['/music', 'visualizer']);
   }
 
   public clickTop10Song(index) {
     this.audio.playQueue = this.top10.slice(index);
-    // this.router.navigate(['/music', 'visualizer']);
   }
 }
