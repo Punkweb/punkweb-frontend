@@ -178,6 +178,8 @@ export class AudioPlayerService {
   public createAudio() {
     if (!this.audioCtx) {
       this.audioCtx = new this.AudioContext();
+    } else {
+      this.audioCtx.resume();
     }
     if (!this.instance) {
       this.instance = new Audio();
