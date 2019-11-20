@@ -14,15 +14,9 @@ export class GlobalErrorHandler implements ErrorHandler {
       let errorSub = this.api.ClientError.create({
         error_body: error.toString()
       }).subscribe(
+        () => { },
+        (err) => { },
         () => {
-          console.log('got here');
-        },
-        (err) => {
-          console.log(err);
-          console.log('failed');
-        },
-        () => {
-          console.log('ended');
           errorSub.unsubscribe();
         }
       );
