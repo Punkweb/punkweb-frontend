@@ -100,7 +100,7 @@
             <table class="eventsTable noBorderTable">
               <thead>
                 <tr>
-                  <th class="col-md">Event</th>
+                  <th class="col-lrg">Event</th>
                   <th class="col-md">Location</th>
                   <th class="col-md">Date</th>
                 </tr>
@@ -110,12 +110,8 @@
                   <td (click)="routeToEvent(event)">
                     <div class="event__title__container">
                       <div class="calendarWidget">
-                        <div class="calendarWidget__header">
-                          {{event.event_date.format('MMM')}}
-                        </div>
-                        <div class="calendarWidget__body">
-                          {{event.event_date.format('DD')}}
-                        </div>
+                        <div class="calendarWidget__month">{{event.event_date.format('MMM')}}</div>
+                        <div class="calendarWidget__day">{{event.event_date.format('DD')}}</div>
                       </div>
                       <span>{{event.title}}</span>
                     </div>

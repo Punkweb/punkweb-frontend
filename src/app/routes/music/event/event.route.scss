@@ -5,6 +5,9 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      img {
+        max-width: 600px;
+      }
     }
   }
 }

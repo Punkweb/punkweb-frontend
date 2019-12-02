@@ -178,7 +178,7 @@ export class AudioPlayerService {
       this.instance = new Audio();
       // this.instance.crossOrigin = 'anonymous';
       this.instance.preload = 'metadata';
-      this.bind('canplay', () => {
+      this.bind('canplaythrough', () => {
         this.play();
         if (!isDevMode()) {
           this.clearPlayTimeouts();
@@ -230,8 +230,6 @@ export class AudioPlayerService {
     }
     if (!this.audioCtx) {
       this.audioCtx = new this.AudioContext();
-    } else {
-      // this.audioCtx.resume();
     }
     if (!this.audioSrc) {
       try {
@@ -240,11 +238,6 @@ export class AudioPlayerService {
         this.audioSrc = null;
         console.log('Failed to init audio source');
       }
-      // try {
-      //   this.audioSrc.connect(this.audioCtx.destination);
-      // } catch (e) {
-      //   console.log('Failed to connect audio source');
-      // }
     }
   }
 
