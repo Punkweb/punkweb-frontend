@@ -1,7 +1,6 @@
 {
-  "name": "punkweb-ngx",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "punkweb-frontend",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -29,6 +28,7 @@
     "intl": "^1.2.5",
     "moment": "^2.22.1",
     "rxjs": "~6.4.0",
+    "squire-ts": "^0.1.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

@@ -1,5 +1,5 @@
+import { Random, Renderer, State, SquireGame } from 'squire-ts';
 import { AudioPlayerService } from '../../../services';
-import { Random, Renderer, State, Squire } from '../../../squire';
 
 export class BarsState extends State {
 
@@ -12,7 +12,7 @@ export class BarsState extends State {
   public mainG = 65;
   public mainB = 217;
 
-  constructor(public engineCtx: Squire, public audio: AudioPlayerService) {
+  constructor(public engineCtx: SquireGame, public audio: AudioPlayerService) {
     super(engineCtx);
     console.log('mandala state created');
   }

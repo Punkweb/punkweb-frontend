@@ -2,8 +2,8 @@ import { Component, AfterViewInit, ElementRef, HostListener, OnDestroy, OnInit, 
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { debounce } from 'lodash';
+import { SquireGame, State } from 'squire-ts';
 import { AudioPlayerService } from '../../../services';
-import { Squire, State } from '../../../squire';
 import { MandalaState } from './mandala.state';
 import { FlowerOfLifeState } from './flower-of-life.state';
 import { BarsState } from './bars.state';
@@ -17,8 +17,8 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public data: any = null;
 
-  private visualizerMobile: Squire = null;
-  private visualizerDesktop: Squire = null;
+  private visualizerMobile: SquireGame = null;
+  private visualizerDesktop: SquireGame = null;
   private currentState: State = null;
 
   public innerWidth = 0;
@@ -49,7 +49,7 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
   public initMobile() {
     console.log('init Mobile');
     try {
-      this.visualizerMobile = new Squire('visualizerMobile');
+      this.visualizerMobile = new SquireGame('visualizerMobile');
     } finally {
       this.currentState = new MandalaState(this.visualizerMobile, this.audio);
       this.visualizerMobile.stateManager.state = this.currentState;
@@ -67,7 +67,7 @@ export class VisualizerComponent implements AfterViewInit, OnDestroy, OnInit {
   public initDesktop() {
     console.log('init Desktop');
     try {
-      this.visualizerDesktop = new Squire('visualizerDesktop');
+      this.visualizerDesktop = new SquireGame('visualizerDesktop');
     } finally {
       this.currentState = new MandalaState(this.visualizerDesktop, this.audio);
       this.visualizerDesktop.stateManager.state = this.currentState;
